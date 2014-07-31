@@ -1,0 +1,35 @@
+<?xml version='1.0'?>
+<mavlink>
+     <include>common.xml</include>
+     <!-- note that Propeller specific messages should use the command id
+      range from 150 to 250, to leave plenty of room for growth
+      of common.xml 
+
+      If you prototype a message here, then you should consider if it
+      is general enough to move into common.xml later
+    -->
+
+	<enums>
+
+  </enums>
+
+  <messages>
+
+    <message name="COMPACT_STATE" id="190">
+      <description>Compact state estimate</description>
+      <field type="uint32_t" name="time_boot_ms">Timestamp of the component clock since boot time in milliseconds.</field>
+      <field type="int32_t" name="q1">Quaternion component 1, w (2^30 in null-rotation)</field>
+      <field type="int32_t" name="q2">Quaternion component 2, x (0 in null-rotation)</field>
+      <field type="int32_t" name="q3">Quaternion component 3, y (0 in null-rotation)</field>
+      <field type="int32_t" name="q4">Quaternion component 4, z (0 in null-rotation)</field>
+      <field type="int32_t" name="x">X Position in mm</field>
+      <field type="int32_t" name="y">Y Position in mm</field>
+      <field type="int32_t" name="z">Z Position in mm</field>
+      <field type="int32_t" name="vx">X Speed mm/s</field>
+      <field type="int32_t" name="vy">Y Speed mm/s</field>
+      <field type="int32_t" name="vz">Z Speed mm/s</field>
+      <field type="int32_t" name="airspeed">Current airspeed in mm/s</field>
+    </message>
+
+  </messages>
+</mavlink>
