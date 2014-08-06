@@ -28,6 +28,7 @@
       <field type="int32_t" name="vx">X Speed mm/s</field>
       <field type="int32_t" name="vy">Y Speed mm/s</field>
       <field type="int32_t" name="vz">Z Speed mm/s</field>
+      <field type="int32_t" name="omegaZ">Rotation rate deg/s*1000</field>
       <field type="int32_t" name="airspeed">Current airspeed in mm/s</field>
     </message>
 
