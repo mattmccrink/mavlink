@@ -57,11 +57,15 @@ def process_tlog(filename):
 
         if mtype not in type_counters:
             type_counters[mtype] = 0
-            f.write("%s.heading = {'timestamp'" % mtype)
+            f.write("%s.columns = {'timestamp'" % mtype)
             for field in fieldnames:
                 val = getattr(m, field)
                 if not isinstance(val, str):
-                    f.write(",'%s'" % field)
+                    if type(val) is not list:
+                        f.write(",'%s'" % field)
+                    else:
+                        for i in range(0, len(val)):
+                            f.write(",'%s%d'" % (field, i + 1))
             f.write("};\n")
 
         type_counters[mtype] += 1
@@ -69,7 +73,11 @@ def process_tlog(filename):
         for field in m._fieldnames:
             val = getattr(m, field)
             if not isinstance(val, str):
-                f.write(",%f" % val)
+                if type(val) is not list:
+                    f.write(",%.20g" % val)
+                else:
+                    for i in range(0, len(val)):
+                        f.write(",%.20g" % val[i])
         f.write("];\n")
     f.close()
 

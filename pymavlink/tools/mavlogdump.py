@@ -133,7 +133,7 @@ while True:
 
         # Prepare the message as a single object with 'meta' and 'data' keys holding
         # the message's metadata and actual data respectively.
-        outMsg = {"meta": {"msgId": m.get_msgId(), "type": m.get_type(), "timestamp": m._timestamp}, "data": data}
+        outMsg = {"meta": {"msgId": m.get_msgId(), "type": m.get_type(), "timestamp": timestamp}, "data": data}
 
         # Now print out this object with stringified properly.
         print(json.dumps(outMsg))
@@ -145,7 +145,7 @@ while True:
         # If this message has a duplicate timestamp, copy its data into the existing data list. Also
         # do this if it's the first message encountered.
         if timestamp == last_timestamp or last_timestamp is None:
-            newData = [str(data[y.split('.')[-1]]) if y.split('.')[0] == type and y.split('.')[-1] in data else "" for y in [type + '.' + x for x in fields]]
+            newData = [str(data[y.split('.')[-1]]) if y.split('.')[0] == type and y.split('.')[-1] in data else "" for y in fields]
             for i, val in enumerate(newData):
                 if val:
                     csv_out[i] = val
@@ -154,7 +154,7 @@ while True:
         else:
             csv_out[0] = "{:.8f}".format(last_timestamp)
             print(args.csv_sep.join(csv_out))
-            csv_out = [str(data[y.split('.')[-1]]) if y.split('.')[0] == type and y.split('.')[-1] in data else "" for y in [type + '.' + x for x in fields]]
+            csv_out = [str(data[y.split('.')[-1]]) if y.split('.')[0] == type and y.split('.')[-1] in data else "" for y in fields]
     # Otherwise we output in a standard Python dict-style format
     else:
         print("%s.%02u: %s" % (

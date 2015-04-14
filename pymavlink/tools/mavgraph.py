@@ -11,6 +11,12 @@ from math import *
 
 from pymavlink.mavextra import *
 
+# cope with rename of raw_input in python3
+try:
+    input = raw_input
+except NameError:
+    pass
+
 colourmap = {
     'apm' : {
         'MANUAL'    : (1.0,   0,   0),
@@ -152,6 +158,7 @@ parser.add_argument("--multi", action='store_true', help="multiple files with sa
 parser.add_argument("--zero-time-base", action='store_true', help="use Z time base for DF logs")
 parser.add_argument("--flightmode", default=None,
                     help="Choose the plot background according to the active flight mode of the specified type, e.g. --flightmode=apm for ArduPilot or --flightmode=px4 for PX4 stack logs.  Cannot be specified with --xaxis.")
+parser.add_argument("--dialect", default="ardupilotmega", help="MAVLink dialect")
 parser.add_argument("--output", default=None, help="provide an output format")
 parser.add_argument("logs_fields", metavar="<LOG or FIELD>", nargs="+")
 args = parser.parse_args()
@@ -183,7 +190,7 @@ msg_types = set()
 multiplier = []
 field_types = []
 
-colors = [ 'red', 'green', 'blue', 'orange', 'olive', 'black', 'grey', 'yellow' ]
+colors = [ 'red', 'green', 'blue', 'orange', 'olive', 'black', 'grey', 'yellow', 'brown', 'darkcyan', 'cornflowerblue', 'darkmagenta', 'deeppink', 'darkred']
 
 # work out msg types we are interested in
 x = []
@@ -233,7 +240,7 @@ def add_data(t, msg, vars, flightmode):
 def process_file(filename):
     '''process one file'''
     print("Processing %s" % filename)
-    mlog = mavutil.mavlink_connection(filename, notimestamps=args.notimestamps, zero_time_base=args.zero_time_base)
+    mlog = mavutil.mavlink_connection(filename, notimestamps=args.notimestamps, zero_time_base=args.zero_time_base, dialect=args.dialect)
     vars = {}
 
     while True:
@@ -277,6 +284,7 @@ for fi in range(0, len(filenames)):
 if args.output is None:
     pylab.show()
     pylab.draw()
-    raw_input('press enter to exit....')
+    input('press enter to exit....')
 else:
-    pylab.savefig(args.output, bbox_inches='tight')
+    pylab.legend(loc=2,prop={'size':8})
+    pylab.savefig(args.output, bbox_inches='tight', dpi=200)
