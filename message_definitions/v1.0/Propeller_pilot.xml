@@ -32,5 +32,44 @@
       <field type="int32_t" name="airspeed">Current airspeed in mm/s</field>
     </message>
 
+    <message id="191" name="HIL_PROPELLER_STATE_QUATERNION">
+      <description>Sent from simulation to autopilot, avoids in contrast to HIL_STATE singularities. This packet is useful for high throughput applications such as hardware in the loop simulations.</description>
+      <field type="uint64_t" name="time_usec">Timestamp (microseconds since UNIX epoch or microseconds since system boot)</field>
+      <field type="int32_t[4]" name="attitude_quaternion">Vehicle attitude expressed as normalized quaternion in w, x, y, z order (with 2^30 0 0 0 being the null-rotation)</field>
+      <field type="int32_t" name="rollspeed">Body frame roll / phi angular speed (rad/s)</field>
+      <field type="int32_t" name="pitchspeed">Body frame pitch / theta angular speed (rad/s)</field>
+      <field type="int32_t" name="yawspeed">Body frame yaw / psi angular speed (rad/s)</field>
+      <field type="int32_t" name="lat">Latitude, expressed as * 1E7</field>
+      <field type="int32_t" name="lon">Longitude, expressed as * 1E7</field>
+      <field type="int32_t" name="alt">Altitude in meters, expressed as * 1000 (millimeters)</field>
+      <field type="int16_t" name="vx">Ground X Speed (Latitude), expressed as m/s * 100</field>
+      <field type="int16_t" name="vy">Ground Y Speed (Longitude), expressed as m/s * 100</field>
+      <field type="int16_t" name="vz">Ground Z Speed (Altitude), expressed as m/s * 100</field>
+      <field type="uint16_t" name="ind_airspeed">Indicated airspeed, expressed as m/s * 100</field>
+      <field type="uint16_t" name="true_airspeed">True airspeed, expressed as m/s * 100</field>
+      <field type="int16_t" name="xacc">X acceleration (mg)</field>
+      <field type="int16_t" name="yacc">Y acceleration (mg)</field>
+      <field type="int16_t" name="zacc">Z acceleration (mg)</field>
+    </message>
+    
+    <message id="192" name="HIL_PROPELLER_SENSOR">
+      <description>The IMU readings in SI units in NED body frame</description>
+      <field type="uint64_t" name="time_usec">Timestamp (microseconds, synced to UNIX time or since system boot)</field>
+      <field type="uint32_t" name="xacc">X acceleration (m/s^2)</field>
+      <field type="uint32_t" name="yacc">Y acceleration (m/s^2)</field>
+      <field type="uint32_t" name="zacc">Z acceleration (m/s^2)</field>
+      <field type="uint32_t" name="xgyro">Angular speed around X axis in body frame (rad / sec)</field>
+      <field type="uint32_t" name="ygyro">Angular speed around Y axis in body frame (rad / sec)</field>
+      <field type="uint32_t" name="zgyro">Angular speed around Z axis in body frame (rad / sec)</field>
+      <field type="uint32_t" name="xmag">X Magnetic field (Gauss)</field>
+      <field type="uint32_t" name="ymag">Y Magnetic field (Gauss)</field>
+      <field type="uint32_t" name="zmag">Z Magnetic field (Gauss)</field>
+      <field type="uint32_t" name="abs_pressure">Absolute pressure in millibar</field>
+      <field type="uint32_t" name="diff_pressure">Differential pressure (airspeed) in millibar</field>
+      <field type="uint32_t" name="pressure_alt">Altitude calculated from pressure</field>
+      <field type="uint32_t" name="temperature">Temperature in degrees celsius</field>
+      <field type="uint32_t" name="fields_updated">Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature</field>
+    </message>
+    
   </messages>
 </mavlink>
