@@ -36,9 +36,12 @@
       <description>Sent from simulation to autopilot, avoids in contrast to HIL_STATE singularities. This packet is useful for high throughput applications such as hardware in the loop simulations.</description>
       <field type="uint64_t" name="time_usec">Timestamp (microseconds since UNIX epoch or microseconds since system boot)</field>
       <field type="int32_t[4]" name="attitude_quaternion">Vehicle attitude expressed as normalized quaternion in w, x, y, z order (with 2^30 0 0 0 being the null-rotation)</field>
-      <field type="int32_t" name="rollspeed">Body frame roll / phi angular speed (rad/s)</field>
-      <field type="int32_t" name="pitchspeed">Body frame pitch / theta angular speed (rad/s)</field>
-      <field type="int32_t" name="yawspeed">Body frame yaw / psi angular speed (rad/s)</field>
+      <field type="int32_t" name="rollspeed">Body frame roll / phi angular speed (rad/s) * 1E7</field>
+      <field type="int32_t" name="pitchspeed">Body frame pitch / theta angular speed (rad/s) * 1E7</field>
+      <field type="int32_t" name="yawspeed">Body frame yaw / psi angular speed (rad/s) * 1E7</field>
+      <field type="int32_t" name="xacc">X acceleration (g) * 1E7</field>
+      <field type="int32_t" name="yacc">Y acceleration (g) * 1E7</field>
+      <field type="int32_t" name="zacc">Z acceleration (g) * 1E7</field>
       <field type="int32_t" name="lat">Latitude, expressed as * 1E7</field>
       <field type="int32_t" name="lon">Longitude, expressed as * 1E7</field>
       <field type="int32_t" name="alt">Altitude in meters, expressed as * 1000 (millimeters)</field>
@@ -47,9 +50,9 @@
       <field type="int16_t" name="vz">Ground Z Speed (Altitude), expressed as m/s * 100</field>
       <field type="uint16_t" name="ind_airspeed">Indicated airspeed, expressed as m/s * 100</field>
       <field type="uint16_t" name="true_airspeed">True airspeed, expressed as m/s * 100</field>
-      <field type="int16_t" name="xacc">X acceleration (mg)</field>
-      <field type="int16_t" name="yacc">Y acceleration (mg)</field>
-      <field type="int16_t" name="zacc">Z acceleration (mg)</field>
+      <field type="int16_t" name="xmag">x magnetometer in Guass * 1000</field>
+      <field type="uint16_t" name="ymag">y magnetometer in Guass * 1000</field>
+      <field type="uint16_t" name="zmag">z magnetometer in Guass * 1000</field>
     </message>
     
     <message id="192" name="HIL_PROPELLER_SENSOR">

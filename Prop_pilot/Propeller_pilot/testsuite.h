@@ -85,7 +85,7 @@ static void mavlink_test_hil_propeller_state_quaternion(uint8_t system_id, uint8
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_hil_propeller_state_quaternion_t packet_in = {
-		93372036854775807ULL,{ 963497880, 963497881, 963497882, 963497883 },963498712,963498920,963499128,963499336,963499544,963499752,19731,19835,19939,20043,20147,20251,20355,20459
+		93372036854775807ULL,{ 963497880, 963497881, 963497882, 963497883 },963498712,963498920,963499128,963499336,963499544,963499752,963499960,963500168,963500376,20355,20459,20563,20667,20771,20875,20979,21083
     };
 	mavlink_hil_propeller_state_quaternion_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -93,6 +93,9 @@ static void mavlink_test_hil_propeller_state_quaternion(uint8_t system_id, uint8
         	packet1.rollspeed = packet_in.rollspeed;
         	packet1.pitchspeed = packet_in.pitchspeed;
         	packet1.yawspeed = packet_in.yawspeed;
+        	packet1.xacc = packet_in.xacc;
+        	packet1.yacc = packet_in.yacc;
+        	packet1.zacc = packet_in.zacc;
         	packet1.lat = packet_in.lat;
         	packet1.lon = packet_in.lon;
         	packet1.alt = packet_in.alt;
@@ -101,9 +104,9 @@ static void mavlink_test_hil_propeller_state_quaternion(uint8_t system_id, uint8
         	packet1.vz = packet_in.vz;
         	packet1.ind_airspeed = packet_in.ind_airspeed;
         	packet1.true_airspeed = packet_in.true_airspeed;
-        	packet1.xacc = packet_in.xacc;
-        	packet1.yacc = packet_in.yacc;
-        	packet1.zacc = packet_in.zacc;
+        	packet1.xmag = packet_in.xmag;
+        	packet1.ymag = packet_in.ymag;
+        	packet1.zmag = packet_in.zmag;
         
         	mav_array_memcpy(packet1.attitude_quaternion, packet_in.attitude_quaternion, sizeof(int32_t)*4);
         
@@ -114,12 +117,12 @@ static void mavlink_test_hil_propeller_state_quaternion(uint8_t system_id, uint8
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_hil_propeller_state_quaternion_pack(system_id, component_id, &msg , packet1.time_usec , packet1.attitude_quaternion , packet1.rollspeed , packet1.pitchspeed , packet1.yawspeed , packet1.lat , packet1.lon , packet1.alt , packet1.vx , packet1.vy , packet1.vz , packet1.ind_airspeed , packet1.true_airspeed , packet1.xacc , packet1.yacc , packet1.zacc );
+	mavlink_msg_hil_propeller_state_quaternion_pack(system_id, component_id, &msg , packet1.time_usec , packet1.attitude_quaternion , packet1.rollspeed , packet1.pitchspeed , packet1.yawspeed , packet1.xacc , packet1.yacc , packet1.zacc , packet1.lat , packet1.lon , packet1.alt , packet1.vx , packet1.vy , packet1.vz , packet1.ind_airspeed , packet1.true_airspeed , packet1.xmag , packet1.ymag , packet1.zmag );
 	mavlink_msg_hil_propeller_state_quaternion_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_hil_propeller_state_quaternion_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_usec , packet1.attitude_quaternion , packet1.rollspeed , packet1.pitchspeed , packet1.yawspeed , packet1.lat , packet1.lon , packet1.alt , packet1.vx , packet1.vy , packet1.vz , packet1.ind_airspeed , packet1.true_airspeed , packet1.xacc , packet1.yacc , packet1.zacc );
+	mavlink_msg_hil_propeller_state_quaternion_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_usec , packet1.attitude_quaternion , packet1.rollspeed , packet1.pitchspeed , packet1.yawspeed , packet1.xacc , packet1.yacc , packet1.zacc , packet1.lat , packet1.lon , packet1.alt , packet1.vx , packet1.vy , packet1.vz , packet1.ind_airspeed , packet1.true_airspeed , packet1.xmag , packet1.ymag , packet1.zmag );
 	mavlink_msg_hil_propeller_state_quaternion_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -132,7 +135,7 @@ static void mavlink_test_hil_propeller_state_quaternion(uint8_t system_id, uint8
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_hil_propeller_state_quaternion_send(MAVLINK_COMM_1 , packet1.time_usec , packet1.attitude_quaternion , packet1.rollspeed , packet1.pitchspeed , packet1.yawspeed , packet1.lat , packet1.lon , packet1.alt , packet1.vx , packet1.vy , packet1.vz , packet1.ind_airspeed , packet1.true_airspeed , packet1.xacc , packet1.yacc , packet1.zacc );
+	mavlink_msg_hil_propeller_state_quaternion_send(MAVLINK_COMM_1 , packet1.time_usec , packet1.attitude_quaternion , packet1.rollspeed , packet1.pitchspeed , packet1.yawspeed , packet1.xacc , packet1.yacc , packet1.zacc , packet1.lat , packet1.lon , packet1.alt , packet1.vx , packet1.vy , packet1.vz , packet1.ind_airspeed , packet1.true_airspeed , packet1.xmag , packet1.ymag , packet1.zmag );
 	mavlink_msg_hil_propeller_state_quaternion_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
