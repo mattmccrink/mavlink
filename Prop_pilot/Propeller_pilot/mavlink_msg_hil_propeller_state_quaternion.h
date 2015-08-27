@@ -4,25 +4,25 @@
 
 typedef struct __mavlink_hil_propeller_state_quaternion_t
 {
- uint64_t time_usec; ///< Timestamp (microseconds since UNIX epoch or microseconds since system boot)
- int32_t attitude_quaternion[4]; ///< Vehicle attitude expressed as normalized quaternion in w, x, y, z order (with 2^30 0 0 0 being the null-rotation)
- int32_t rollspeed; ///< Body frame roll / phi angular speed (rad/s) * 1E7
- int32_t pitchspeed; ///< Body frame pitch / theta angular speed (rad/s) * 1E7
- int32_t yawspeed; ///< Body frame yaw / psi angular speed (rad/s) * 1E7
- int32_t xacc; ///< X acceleration (g) * 1E7
- int32_t yacc; ///< Y acceleration (g) * 1E7
- int32_t zacc; ///< Z acceleration (g) * 1E7
- int32_t lat; ///< Latitude, expressed as * 1E7
- int32_t lon; ///< Longitude, expressed as * 1E7
- int32_t alt; ///< Altitude in meters, expressed as * 1000 (millimeters)
- int16_t vx; ///< Ground X Speed (Latitude), expressed as m/s * 100
- int16_t vy; ///< Ground Y Speed (Longitude), expressed as m/s * 100
- int16_t vz; ///< Ground Z Speed (Altitude), expressed as m/s * 100
- uint16_t ind_airspeed; ///< Indicated airspeed, expressed as m/s * 100
- uint16_t true_airspeed; ///< True airspeed, expressed as m/s * 100
- int16_t xmag; ///< x magnetometer in Guass * 1000
- uint16_t ymag; ///< y magnetometer in Guass * 1000
- uint16_t zmag; ///< z magnetometer in Guass * 1000
+ uint64_t time_usec; /*< Timestamp (microseconds since UNIX epoch or microseconds since system boot)*/
+ int32_t attitude_quaternion[4]; /*< Vehicle attitude expressed as normalized quaternion in w, x, y, z order (with 2^30 0 0 0 being the null-rotation)*/
+ int32_t rollspeed; /*< Body frame roll / phi angular speed (rad/s) * 1E7*/
+ int32_t pitchspeed; /*< Body frame pitch / theta angular speed (rad/s) * 1E7*/
+ int32_t yawspeed; /*< Body frame yaw / psi angular speed (rad/s) * 1E7*/
+ int32_t xacc; /*< X acceleration (g) * 1E7*/
+ int32_t yacc; /*< Y acceleration (g) * 1E7*/
+ int32_t zacc; /*< Z acceleration (g) * 1E7*/
+ int32_t lat; /*< Latitude, expressed as * 1E7*/
+ int32_t lon; /*< Longitude, expressed as * 1E7*/
+ int32_t alt; /*< Altitude in meters, expressed as * 1000 (millimeters)*/
+ int16_t vx; /*< Ground X Speed (Latitude), expressed as m/s * 100*/
+ int16_t vy; /*< Ground Y Speed (Longitude), expressed as m/s * 100*/
+ int16_t vz; /*< Ground Z Speed (Altitude), expressed as m/s * 100*/
+ uint16_t ind_airspeed; /*< Indicated airspeed, expressed as m/s * 100*/
+ uint16_t true_airspeed; /*< True airspeed, expressed as m/s * 100*/
+ int16_t xmag; /*< x magnetometer in Guass * 1000*/
+ uint16_t ymag; /*< y magnetometer in Guass * 1000*/
+ uint16_t zmag; /*< z magnetometer in Guass * 1000*/
 } mavlink_hil_propeller_state_quaternion_t;
 
 #define MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN 76

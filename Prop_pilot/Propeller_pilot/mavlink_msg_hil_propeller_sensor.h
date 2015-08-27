@@ -4,21 +4,21 @@
 
 typedef struct __mavlink_hil_propeller_sensor_t
 {
- uint64_t time_usec; ///< Timestamp (microseconds, synced to UNIX time or since system boot)
- uint32_t xacc; ///< X acceleration (m/s^2)
- uint32_t yacc; ///< Y acceleration (m/s^2)
- uint32_t zacc; ///< Z acceleration (m/s^2)
- uint32_t xgyro; ///< Angular speed around X axis in body frame (rad / sec)
- uint32_t ygyro; ///< Angular speed around Y axis in body frame (rad / sec)
- uint32_t zgyro; ///< Angular speed around Z axis in body frame (rad / sec)
- uint32_t xmag; ///< X Magnetic field (Gauss)
- uint32_t ymag; ///< Y Magnetic field (Gauss)
- uint32_t zmag; ///< Z Magnetic field (Gauss)
- uint32_t abs_pressure; ///< Absolute pressure in millibar
- uint32_t diff_pressure; ///< Differential pressure (airspeed) in millibar
- uint32_t pressure_alt; ///< Altitude calculated from pressure
- uint32_t temperature; ///< Temperature in degrees celsius
- uint32_t fields_updated; ///< Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature
+ uint64_t time_usec; /*< Timestamp (microseconds, synced to UNIX time or since system boot)*/
+ uint32_t xacc; /*< X acceleration (m/s^2)*/
+ uint32_t yacc; /*< Y acceleration (m/s^2)*/
+ uint32_t zacc; /*< Z acceleration (m/s^2)*/
+ uint32_t xgyro; /*< Angular speed around X axis in body frame (rad / sec)*/
+ uint32_t ygyro; /*< Angular speed around Y axis in body frame (rad / sec)*/
+ uint32_t zgyro; /*< Angular speed around Z axis in body frame (rad / sec)*/
+ uint32_t xmag; /*< X Magnetic field (Gauss)*/
+ uint32_t ymag; /*< Y Magnetic field (Gauss)*/
+ uint32_t zmag; /*< Z Magnetic field (Gauss)*/
+ uint32_t abs_pressure; /*< Absolute pressure in millibar*/
+ uint32_t diff_pressure; /*< Differential pressure (airspeed) in millibar*/
+ uint32_t pressure_alt; /*< Altitude calculated from pressure*/
+ uint32_t temperature; /*< Temperature in degrees celsius*/
+ uint32_t fields_updated; /*< Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature*/
 } mavlink_hil_propeller_sensor_t;
 
 #define MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN 64

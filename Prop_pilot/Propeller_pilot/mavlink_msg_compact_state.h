@@ -4,19 +4,19 @@
 
 typedef struct __mavlink_compact_state_t
 {
- uint32_t time_boot_ms; ///< Timestamp of the component clock since boot time in milliseconds.
- int32_t q1; ///< Quaternion component 1, w (2^30 in null-rotation)
- int32_t q2; ///< Quaternion component 2, x (0 in null-rotation)
- int32_t q3; ///< Quaternion component 3, y (0 in null-rotation)
- int32_t q4; ///< Quaternion component 4, z (0 in null-rotation)
- int32_t x; ///< X Position in mm
- int32_t y; ///< Y Position in mm
- int32_t z; ///< Z Position in mm
- int32_t vx; ///< X Speed mm/s
- int32_t vy; ///< Y Speed mm/s
- int32_t vz; ///< Z Speed mm/s
- int32_t omegaZ; ///< Rotation rate deg/s*1000
- int32_t airspeed; ///< Current airspeed in mm/s
+ uint32_t time_boot_ms; /*< Timestamp of the component clock since boot time in milliseconds.*/
+ int32_t q1; /*< Quaternion component 1, w (2^30 in null-rotation)*/
+ int32_t q2; /*< Quaternion component 2, x (0 in null-rotation)*/
+ int32_t q3; /*< Quaternion component 3, y (0 in null-rotation)*/
+ int32_t q4; /*< Quaternion component 4, z (0 in null-rotation)*/
+ int32_t x; /*< X Position in mm*/
+ int32_t y; /*< Y Position in mm*/
+ int32_t z; /*< Z Position in mm*/
+ int32_t vx; /*< X Speed mm/s*/
+ int32_t vy; /*< Y Speed mm/s*/
+ int32_t vz; /*< Z Speed mm/s*/
+ int32_t omegaZ; /*< Rotation rate deg/s*1000*/
+ int32_t airspeed; /*< Current airspeed in mm/s*/
 } mavlink_compact_state_t;
 
 #define MAVLINK_MSG_ID_COMPACT_STATE_LEN 52
