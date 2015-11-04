@@ -760,6 +760,8 @@ class mavserial(mavfile):
 
     def write(self, buf):
         try:
+            if not isinstance(buf, str):
+                buf = str(buf)
             return self.port.write(buf)
         except Exception:
             if not self.portdead:
@@ -997,6 +999,7 @@ class mavmemlog(mavfile):
         self._msgs = []
         self._index = 0
         self._count = 0
+        self.messages = {}
         while True:
             m = mav.recv_msg()
             if m is None:
@@ -1011,12 +1014,14 @@ class mavmemlog(mavfile):
         m = self._msgs[self._index]
         self._index += 1
         self.percent = (100.0 * self._index) / self._count
+        self.messages[m.get_type()] = m
         return m
 
     def rewind(self):
         '''rewind to start'''
         self._index = 0
         self.percent = 0
+        self.messages = {}
 
 class mavchildexec(mavfile):
     '''a MAVLink child processes reader/writer'''
