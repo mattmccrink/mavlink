@@ -18,9 +18,8 @@ try:
 except Exception:
     pass
 
-# these imports allow for mavgraph and mavlogdump to use maths expressions more easily
-from math import *
-from .mavextra import *
+# maximum packet length for a single receive call - use the UDP limit
+UDP_MAX_PACKET_LEN = 65535
 
 '''
 Support having a $HOME/.pymavlink/mavextra.py for extra graphing functions
@@ -743,7 +742,11 @@ class mavserial(mavfile):
 
     def set_baudrate(self, baudrate):
         '''set baudrate'''
-        self.port.setBaudrate(baudrate)
+        try:
+            self.port.setBaudrate(baudrate)
+        except Exception:
+            # for pySerial 3.0, which doesn't have setBaudrate()
+            self.port.baudrate = baudrate
     
     def close(self):
         self.port.close()
@@ -760,6 +763,8 @@ class mavserial(mavfile):
 
     def write(self, buf):
         try:
+            if not isinstance(buf, str):
+                buf = str(buf)
             return self.port.write(buf)
         except Exception:
             if not self.portdead:
@@ -798,6 +803,7 @@ class mavudp(mavfile):
             sys.exit(1)
         self.port = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.udp_server = input
+        self.broadcast = False
         if input:
             self.port.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             self.port.bind((a[0], int(a[1])))
@@ -805,6 +811,7 @@ class mavudp(mavfile):
             self.destination_addr = (a[0], int(a[1]))
             if broadcast:
                 self.port.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+                self.broadcast = True
         set_close_on_exec(self.port.fileno())
         self.port.setblocking(0)
         self.last_address = None
@@ -815,11 +822,13 @@ class mavudp(mavfile):
 
     def recv(self,n=None):
         try:
-            data, self.last_address = self.port.recvfrom(300)
+            data, new_addr = self.port.recvfrom(UDP_MAX_PACKET_LEN)
         except socket.error as e:
             if e.errno in [ errno.EAGAIN, errno.EWOULDBLOCK, errno.ECONNREFUSED ]:
                 return ""
             raise
+        if self.udp_server or self.broadcast:
+            self.last_address = new_addr
         return data
 
     def write(self, buf):
@@ -828,6 +837,10 @@ class mavudp(mavfile):
                 if self.last_address:
                     self.port.sendto(buf, self.last_address)
             else:
+                if self.last_address and self.broadcast:
+                    self.destination_addr = self.last_address
+                    self.broadcast = False
+                    self.port.connect(self.destination_addr)
                 self.port.sendto(buf, self.destination_addr)
         except socket.error:
             pass
@@ -836,16 +849,15 @@ class mavudp(mavfile):
         '''message receive routine for UDP link'''
         self.pre_message()
         s = self.recv()
-        if len(s) == 0:
-            return None
-        if self.first_byte:
-            self.auto_mavlink_version(s)
-        msg = self.mav.parse_buffer(s)
-        if msg is not None:
-            for m in msg:
-                self.post_message(m)
-            return msg[0]
-        return None
+        if len(s) > 0:
+            if self.first_byte:
+                self.auto_mavlink_version(s)
+
+        m = self.mav.parse_char(s)
+        if m is not None:
+            self.post_message(m)
+
+        return m
 
 
 class mavtcp(mavfile):
@@ -997,6 +1009,7 @@ class mavmemlog(mavfile):
         self._msgs = []
         self._index = 0
         self._count = 0
+        self.messages = {}
         while True:
             m = mav.recv_msg()
             if m is None:
@@ -1011,12 +1024,14 @@ class mavmemlog(mavfile):
         m = self._msgs[self._index]
         self._index += 1
         self.percent = (100.0 * self._index) / self._count
+        self.messages[m.get_type()] = m
         return m
 
     def rewind(self):
         '''rewind to start'''
         self._index = 0
         self.percent = 0
+        self.messages = {}
 
 class mavchildexec(mavfile):
     '''a MAVLink child processes reader/writer'''
@@ -1066,6 +1081,8 @@ def mavlink_connection(device, baud=115200, source_system=255,
         return mavudp(device[6:], input=True, source_system=source_system, use_native=use_native)
     if device.startswith('udpout:'):
         return mavudp(device[7:], input=False, source_system=source_system, use_native=use_native)
+    if device.startswith('udpbcast:'):
+        return mavudp(device[9:], input=False, source_system=source_system, use_native=use_native, broadcast=True)
     # For legacy purposes we accept the following syntax and let the caller to specify direction
     if device.startswith('udp:'):
         return mavudp(device[4:], input=input, source_system=source_system, use_native=use_native)
@@ -1283,7 +1300,10 @@ mode_mapping_apm = {
     12 : 'LOITER',
     14 : 'LAND',
     15 : 'GUIDED',
-    16 : 'INITIALISING'
+    16 : 'INITIALISING',
+    17 : 'QSTABILIZE',
+    18 : 'QHOVER',
+    19 : 'QLOITER',
     }
 mode_mapping_acm = {
     0 : 'STABILIZE',
