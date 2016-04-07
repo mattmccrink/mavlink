@@ -1,6 +1,6 @@
 // MESSAGE HIL_PROPELLER_SENSOR PACKING
 
-#define MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR 192
+#define MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR 232
 
 typedef struct __mavlink_hil_propeller_sensor_t
 {
@@ -22,10 +22,10 @@ typedef struct __mavlink_hil_propeller_sensor_t
 } mavlink_hil_propeller_sensor_t;
 
 #define MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN 64
-#define MAVLINK_MSG_ID_192_LEN 64
+#define MAVLINK_MSG_ID_232_LEN 64
 
 #define MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_CRC 229
-#define MAVLINK_MSG_ID_192_CRC 229
+#define MAVLINK_MSG_ID_232_CRC 229
 
 
 
