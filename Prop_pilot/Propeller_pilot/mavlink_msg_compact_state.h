@@ -1,6 +1,6 @@
 // MESSAGE COMPACT_STATE PACKING
 
-#define MAVLINK_MSG_ID_COMPACT_STATE 190
+#define MAVLINK_MSG_ID_COMPACT_STATE 230
 
 typedef struct __mavlink_compact_state_t
 {
@@ -9,27 +9,26 @@ typedef struct __mavlink_compact_state_t
  int32_t q2; /*< Quaternion component 2, x (0 in null-rotation)*/
  int32_t q3; /*< Quaternion component 3, y (0 in null-rotation)*/
  int32_t q4; /*< Quaternion component 4, z (0 in null-rotation)*/
- int32_t x; /*< X Position in mm*/
- int32_t y; /*< Y Position in mm*/
- int32_t z; /*< Z Position in mm*/
+ int32_t x; /*< X Position in WGS84*10^7*/
+ int32_t y; /*< Y Position in WGS84*10^7*/
+ int32_t z; /*< Z Position in WGS84*10^7*/
  int32_t vx; /*< X Speed mm/s*/
  int32_t vy; /*< Y Speed mm/s*/
  int32_t vz; /*< Z Speed mm/s*/
- int32_t omegaZ; /*< Rotation rate deg/s*1000*/
  int32_t airspeed; /*< Current airspeed in mm/s*/
 } mavlink_compact_state_t;
 
-#define MAVLINK_MSG_ID_COMPACT_STATE_LEN 52
-#define MAVLINK_MSG_ID_190_LEN 52
+#define MAVLINK_MSG_ID_COMPACT_STATE_LEN 48
+#define MAVLINK_MSG_ID_230_LEN 48
 
-#define MAVLINK_MSG_ID_COMPACT_STATE_CRC 54
-#define MAVLINK_MSG_ID_190_CRC 54
+#define MAVLINK_MSG_ID_COMPACT_STATE_CRC 42
+#define MAVLINK_MSG_ID_230_CRC 42
 
 
 
 #define MAVLINK_MESSAGE_INFO_COMPACT_STATE { \
 	"COMPACT_STATE", \
-	13, \
+	12, \
 	{  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_compact_state_t, time_boot_ms) }, \
          { "q1", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_compact_state_t, q1) }, \
          { "q2", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_compact_state_t, q2) }, \
@@ -41,8 +40,7 @@ typedef struct __mavlink_compact_state_t
          { "vx", NULL, MAVLINK_TYPE_INT32_T, 0, 32, offsetof(mavlink_compact_state_t, vx) }, \
          { "vy", NULL, MAVLINK_TYPE_INT32_T, 0, 36, offsetof(mavlink_compact_state_t, vy) }, \
          { "vz", NULL, MAVLINK_TYPE_INT32_T, 0, 40, offsetof(mavlink_compact_state_t, vz) }, \
-         { "omegaZ", NULL, MAVLINK_TYPE_INT32_T, 0, 44, offsetof(mavlink_compact_state_t, omegaZ) }, \
-         { "airspeed", NULL, MAVLINK_TYPE_INT32_T, 0, 48, offsetof(mavlink_compact_state_t, airspeed) }, \
+         { "airspeed", NULL, MAVLINK_TYPE_INT32_T, 0, 44, offsetof(mavlink_compact_state_t, airspeed) }, \
          } \
 }
 
@@ -58,18 +56,17 @@ typedef struct __mavlink_compact_state_t
  * @param q2 Quaternion component 2, x (0 in null-rotation)
  * @param q3 Quaternion component 3, y (0 in null-rotation)
  * @param q4 Quaternion component 4, z (0 in null-rotation)
- * @param x X Position in mm
- * @param y Y Position in mm
- * @param z Z Position in mm
+ * @param x X Position in WGS84*10^7
+ * @param y Y Position in WGS84*10^7
+ * @param z Z Position in WGS84*10^7
  * @param vx X Speed mm/s
  * @param vy Y Speed mm/s
  * @param vz Z Speed mm/s
- * @param omegaZ Rotation rate deg/s*1000
  * @param airspeed Current airspeed in mm/s
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_compact_state_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint32_t time_boot_ms, int32_t q1, int32_t q2, int32_t q3, int32_t q4, int32_t x, int32_t y, int32_t z, int32_t vx, int32_t vy, int32_t vz, int32_t omegaZ, int32_t airspeed)
+						       uint32_t time_boot_ms, int32_t q1, int32_t q2, int32_t q3, int32_t q4, int32_t x, int32_t y, int32_t z, int32_t vx, int32_t vy, int32_t vz, int32_t airspeed)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_COMPACT_STATE_LEN];
@@ -84,8 +81,7 @@ static inline uint16_t mavlink_msg_compact_state_pack(uint8_t system_id, uint8_t
 	_mav_put_int32_t(buf, 32, vx);
 	_mav_put_int32_t(buf, 36, vy);
 	_mav_put_int32_t(buf, 40, vz);
-	_mav_put_int32_t(buf, 44, omegaZ);
-	_mav_put_int32_t(buf, 48, airspeed);
+	_mav_put_int32_t(buf, 44, airspeed);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_COMPACT_STATE_LEN);
 #else
@@ -101,7 +97,6 @@ static inline uint16_t mavlink_msg_compact_state_pack(uint8_t system_id, uint8_t
 	packet.vx = vx;
 	packet.vy = vy;
 	packet.vz = vz;
-	packet.omegaZ = omegaZ;
 	packet.airspeed = airspeed;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_COMPACT_STATE_LEN);
@@ -126,19 +121,18 @@ static inline uint16_t mavlink_msg_compact_state_pack(uint8_t system_id, uint8_t
  * @param q2 Quaternion component 2, x (0 in null-rotation)
  * @param q3 Quaternion component 3, y (0 in null-rotation)
  * @param q4 Quaternion component 4, z (0 in null-rotation)
- * @param x X Position in mm
- * @param y Y Position in mm
- * @param z Z Position in mm
+ * @param x X Position in WGS84*10^7
+ * @param y Y Position in WGS84*10^7
+ * @param z Z Position in WGS84*10^7
  * @param vx X Speed mm/s
  * @param vy Y Speed mm/s
  * @param vz Z Speed mm/s
- * @param omegaZ Rotation rate deg/s*1000
  * @param airspeed Current airspeed in mm/s
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_compact_state_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
-						           uint32_t time_boot_ms,int32_t q1,int32_t q2,int32_t q3,int32_t q4,int32_t x,int32_t y,int32_t z,int32_t vx,int32_t vy,int32_t vz,int32_t omegaZ,int32_t airspeed)
+						           uint32_t time_boot_ms,int32_t q1,int32_t q2,int32_t q3,int32_t q4,int32_t x,int32_t y,int32_t z,int32_t vx,int32_t vy,int32_t vz,int32_t airspeed)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_COMPACT_STATE_LEN];
@@ -153,8 +147,7 @@ static inline uint16_t mavlink_msg_compact_state_pack_chan(uint8_t system_id, ui
 	_mav_put_int32_t(buf, 32, vx);
 	_mav_put_int32_t(buf, 36, vy);
 	_mav_put_int32_t(buf, 40, vz);
-	_mav_put_int32_t(buf, 44, omegaZ);
-	_mav_put_int32_t(buf, 48, airspeed);
+	_mav_put_int32_t(buf, 44, airspeed);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_COMPACT_STATE_LEN);
 #else
@@ -170,7 +163,6 @@ static inline uint16_t mavlink_msg_compact_state_pack_chan(uint8_t system_id, ui
 	packet.vx = vx;
 	packet.vy = vy;
 	packet.vz = vz;
-	packet.omegaZ = omegaZ;
 	packet.airspeed = airspeed;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_COMPACT_STATE_LEN);
@@ -194,7 +186,7 @@ static inline uint16_t mavlink_msg_compact_state_pack_chan(uint8_t system_id, ui
  */
 static inline uint16_t mavlink_msg_compact_state_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_compact_state_t* compact_state)
 {
-	return mavlink_msg_compact_state_pack(system_id, component_id, msg, compact_state->time_boot_ms, compact_state->q1, compact_state->q2, compact_state->q3, compact_state->q4, compact_state->x, compact_state->y, compact_state->z, compact_state->vx, compact_state->vy, compact_state->vz, compact_state->omegaZ, compact_state->airspeed);
+	return mavlink_msg_compact_state_pack(system_id, component_id, msg, compact_state->time_boot_ms, compact_state->q1, compact_state->q2, compact_state->q3, compact_state->q4, compact_state->x, compact_state->y, compact_state->z, compact_state->vx, compact_state->vy, compact_state->vz, compact_state->airspeed);
 }
 
 /**
@@ -208,7 +200,7 @@ static inline uint16_t mavlink_msg_compact_state_encode(uint8_t system_id, uint8
  */
 static inline uint16_t mavlink_msg_compact_state_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_compact_state_t* compact_state)
 {
-	return mavlink_msg_compact_state_pack_chan(system_id, component_id, chan, msg, compact_state->time_boot_ms, compact_state->q1, compact_state->q2, compact_state->q3, compact_state->q4, compact_state->x, compact_state->y, compact_state->z, compact_state->vx, compact_state->vy, compact_state->vz, compact_state->omegaZ, compact_state->airspeed);
+	return mavlink_msg_compact_state_pack_chan(system_id, component_id, chan, msg, compact_state->time_boot_ms, compact_state->q1, compact_state->q2, compact_state->q3, compact_state->q4, compact_state->x, compact_state->y, compact_state->z, compact_state->vx, compact_state->vy, compact_state->vz, compact_state->airspeed);
 }
 
 /**
@@ -220,18 +212,17 @@ static inline uint16_t mavlink_msg_compact_state_encode_chan(uint8_t system_id, 
  * @param q2 Quaternion component 2, x (0 in null-rotation)
  * @param q3 Quaternion component 3, y (0 in null-rotation)
  * @param q4 Quaternion component 4, z (0 in null-rotation)
- * @param x X Position in mm
- * @param y Y Position in mm
- * @param z Z Position in mm
+ * @param x X Position in WGS84*10^7
+ * @param y Y Position in WGS84*10^7
+ * @param z Z Position in WGS84*10^7
  * @param vx X Speed mm/s
  * @param vy Y Speed mm/s
  * @param vz Z Speed mm/s
- * @param omegaZ Rotation rate deg/s*1000
  * @param airspeed Current airspeed in mm/s
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_compact_state_send(mavlink_channel_t chan, uint32_t time_boot_ms, int32_t q1, int32_t q2, int32_t q3, int32_t q4, int32_t x, int32_t y, int32_t z, int32_t vx, int32_t vy, int32_t vz, int32_t omegaZ, int32_t airspeed)
+static inline void mavlink_msg_compact_state_send(mavlink_channel_t chan, uint32_t time_boot_ms, int32_t q1, int32_t q2, int32_t q3, int32_t q4, int32_t x, int32_t y, int32_t z, int32_t vx, int32_t vy, int32_t vz, int32_t airspeed)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_COMPACT_STATE_LEN];
@@ -246,8 +237,7 @@ static inline void mavlink_msg_compact_state_send(mavlink_channel_t chan, uint32
 	_mav_put_int32_t(buf, 32, vx);
 	_mav_put_int32_t(buf, 36, vy);
 	_mav_put_int32_t(buf, 40, vz);
-	_mav_put_int32_t(buf, 44, omegaZ);
-	_mav_put_int32_t(buf, 48, airspeed);
+	_mav_put_int32_t(buf, 44, airspeed);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_COMPACT_STATE, buf, MAVLINK_MSG_ID_COMPACT_STATE_LEN, MAVLINK_MSG_ID_COMPACT_STATE_CRC);
@@ -267,7 +257,6 @@ static inline void mavlink_msg_compact_state_send(mavlink_channel_t chan, uint32
 	packet.vx = vx;
 	packet.vy = vy;
 	packet.vz = vz;
-	packet.omegaZ = omegaZ;
 	packet.airspeed = airspeed;
 
 #if MAVLINK_CRC_EXTRA
@@ -286,7 +275,7 @@ static inline void mavlink_msg_compact_state_send(mavlink_channel_t chan, uint32
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_compact_state_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, int32_t q1, int32_t q2, int32_t q3, int32_t q4, int32_t x, int32_t y, int32_t z, int32_t vx, int32_t vy, int32_t vz, int32_t omegaZ, int32_t airspeed)
+static inline void mavlink_msg_compact_state_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, int32_t q1, int32_t q2, int32_t q3, int32_t q4, int32_t x, int32_t y, int32_t z, int32_t vx, int32_t vy, int32_t vz, int32_t airspeed)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char *buf = (char *)msgbuf;
@@ -301,8 +290,7 @@ static inline void mavlink_msg_compact_state_send_buf(mavlink_message_t *msgbuf,
 	_mav_put_int32_t(buf, 32, vx);
 	_mav_put_int32_t(buf, 36, vy);
 	_mav_put_int32_t(buf, 40, vz);
-	_mav_put_int32_t(buf, 44, omegaZ);
-	_mav_put_int32_t(buf, 48, airspeed);
+	_mav_put_int32_t(buf, 44, airspeed);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_COMPACT_STATE, buf, MAVLINK_MSG_ID_COMPACT_STATE_LEN, MAVLINK_MSG_ID_COMPACT_STATE_CRC);
@@ -322,7 +310,6 @@ static inline void mavlink_msg_compact_state_send_buf(mavlink_message_t *msgbuf,
 	packet->vx = vx;
 	packet->vy = vy;
 	packet->vz = vz;
-	packet->omegaZ = omegaZ;
 	packet->airspeed = airspeed;
 
 #if MAVLINK_CRC_EXTRA
@@ -392,7 +379,7 @@ static inline int32_t mavlink_msg_compact_state_get_q4(const mavlink_message_t* 
 /**
  * @brief Get field x from compact_state message
  *
- * @return X Position in mm
+ * @return X Position in WGS84*10^7
  */
 static inline int32_t mavlink_msg_compact_state_get_x(const mavlink_message_t* msg)
 {
@@ -402,7 +389,7 @@ static inline int32_t mavlink_msg_compact_state_get_x(const mavlink_message_t* m
 /**
  * @brief Get field y from compact_state message
  *
- * @return Y Position in mm
+ * @return Y Position in WGS84*10^7
  */
 static inline int32_t mavlink_msg_compact_state_get_y(const mavlink_message_t* msg)
 {
@@ -412,7 +399,7 @@ static inline int32_t mavlink_msg_compact_state_get_y(const mavlink_message_t* m
 /**
  * @brief Get field z from compact_state message
  *
- * @return Z Position in mm
+ * @return Z Position in WGS84*10^7
  */
 static inline int32_t mavlink_msg_compact_state_get_z(const mavlink_message_t* msg)
 {
@@ -450,23 +437,13 @@ static inline int32_t mavlink_msg_compact_state_get_vz(const mavlink_message_t* 
 }
 
 /**
- * @brief Get field omegaZ from compact_state message
- *
- * @return Rotation rate deg/s*1000
- */
-static inline int32_t mavlink_msg_compact_state_get_omegaZ(const mavlink_message_t* msg)
-{
-	return _MAV_RETURN_int32_t(msg,  44);
-}
-
-/**
  * @brief Get field airspeed from compact_state message
  *
  * @return Current airspeed in mm/s
  */
 static inline int32_t mavlink_msg_compact_state_get_airspeed(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int32_t(msg,  48);
+	return _MAV_RETURN_int32_t(msg,  44);
 }
 
 /**
@@ -489,7 +466,6 @@ static inline void mavlink_msg_compact_state_decode(const mavlink_message_t* msg
 	compact_state->vx = mavlink_msg_compact_state_get_vx(msg);
 	compact_state->vy = mavlink_msg_compact_state_get_vy(msg);
 	compact_state->vz = mavlink_msg_compact_state_get_vz(msg);
-	compact_state->omegaZ = mavlink_msg_compact_state_get_omegaZ(msg);
 	compact_state->airspeed = mavlink_msg_compact_state_get_airspeed(msg);
 #else
 	memcpy(compact_state, _MAV_PAYLOAD(msg), MAVLINK_MSG_ID_COMPACT_STATE_LEN);
