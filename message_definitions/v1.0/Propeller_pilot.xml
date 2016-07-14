@@ -1618,6 +1618,13 @@
       <field type="uint32_t" name="temperature">Temperature in degrees celsius</field>
       <field type="uint32_t" name="fields_updated">Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature</field>
     </message>
-       
+
+        <message id="233" name="GPS_RTCM_DATA">
+           <description>WORK IN PROGRESS! RTCM message for injecting into the onboard GPS (used for DGPS)</description>
+           <field type="uint8_t" name="flags">LSB: 1 means message is fragmented</field>
+           <field type="uint8_t" name="len">data length</field>
+           <field type="uint8_t[180]" name="data">RTCM message (may be fragmented)</field>
+        </message>       
+
     </messages>
 </mavlink>
