@@ -1,9 +1,9 @@
 // MESSAGE HIL_PROPELLER_STATE_QUATERNION PACKING
 
-#define MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION 231
+#define MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION 235
 
-typedef struct __mavlink_hil_propeller_state_quaternion_t
-{
+MAVPACKED(
+typedef struct __mavlink_hil_propeller_state_quaternion_t {
  uint64_t time_usec; /*< Timestamp (microseconds since UNIX epoch or microseconds since system boot)*/
  int32_t attitude_quaternion[4]; /*< Vehicle attitude expressed as normalized quaternion in w, x, y, z order (with 2^30 0 0 0 being the null-rotation)*/
  int32_t rollspeed; /*< Body frame roll / phi angular speed (rad/s) * 1E7*/
@@ -23,16 +23,45 @@ typedef struct __mavlink_hil_propeller_state_quaternion_t
  int16_t xmag; /*< x magnetometer in Guass * 1000*/
  uint16_t ymag; /*< y magnetometer in Guass * 1000*/
  uint16_t zmag; /*< z magnetometer in Guass * 1000*/
-} mavlink_hil_propeller_state_quaternion_t;
+}) mavlink_hil_propeller_state_quaternion_t;
 
 #define MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN 76
-#define MAVLINK_MSG_ID_231_LEN 76
+#define MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_MIN_LEN 76
+#define MAVLINK_MSG_ID_235_LEN 76
+#define MAVLINK_MSG_ID_235_MIN_LEN 76
 
 #define MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_CRC 7
-#define MAVLINK_MSG_ID_231_CRC 7
+#define MAVLINK_MSG_ID_235_CRC 7
 
 #define MAVLINK_MSG_HIL_PROPELLER_STATE_QUATERNION_FIELD_ATTITUDE_QUATERNION_LEN 4
 
+#if MAVLINK_COMMAND_24BIT
+#define MAVLINK_MESSAGE_INFO_HIL_PROPELLER_STATE_QUATERNION { \
+	235, \
+	"HIL_PROPELLER_STATE_QUATERNION", \
+	19, \
+	{  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_hil_propeller_state_quaternion_t, time_usec) }, \
+         { "attitude_quaternion", NULL, MAVLINK_TYPE_INT32_T, 4, 8, offsetof(mavlink_hil_propeller_state_quaternion_t, attitude_quaternion) }, \
+         { "rollspeed", NULL, MAVLINK_TYPE_INT32_T, 0, 24, offsetof(mavlink_hil_propeller_state_quaternion_t, rollspeed) }, \
+         { "pitchspeed", NULL, MAVLINK_TYPE_INT32_T, 0, 28, offsetof(mavlink_hil_propeller_state_quaternion_t, pitchspeed) }, \
+         { "yawspeed", NULL, MAVLINK_TYPE_INT32_T, 0, 32, offsetof(mavlink_hil_propeller_state_quaternion_t, yawspeed) }, \
+         { "xacc", NULL, MAVLINK_TYPE_INT32_T, 0, 36, offsetof(mavlink_hil_propeller_state_quaternion_t, xacc) }, \
+         { "yacc", NULL, MAVLINK_TYPE_INT32_T, 0, 40, offsetof(mavlink_hil_propeller_state_quaternion_t, yacc) }, \
+         { "zacc", NULL, MAVLINK_TYPE_INT32_T, 0, 44, offsetof(mavlink_hil_propeller_state_quaternion_t, zacc) }, \
+         { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 48, offsetof(mavlink_hil_propeller_state_quaternion_t, lat) }, \
+         { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 52, offsetof(mavlink_hil_propeller_state_quaternion_t, lon) }, \
+         { "alt", NULL, MAVLINK_TYPE_INT32_T, 0, 56, offsetof(mavlink_hil_propeller_state_quaternion_t, alt) }, \
+         { "vx", NULL, MAVLINK_TYPE_INT16_T, 0, 60, offsetof(mavlink_hil_propeller_state_quaternion_t, vx) }, \
+         { "vy", NULL, MAVLINK_TYPE_INT16_T, 0, 62, offsetof(mavlink_hil_propeller_state_quaternion_t, vy) }, \
+         { "vz", NULL, MAVLINK_TYPE_INT16_T, 0, 64, offsetof(mavlink_hil_propeller_state_quaternion_t, vz) }, \
+         { "ind_airspeed", NULL, MAVLINK_TYPE_UINT16_T, 0, 66, offsetof(mavlink_hil_propeller_state_quaternion_t, ind_airspeed) }, \
+         { "true_airspeed", NULL, MAVLINK_TYPE_UINT16_T, 0, 68, offsetof(mavlink_hil_propeller_state_quaternion_t, true_airspeed) }, \
+         { "xmag", NULL, MAVLINK_TYPE_INT16_T, 0, 70, offsetof(mavlink_hil_propeller_state_quaternion_t, xmag) }, \
+         { "ymag", NULL, MAVLINK_TYPE_UINT16_T, 0, 72, offsetof(mavlink_hil_propeller_state_quaternion_t, ymag) }, \
+         { "zmag", NULL, MAVLINK_TYPE_UINT16_T, 0, 74, offsetof(mavlink_hil_propeller_state_quaternion_t, zmag) }, \
+         } \
+}
+#else
 #define MAVLINK_MESSAGE_INFO_HIL_PROPELLER_STATE_QUATERNION { \
 	"HIL_PROPELLER_STATE_QUATERNION", \
 	19, \
@@ -57,7 +86,7 @@ typedef struct __mavlink_hil_propeller_state_quaternion_t
          { "zmag", NULL, MAVLINK_TYPE_UINT16_T, 0, 74, offsetof(mavlink_hil_propeller_state_quaternion_t, zmag) }, \
          } \
 }
-
+#endif
 
 /**
  * @brief Pack a hil_propeller_state_quaternion message
@@ -136,11 +165,7 @@ static inline uint16_t mavlink_msg_hil_propeller_state_quaternion_pack(uint8_t s
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_CRC);
-#else
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN);
-#endif
+    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_MIN_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_CRC);
 }
 
 /**
@@ -221,11 +246,7 @@ static inline uint16_t mavlink_msg_hil_propeller_state_quaternion_pack_chan(uint
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_CRC);
-#else
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN);
-#endif
+    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_MIN_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_CRC);
 }
 
 /**
@@ -304,11 +325,7 @@ static inline void mavlink_msg_hil_propeller_state_quaternion_send(mavlink_chann
 	_mav_put_uint16_t(buf, 72, ymag);
 	_mav_put_uint16_t(buf, 74, zmag);
 	_mav_put_int32_t_array(buf, 8, attitude_quaternion, 4);
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION, buf, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION, buf, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION, buf, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_MIN_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_CRC);
 #else
 	mavlink_hil_propeller_state_quaternion_t packet;
 	packet.time_usec = time_usec;
@@ -330,11 +347,21 @@ static inline void mavlink_msg_hil_propeller_state_quaternion_send(mavlink_chann
 	packet.ymag = ymag;
 	packet.zmag = zmag;
 	mav_array_memcpy(packet.attitude_quaternion, attitude_quaternion, sizeof(int32_t)*4);
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION, (const char *)&packet, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION, (const char *)&packet, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN);
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION, (const char *)&packet, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_MIN_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_CRC);
 #endif
+}
+
+/**
+ * @brief Send a hil_propeller_state_quaternion message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_hil_propeller_state_quaternion_send_struct(mavlink_channel_t chan, const mavlink_hil_propeller_state_quaternion_t* hil_propeller_state_quaternion)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    mavlink_msg_hil_propeller_state_quaternion_send(chan, hil_propeller_state_quaternion->time_usec, hil_propeller_state_quaternion->attitude_quaternion, hil_propeller_state_quaternion->rollspeed, hil_propeller_state_quaternion->pitchspeed, hil_propeller_state_quaternion->yawspeed, hil_propeller_state_quaternion->xacc, hil_propeller_state_quaternion->yacc, hil_propeller_state_quaternion->zacc, hil_propeller_state_quaternion->lat, hil_propeller_state_quaternion->lon, hil_propeller_state_quaternion->alt, hil_propeller_state_quaternion->vx, hil_propeller_state_quaternion->vy, hil_propeller_state_quaternion->vz, hil_propeller_state_quaternion->ind_airspeed, hil_propeller_state_quaternion->true_airspeed, hil_propeller_state_quaternion->xmag, hil_propeller_state_quaternion->ymag, hil_propeller_state_quaternion->zmag);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION, (const char *)hil_propeller_state_quaternion, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_MIN_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_CRC);
 #endif
 }
 
@@ -369,11 +396,7 @@ static inline void mavlink_msg_hil_propeller_state_quaternion_send_buf(mavlink_m
 	_mav_put_uint16_t(buf, 72, ymag);
 	_mav_put_uint16_t(buf, 74, zmag);
 	_mav_put_int32_t_array(buf, 8, attitude_quaternion, 4);
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION, buf, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION, buf, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION, buf, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_MIN_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_CRC);
 #else
 	mavlink_hil_propeller_state_quaternion_t *packet = (mavlink_hil_propeller_state_quaternion_t *)msgbuf;
 	packet->time_usec = time_usec;
@@ -395,11 +418,7 @@ static inline void mavlink_msg_hil_propeller_state_quaternion_send_buf(mavlink_m
 	packet->ymag = ymag;
 	packet->zmag = zmag;
 	mav_array_memcpy(packet->attitude_quaternion, attitude_quaternion, sizeof(int32_t)*4);
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION, (const char *)packet, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION, (const char *)packet, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION, (const char *)packet, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_MIN_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_CRC);
 #endif
 }
 #endif
@@ -607,7 +626,7 @@ static inline uint16_t mavlink_msg_hil_propeller_state_quaternion_get_zmag(const
  */
 static inline void mavlink_msg_hil_propeller_state_quaternion_decode(const mavlink_message_t* msg, mavlink_hil_propeller_state_quaternion_t* hil_propeller_state_quaternion)
 {
-#if MAVLINK_NEED_BYTE_SWAP
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	hil_propeller_state_quaternion->time_usec = mavlink_msg_hil_propeller_state_quaternion_get_time_usec(msg);
 	mavlink_msg_hil_propeller_state_quaternion_get_attitude_quaternion(msg, hil_propeller_state_quaternion->attitude_quaternion);
 	hil_propeller_state_quaternion->rollspeed = mavlink_msg_hil_propeller_state_quaternion_get_rollspeed(msg);
@@ -628,6 +647,8 @@ static inline void mavlink_msg_hil_propeller_state_quaternion_decode(const mavli
 	hil_propeller_state_quaternion->ymag = mavlink_msg_hil_propeller_state_quaternion_get_ymag(msg);
 	hil_propeller_state_quaternion->zmag = mavlink_msg_hil_propeller_state_quaternion_get_zmag(msg);
 #else
-	memcpy(hil_propeller_state_quaternion, _MAV_PAYLOAD(msg), MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN);
+        uint8_t len = msg->len < MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN? msg->len : MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN;
+        memset(hil_propeller_state_quaternion, 0, MAVLINK_MSG_ID_HIL_PROPELLER_STATE_QUATERNION_LEN);
+	memcpy(hil_propeller_state_quaternion, _MAV_PAYLOAD(msg), len);
 #endif
 }
