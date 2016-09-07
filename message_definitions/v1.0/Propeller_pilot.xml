@@ -2,8 +2,10 @@
 <mavlink>
     <include>common.xml</include>
     <include>ardupilotmega.xml</include>
+    <include>uAvionix.xml</include>
 
     <version>3</version>
+    <dialect>4</dialect>
     <messages>
     <message id="234" name="COMPACT_STATE">
       <description>Compact state estimate</description>
@@ -63,5 +65,15 @@
       <field type="uint32_t" name="fields_updated">Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature</field>
     </message>     
 
+    <message id="237" name="TURBINE_STATE">
+      <description>Turbine parameters</description>
+      <field type="uint32_t" name="time_boot_ms">Timestamp of the component clock since boot time in milliseconds.</field>
+      <field type="int32_t" name="RPM">Turbine RPM</field>
+      <field type="int16_t" name="EGT">Exhaust gas temperature</field>
+      <field type="int16_t" name="FuelConsumed">Total fuel consumed (mL)</field>
+      <field type="int16_t" name="FuelFlow">Fuel Flow in mL/min</field>
+      <field type="int16_t" name="FuelRemaining">Total fuel remaining (mL)</field>
+      <field type="int8_t" name="State">Turbine operational state</field>
+    </message>
     </messages>
 </mavlink>
