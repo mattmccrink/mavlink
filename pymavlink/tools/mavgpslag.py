@@ -3,6 +3,8 @@
 '''
 calculate GPS lag from DF log
 '''
+from __future__ import print_function
+from builtins import range
 
 import sys, time, os
 

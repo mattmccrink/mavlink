@@ -1,3 +1,5 @@
+from __future__ import print_function
+from __future__ import absolute_import
 # Work around mbcs bug in distutils.
 # http://bugs.python.org/issue10945
 import codecs
@@ -11,7 +13,7 @@ except LookupError:
 from setuptools import setup, Extension
 import glob, os, shutil, fnmatch, platform, sys
 
-version = '2.0.6'
+version = '2.0.8'
 
 from generator import mavgen, mavparse
 
@@ -22,6 +24,7 @@ else:
     mdef_paths = [os.path.join('..', 'message_definitions'),
                   os.path.join('mavlink', 'message_definitions'), 
                   os.path.join('..', 'mavlink', 'message_definitions'),
+                  os.path.join('message_definitions'),
     ]
 
 for path in mdef_paths:
@@ -37,11 +40,12 @@ v10_dialects = glob.glob(os.path.join(mdef_path, 'v1.0', '*.xml'))
 # for now v2.0 uses same XML files as v1.0
 v20_dialects = glob.glob(os.path.join(mdef_path, 'v1.0', '*.xml'))
 
-if len(v10_dialects) == 0:
-    print("No XML message definitions found")
-    sys.exit(1)
+should_generate = not "NOGEN" in os.environ
+if should_generate:
+    if len(v10_dialects) == 0:
+        print("No XML message definitions found")
+        sys.exit(1)
 
-if not "NOGEN" in os.environ:
     for xml in v10_dialects:
         shutil.copy(xml, os.path.join(dialects_path, 'v10'))
     for xml in v20_dialects:
@@ -53,7 +57,9 @@ if not "NOGEN" in os.environ:
         if not fnmatch.fnmatch(dialect, wildcard):
             continue
         print("Building %s for protocol 1.0" % xml)
-        mavgen.mavgen_python_dialect(dialect, mavparse.PROTOCOL_1_0)
+        if not mavgen.mavgen_python_dialect(dialect, mavparse.PROTOCOL_1_0):
+            print("Building failed %s for protocol 1.0" % xml)
+            sys.exit(1)
 
     for xml in v20_dialects:
         dialect = os.path.basename(xml)[:-4]
@@ -61,7 +67,9 @@ if not "NOGEN" in os.environ:
         if not fnmatch.fnmatch(dialect, wildcard):
             continue
         print("Building %s for protocol 2.0" % xml)
-        mavgen.mavgen_python_dialect(dialect, mavparse.PROTOCOL_2_0)
+        if not mavgen.mavgen_python_dialect(dialect, mavparse.PROTOCOL_2_0):
+            print("Building failed %s for protocol 2.0" % xml)
+            sys.exit(1)
 
 extensions = [] # Assume we might be unable to build native code
 if platform.system() != 'Windows':
@@ -87,6 +95,7 @@ setup (name = 'pymavlink',
                     'License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)',
                     'Operating System :: OS Independent',
                     'Programming Language :: Python :: 2.7',
+                    'Programming Language :: Python :: 3.5',
                     'Topic :: Scientific/Engineering'
                     ],
        license='LGPLv3',
@@ -100,13 +109,10 @@ setup (name = 'pymavlink',
                                                      'C/include_v1.0/*.hpp',
                                                      'C/include_v2.0/*.h',
                                                      'C/include_v2.0/*.hpp' ],
-                        'pymavlink.generator.lib.minixsv': [ '*.xsd' ],
-                        'pymavlink' : ['mavnative/*.h'] },
+                        'pymavlink' : ['mavnative/*.h'],
+                        'pymavlink' : ['message_definitions/v*/*.xml'] },
        packages = ['pymavlink',
                    'pymavlink.generator',
-                   'pymavlink.generator.lib',
-                   'pymavlink.generator.lib.genxmlif',
-                   'pymavlink.generator.lib.minixsv',
                    'pymavlink.dialects',
                    'pymavlink.dialects.v10',
                    'pymavlink.dialects.v20'],
@@ -127,5 +133,9 @@ setup (name = 'pymavlink',
                    'tools/mavfft.py',
                    'tools/mavsummarize.py',
                    'tools/MPU6KSearch.py'],
+       install_requires=[
+            'lxml',
+            'future',
+       ],
        ext_modules = extensions
        )

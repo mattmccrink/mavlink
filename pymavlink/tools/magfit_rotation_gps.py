@@ -3,6 +3,9 @@
 '''
 fit best estimate of magnetometer rotation to GPS data
 '''
+from __future__ import print_function
+from builtins import range
+from builtins import object
 
 import sys, time, os, math
 

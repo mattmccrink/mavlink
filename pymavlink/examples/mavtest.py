@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-import sys, os
+from __future__ import print_function
+from builtins import object
 
 from pymavlink.dialects.v10 import ardupilotmega as mavlink1
 from pymavlink.dialects.v20 import ardupilotmega as mavlink2

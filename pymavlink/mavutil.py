@@ -5,6 +5,8 @@ mavlink python utility functions
 Copyright Andrew Tridgell 2011
 Released under GNU GPL version 3 or later
 '''
+from __future__ import print_function
+from builtins import object
 
 import socket, math, struct, time, os, fnmatch, array, sys, errno
 import select
@@ -512,7 +514,7 @@ class mavfile(object):
             map = mode_mapping_tracker
         if map is None:
             return None
-        inv_map = dict((a, b) for (b, a) in list(map.items()))
+        inv_map = dict((a, b) for (b, a) in map.items())
         return inv_map
 
     def set_mode_apm(self, mode, custom_mode = 0, custom_sub_mode = 0):
@@ -1669,7 +1671,7 @@ class x25crc(object):
             accum = accum & 0xFFFF
         self.crc = accum
 
-class MavlinkSerialPort():
+class MavlinkSerialPort(object):
         '''an object that looks like a serial port, but
         transmits using mavlink SERIAL_CONTROL packets'''
         def __init__(self, portname, baudrate, devnum=0, devbaud=0, timeout=3, debug=0):
