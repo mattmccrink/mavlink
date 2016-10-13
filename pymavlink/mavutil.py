@@ -515,22 +515,39 @@ class mavfile(object):
         inv_map = dict((a, b) for (b, a) in list(map.items()))
         return inv_map
 
-    def set_mode(self, mode, custom_mode = 0, custom_sub_mode = 0):
+    def set_mode_apm(self, mode, custom_mode = 0, custom_sub_mode = 0):
         '''enter arbitrary mode'''
-        print('setting mode')
         if isinstance(mode, str):
             mode_map = self.mode_mapping()
             if mode_map is None or mode not in mode_map:
                 print("Unknown mode '%s'" % mode)
                 return
-            if type(mode_map[mode_map.keys()[0]]) == tuple: # PX4 uses two fields to define modes
-                mode, custom_mode, custom_sub_mode = px4_map[mode]
-            else:
-                mode = mode_map[mode]
-        print(mode, custom_mode)
+            mode = mode_map[mode]
+        # set mode by integer mode number for ArduPilot
+        self.mav.set_mode_send(self.target_system,
+                               mavlink.MAV_MODE_FLAG_CUSTOM_MODE_ENABLED,
+                               mode)
+
+    def set_mode_px4(self, mode, custom_mode, custom_sub_mode):
+        '''enter arbitrary mode'''
+        if isinstance(mode, str):
+            mode_map = self.mode_mapping()
+            if mode_map is None or mode not in mode_map:
+                print("Unknown mode '%s'" % mode)
+                return
+            # PX4 uses two fields to define modes
+            mode, custom_mode, custom_sub_mode = px4_map[mode]
         self.mav.command_long_send(self.target_system, self.target_component,
                                    mavlink.MAV_CMD_DO_SET_MODE, 0, mode, custom_mode, custom_sub_mode, 0, 0, 0, 0)
 
+    def set_mode(self, mode, custom_mode = 0, custom_sub_mode = 0):
+        '''set arbitrary flight mode'''
+        mav_autopilot = self.field('HEARTBEAT', 'autopilot', None)
+        if mav_autopilot == mavlink.MAV_AUTOPILOT_PX4:
+            self.set_mode_px4(mode, custom_mode, custom_sub_mode)
+        else:
+            self.set_mode_apm(mode)
+        
     def set_mode_rtl(self):
         '''enter RTL mode'''
         if self.mavlink10():
@@ -1455,6 +1472,31 @@ mode_mapping_tracker = {
     10 : 'AUTO',
     16 : 'INITIALISING'
     }
+
+# map from a PX4 "main_state" to a string; see msg/commander_state.msg
+# This allows us to map sdlog STAT.MainState to a simple "mode"
+# string, used in DFReader and possibly other places.  These are
+# related but distict from what is found in mavlink messages; see
+# "Custom mode definitions", below.
+mainstate_mapping_px4 = {
+    0 : 'MANUAL',
+    1 : 'ALTCTL',
+    2 : 'POSCTL',
+    3 : 'AUTO_MISSION',
+    4 : 'AUTO_LOITER',
+    5 : 'AUTO_RTL',
+    6 : 'ACRO',
+    7 : 'OFFBOARD',
+    8 : 'STAB',
+    9 : 'RATTITUDE',
+    10 : 'AUTO_TAKEOFF',
+    11 : 'AUTO_LAND',
+    12 : 'AUTO_FOLLOW_TARGET',
+    13 : 'MAX',
+}
+def mode_string_px4(MainState):
+    return mainstate_mapping_px4.get(MainState, "Unknown")
+
 
 # Custom mode definitions from PX4
 PX4_CUSTOM_MAIN_MODE_MANUAL            = 1
