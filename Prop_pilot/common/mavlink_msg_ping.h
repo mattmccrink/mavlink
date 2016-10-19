@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#pragma once
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 // MESSAGE PING PACKING
 
 #define MAVLINK_MSG_ID_PING 4
@@ -22,10 +26,17 @@ typedef struct __mavlink_ping_t {
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_PING { \
+<<<<<<< HEAD
 	4, \
 	"PING", \
 	4, \
 	{  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_ping_t, time_usec) }, \
+=======
+    4, \
+    "PING", \
+    4, \
+    {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_ping_t, time_usec) }, \
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "seq", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_ping_t, seq) }, \
          { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_ping_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_ping_t, target_component) }, \
@@ -33,9 +44,15 @@ typedef struct __mavlink_ping_t {
 }
 #else
 #define MAVLINK_MESSAGE_INFO_PING { \
+<<<<<<< HEAD
 	"PING", \
 	4, \
 	{  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_ping_t, time_usec) }, \
+=======
+    "PING", \
+    4, \
+    {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_ping_t, time_usec) }, \
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "seq", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_ping_t, seq) }, \
          { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_ping_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_ping_t, target_component) }, \
@@ -56,6 +73,7 @@ typedef struct __mavlink_ping_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ping_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+<<<<<<< HEAD
 						       uint64_t time_usec, uint32_t seq, uint8_t target_system, uint8_t target_component)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -72,11 +90,33 @@ static inline uint16_t mavlink_msg_ping_pack(uint8_t system_id, uint8_t componen
 	packet.seq = seq;
 	packet.target_system = target_system;
 	packet.target_component = target_component;
+=======
+                               uint64_t time_usec, uint32_t seq, uint8_t target_system, uint8_t target_component)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_PING_LEN];
+    _mav_put_uint64_t(buf, 0, time_usec);
+    _mav_put_uint32_t(buf, 8, seq);
+    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 13, target_component);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PING_LEN);
+#else
+    mavlink_ping_t packet;
+    packet.time_usec = time_usec;
+    packet.seq = seq;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PING_LEN);
 #endif
 
+<<<<<<< HEAD
 	msg->msgid = MAVLINK_MSG_ID_PING;
+=======
+    msg->msgid = MAVLINK_MSG_ID_PING;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC);
 }
 
@@ -93,6 +133,7 @@ static inline uint16_t mavlink_msg_ping_pack(uint8_t system_id, uint8_t componen
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ping_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+<<<<<<< HEAD
 							   mavlink_message_t* msg,
 						           uint64_t time_usec,uint32_t seq,uint8_t target_system,uint8_t target_component)
 {
@@ -110,11 +151,34 @@ static inline uint16_t mavlink_msg_ping_pack_chan(uint8_t system_id, uint8_t com
 	packet.seq = seq;
 	packet.target_system = target_system;
 	packet.target_component = target_component;
+=======
+                               mavlink_message_t* msg,
+                                   uint64_t time_usec,uint32_t seq,uint8_t target_system,uint8_t target_component)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_PING_LEN];
+    _mav_put_uint64_t(buf, 0, time_usec);
+    _mav_put_uint32_t(buf, 8, seq);
+    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 13, target_component);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PING_LEN);
+#else
+    mavlink_ping_t packet;
+    packet.time_usec = time_usec;
+    packet.seq = seq;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PING_LEN);
 #endif
 
+<<<<<<< HEAD
 	msg->msgid = MAVLINK_MSG_ID_PING;
+=======
+    msg->msgid = MAVLINK_MSG_ID_PING;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC);
 }
 
@@ -128,7 +192,11 @@ static inline uint16_t mavlink_msg_ping_pack_chan(uint8_t system_id, uint8_t com
  */
 static inline uint16_t mavlink_msg_ping_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_ping_t* ping)
 {
+<<<<<<< HEAD
 	return mavlink_msg_ping_pack(system_id, component_id, msg, ping->time_usec, ping->seq, ping->target_system, ping->target_component);
+=======
+    return mavlink_msg_ping_pack(system_id, component_id, msg, ping->time_usec, ping->seq, ping->target_system, ping->target_component);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -142,7 +210,11 @@ static inline uint16_t mavlink_msg_ping_encode(uint8_t system_id, uint8_t compon
  */
 static inline uint16_t mavlink_msg_ping_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ping_t* ping)
 {
+<<<<<<< HEAD
 	return mavlink_msg_ping_pack_chan(system_id, component_id, chan, msg, ping->time_usec, ping->seq, ping->target_system, ping->target_component);
+=======
+    return mavlink_msg_ping_pack_chan(system_id, component_id, chan, msg, ping->time_usec, ping->seq, ping->target_system, ping->target_component);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -159,6 +231,7 @@ static inline uint16_t mavlink_msg_ping_encode_chan(uint8_t system_id, uint8_t c
 static inline void mavlink_msg_ping_send(mavlink_channel_t chan, uint64_t time_usec, uint32_t seq, uint8_t target_system, uint8_t target_component)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+<<<<<<< HEAD
 	char buf[MAVLINK_MSG_ID_PING_LEN];
 	_mav_put_uint64_t(buf, 0, time_usec);
 	_mav_put_uint32_t(buf, 8, seq);
@@ -172,6 +245,21 @@ static inline void mavlink_msg_ping_send(mavlink_channel_t chan, uint64_t time_u
 	packet.seq = seq;
 	packet.target_system = target_system;
 	packet.target_component = target_component;
+=======
+    char buf[MAVLINK_MSG_ID_PING_LEN];
+    _mav_put_uint64_t(buf, 0, time_usec);
+    _mav_put_uint32_t(buf, 8, seq);
+    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 13, target_component);
+
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PING, buf, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC);
+#else
+    mavlink_ping_t packet;
+    packet.time_usec = time_usec;
+    packet.seq = seq;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PING, (const char *)&packet, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC);
 #endif
@@ -202,6 +290,7 @@ static inline void mavlink_msg_ping_send_struct(mavlink_channel_t chan, const ma
 static inline void mavlink_msg_ping_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, uint32_t seq, uint8_t target_system, uint8_t target_component)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+<<<<<<< HEAD
 	char *buf = (char *)msgbuf;
 	_mav_put_uint64_t(buf, 0, time_usec);
 	_mav_put_uint32_t(buf, 8, seq);
@@ -215,6 +304,21 @@ static inline void mavlink_msg_ping_send_buf(mavlink_message_t *msgbuf, mavlink_
 	packet->seq = seq;
 	packet->target_system = target_system;
 	packet->target_component = target_component;
+=======
+    char *buf = (char *)msgbuf;
+    _mav_put_uint64_t(buf, 0, time_usec);
+    _mav_put_uint32_t(buf, 8, seq);
+    _mav_put_uint8_t(buf, 12, target_system);
+    _mav_put_uint8_t(buf, 13, target_component);
+
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PING, buf, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC);
+#else
+    mavlink_ping_t *packet = (mavlink_ping_t *)msgbuf;
+    packet->time_usec = time_usec;
+    packet->seq = seq;
+    packet->target_system = target_system;
+    packet->target_component = target_component;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PING, (const char *)packet, MAVLINK_MSG_ID_PING_MIN_LEN, MAVLINK_MSG_ID_PING_LEN, MAVLINK_MSG_ID_PING_CRC);
 #endif
@@ -233,7 +337,11 @@ static inline void mavlink_msg_ping_send_buf(mavlink_message_t *msgbuf, mavlink_
  */
 static inline uint64_t mavlink_msg_ping_get_time_usec(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint64_t(msg,  0);
+=======
+    return _MAV_RETURN_uint64_t(msg,  0);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -243,7 +351,11 @@ static inline uint64_t mavlink_msg_ping_get_time_usec(const mavlink_message_t* m
  */
 static inline uint32_t mavlink_msg_ping_get_seq(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint32_t(msg,  8);
+=======
+    return _MAV_RETURN_uint32_t(msg,  8);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -253,7 +365,11 @@ static inline uint32_t mavlink_msg_ping_get_seq(const mavlink_message_t* msg)
  */
 static inline uint8_t mavlink_msg_ping_get_target_system(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint8_t(msg,  12);
+=======
+    return _MAV_RETURN_uint8_t(msg,  12);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -263,7 +379,11 @@ static inline uint8_t mavlink_msg_ping_get_target_system(const mavlink_message_t
  */
 static inline uint8_t mavlink_msg_ping_get_target_component(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint8_t(msg,  13);
+=======
+    return _MAV_RETURN_uint8_t(msg,  13);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -275,6 +395,7 @@ static inline uint8_t mavlink_msg_ping_get_target_component(const mavlink_messag
 static inline void mavlink_msg_ping_decode(const mavlink_message_t* msg, mavlink_ping_t* ping)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+<<<<<<< HEAD
 	ping->time_usec = mavlink_msg_ping_get_time_usec(msg);
 	ping->seq = mavlink_msg_ping_get_seq(msg);
 	ping->target_system = mavlink_msg_ping_get_target_system(msg);
@@ -283,5 +404,15 @@ static inline void mavlink_msg_ping_decode(const mavlink_message_t* msg, mavlink
         uint8_t len = msg->len < MAVLINK_MSG_ID_PING_LEN? msg->len : MAVLINK_MSG_ID_PING_LEN;
         memset(ping, 0, MAVLINK_MSG_ID_PING_LEN);
 	memcpy(ping, _MAV_PAYLOAD(msg), len);
+=======
+    ping->time_usec = mavlink_msg_ping_get_time_usec(msg);
+    ping->seq = mavlink_msg_ping_get_seq(msg);
+    ping->target_system = mavlink_msg_ping_get_target_system(msg);
+    ping->target_component = mavlink_msg_ping_get_target_component(msg);
+#else
+        uint8_t len = msg->len < MAVLINK_MSG_ID_PING_LEN? msg->len : MAVLINK_MSG_ID_PING_LEN;
+        memset(ping, 0, MAVLINK_MSG_ID_PING_LEN);
+    memcpy(ping, _MAV_PAYLOAD(msg), len);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 #endif
 }

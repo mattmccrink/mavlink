@@ -1,7 +1,14 @@
 /** @file
+<<<<<<< HEAD
  *	@brief MAVLink comm protocol testsuite generated from uAvionix.xml
  *	@see http://qgroundcontrol.org/mavlink/
  */
+=======
+ *    @brief MAVLink comm protocol testsuite generated from uAvionix.xml
+ *    @see http://qgroundcontrol.org/mavlink/
+ */
+#pragma once
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 #ifndef UAVIONIX_TESTSUITE_H
 #define UAVIONIX_TESTSUITE_H
 
@@ -17,7 +24,11 @@ static void mavlink_test_uAvionix(uint8_t, uint8_t, mavlink_message_t *last_msg)
 static void mavlink_test_all(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 
+<<<<<<< HEAD
 	mavlink_test_uAvionix(system_id, component_id, last_msg);
+=======
+    mavlink_test_uAvionix(system_id, component_id, last_msg);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 #endif
 

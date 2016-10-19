@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#pragma once
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 // MESSAGE PARAM_MAP_RC PACKING
 
 #define MAVLINK_MSG_ID_PARAM_MAP_RC 50
@@ -27,10 +31,17 @@ typedef struct __mavlink_param_map_rc_t {
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_PARAM_MAP_RC { \
+<<<<<<< HEAD
 	50, \
 	"PARAM_MAP_RC", \
 	9, \
 	{  { "param_value0", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_param_map_rc_t, param_value0) }, \
+=======
+    50, \
+    "PARAM_MAP_RC", \
+    9, \
+    {  { "param_value0", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_param_map_rc_t, param_value0) }, \
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "scale", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_param_map_rc_t, scale) }, \
          { "param_value_min", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_param_map_rc_t, param_value_min) }, \
          { "param_value_max", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_param_map_rc_t, param_value_max) }, \
@@ -43,9 +54,15 @@ typedef struct __mavlink_param_map_rc_t {
 }
 #else
 #define MAVLINK_MESSAGE_INFO_PARAM_MAP_RC { \
+<<<<<<< HEAD
 	"PARAM_MAP_RC", \
 	9, \
 	{  { "param_value0", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_param_map_rc_t, param_value0) }, \
+=======
+    "PARAM_MAP_RC", \
+    9, \
+    {  { "param_value0", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_param_map_rc_t, param_value0) }, \
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "scale", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_param_map_rc_t, scale) }, \
          { "param_value_min", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_param_map_rc_t, param_value_min) }, \
          { "param_value_max", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_param_map_rc_t, param_value_max) }, \
@@ -76,6 +93,7 @@ typedef struct __mavlink_param_map_rc_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_param_map_rc_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+<<<<<<< HEAD
 						       uint8_t target_system, uint8_t target_component, const char *param_id, int16_t param_index, uint8_t parameter_rc_channel_index, float param_value0, float scale, float param_value_min, float param_value_max)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -105,6 +123,37 @@ static inline uint16_t mavlink_msg_param_map_rc_pack(uint8_t system_id, uint8_t 
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_PARAM_MAP_RC;
+=======
+                               uint8_t target_system, uint8_t target_component, const char *param_id, int16_t param_index, uint8_t parameter_rc_channel_index, float param_value0, float scale, float param_value_min, float param_value_max)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_PARAM_MAP_RC_LEN];
+    _mav_put_float(buf, 0, param_value0);
+    _mav_put_float(buf, 4, scale);
+    _mav_put_float(buf, 8, param_value_min);
+    _mav_put_float(buf, 12, param_value_max);
+    _mav_put_int16_t(buf, 16, param_index);
+    _mav_put_uint8_t(buf, 18, target_system);
+    _mav_put_uint8_t(buf, 19, target_component);
+    _mav_put_uint8_t(buf, 36, parameter_rc_channel_index);
+    _mav_put_char_array(buf, 20, param_id, 16);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PARAM_MAP_RC_LEN);
+#else
+    mavlink_param_map_rc_t packet;
+    packet.param_value0 = param_value0;
+    packet.scale = scale;
+    packet.param_value_min = param_value_min;
+    packet.param_value_max = param_value_max;
+    packet.param_index = param_index;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    packet.parameter_rc_channel_index = parameter_rc_channel_index;
+    mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PARAM_MAP_RC_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_PARAM_MAP_RC;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_PARAM_MAP_RC_MIN_LEN, MAVLINK_MSG_ID_PARAM_MAP_RC_LEN, MAVLINK_MSG_ID_PARAM_MAP_RC_CRC);
 }
 
@@ -126,6 +175,7 @@ static inline uint16_t mavlink_msg_param_map_rc_pack(uint8_t system_id, uint8_t 
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_param_map_rc_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+<<<<<<< HEAD
 							   mavlink_message_t* msg,
 						           uint8_t target_system,uint8_t target_component,const char *param_id,int16_t param_index,uint8_t parameter_rc_channel_index,float param_value0,float scale,float param_value_min,float param_value_max)
 {
@@ -156,6 +206,38 @@ static inline uint16_t mavlink_msg_param_map_rc_pack_chan(uint8_t system_id, uin
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_PARAM_MAP_RC;
+=======
+                               mavlink_message_t* msg,
+                                   uint8_t target_system,uint8_t target_component,const char *param_id,int16_t param_index,uint8_t parameter_rc_channel_index,float param_value0,float scale,float param_value_min,float param_value_max)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_PARAM_MAP_RC_LEN];
+    _mav_put_float(buf, 0, param_value0);
+    _mav_put_float(buf, 4, scale);
+    _mav_put_float(buf, 8, param_value_min);
+    _mav_put_float(buf, 12, param_value_max);
+    _mav_put_int16_t(buf, 16, param_index);
+    _mav_put_uint8_t(buf, 18, target_system);
+    _mav_put_uint8_t(buf, 19, target_component);
+    _mav_put_uint8_t(buf, 36, parameter_rc_channel_index);
+    _mav_put_char_array(buf, 20, param_id, 16);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PARAM_MAP_RC_LEN);
+#else
+    mavlink_param_map_rc_t packet;
+    packet.param_value0 = param_value0;
+    packet.scale = scale;
+    packet.param_value_min = param_value_min;
+    packet.param_value_max = param_value_max;
+    packet.param_index = param_index;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    packet.parameter_rc_channel_index = parameter_rc_channel_index;
+    mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PARAM_MAP_RC_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_PARAM_MAP_RC;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_PARAM_MAP_RC_MIN_LEN, MAVLINK_MSG_ID_PARAM_MAP_RC_LEN, MAVLINK_MSG_ID_PARAM_MAP_RC_CRC);
 }
 
@@ -169,7 +251,11 @@ static inline uint16_t mavlink_msg_param_map_rc_pack_chan(uint8_t system_id, uin
  */
 static inline uint16_t mavlink_msg_param_map_rc_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_param_map_rc_t* param_map_rc)
 {
+<<<<<<< HEAD
 	return mavlink_msg_param_map_rc_pack(system_id, component_id, msg, param_map_rc->target_system, param_map_rc->target_component, param_map_rc->param_id, param_map_rc->param_index, param_map_rc->parameter_rc_channel_index, param_map_rc->param_value0, param_map_rc->scale, param_map_rc->param_value_min, param_map_rc->param_value_max);
+=======
+    return mavlink_msg_param_map_rc_pack(system_id, component_id, msg, param_map_rc->target_system, param_map_rc->target_component, param_map_rc->param_id, param_map_rc->param_index, param_map_rc->parameter_rc_channel_index, param_map_rc->param_value0, param_map_rc->scale, param_map_rc->param_value_min, param_map_rc->param_value_max);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -183,7 +269,11 @@ static inline uint16_t mavlink_msg_param_map_rc_encode(uint8_t system_id, uint8_
  */
 static inline uint16_t mavlink_msg_param_map_rc_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_param_map_rc_t* param_map_rc)
 {
+<<<<<<< HEAD
 	return mavlink_msg_param_map_rc_pack_chan(system_id, component_id, chan, msg, param_map_rc->target_system, param_map_rc->target_component, param_map_rc->param_id, param_map_rc->param_index, param_map_rc->parameter_rc_channel_index, param_map_rc->param_value0, param_map_rc->scale, param_map_rc->param_value_min, param_map_rc->param_value_max);
+=======
+    return mavlink_msg_param_map_rc_pack_chan(system_id, component_id, chan, msg, param_map_rc->target_system, param_map_rc->target_component, param_map_rc->param_id, param_map_rc->param_index, param_map_rc->parameter_rc_channel_index, param_map_rc->param_value0, param_map_rc->scale, param_map_rc->param_value_min, param_map_rc->param_value_max);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -205,6 +295,7 @@ static inline uint16_t mavlink_msg_param_map_rc_encode_chan(uint8_t system_id, u
 static inline void mavlink_msg_param_map_rc_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, const char *param_id, int16_t param_index, uint8_t parameter_rc_channel_index, float param_value0, float scale, float param_value_min, float param_value_max)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+<<<<<<< HEAD
 	char buf[MAVLINK_MSG_ID_PARAM_MAP_RC_LEN];
 	_mav_put_float(buf, 0, param_value0);
 	_mav_put_float(buf, 4, scale);
@@ -227,6 +318,30 @@ static inline void mavlink_msg_param_map_rc_send(mavlink_channel_t chan, uint8_t
 	packet.target_component = target_component;
 	packet.parameter_rc_channel_index = parameter_rc_channel_index;
 	mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
+=======
+    char buf[MAVLINK_MSG_ID_PARAM_MAP_RC_LEN];
+    _mav_put_float(buf, 0, param_value0);
+    _mav_put_float(buf, 4, scale);
+    _mav_put_float(buf, 8, param_value_min);
+    _mav_put_float(buf, 12, param_value_max);
+    _mav_put_int16_t(buf, 16, param_index);
+    _mav_put_uint8_t(buf, 18, target_system);
+    _mav_put_uint8_t(buf, 19, target_component);
+    _mav_put_uint8_t(buf, 36, parameter_rc_channel_index);
+    _mav_put_char_array(buf, 20, param_id, 16);
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PARAM_MAP_RC, buf, MAVLINK_MSG_ID_PARAM_MAP_RC_MIN_LEN, MAVLINK_MSG_ID_PARAM_MAP_RC_LEN, MAVLINK_MSG_ID_PARAM_MAP_RC_CRC);
+#else
+    mavlink_param_map_rc_t packet;
+    packet.param_value0 = param_value0;
+    packet.scale = scale;
+    packet.param_value_min = param_value_min;
+    packet.param_value_max = param_value_max;
+    packet.param_index = param_index;
+    packet.target_system = target_system;
+    packet.target_component = target_component;
+    packet.parameter_rc_channel_index = parameter_rc_channel_index;
+    mav_array_memcpy(packet.param_id, param_id, sizeof(char)*16);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PARAM_MAP_RC, (const char *)&packet, MAVLINK_MSG_ID_PARAM_MAP_RC_MIN_LEN, MAVLINK_MSG_ID_PARAM_MAP_RC_LEN, MAVLINK_MSG_ID_PARAM_MAP_RC_CRC);
 #endif
 }
@@ -256,6 +371,7 @@ static inline void mavlink_msg_param_map_rc_send_struct(mavlink_channel_t chan, 
 static inline void mavlink_msg_param_map_rc_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, const char *param_id, int16_t param_index, uint8_t parameter_rc_channel_index, float param_value0, float scale, float param_value_min, float param_value_max)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+<<<<<<< HEAD
 	char *buf = (char *)msgbuf;
 	_mav_put_float(buf, 0, param_value0);
 	_mav_put_float(buf, 4, scale);
@@ -278,6 +394,30 @@ static inline void mavlink_msg_param_map_rc_send_buf(mavlink_message_t *msgbuf, 
 	packet->target_component = target_component;
 	packet->parameter_rc_channel_index = parameter_rc_channel_index;
 	mav_array_memcpy(packet->param_id, param_id, sizeof(char)*16);
+=======
+    char *buf = (char *)msgbuf;
+    _mav_put_float(buf, 0, param_value0);
+    _mav_put_float(buf, 4, scale);
+    _mav_put_float(buf, 8, param_value_min);
+    _mav_put_float(buf, 12, param_value_max);
+    _mav_put_int16_t(buf, 16, param_index);
+    _mav_put_uint8_t(buf, 18, target_system);
+    _mav_put_uint8_t(buf, 19, target_component);
+    _mav_put_uint8_t(buf, 36, parameter_rc_channel_index);
+    _mav_put_char_array(buf, 20, param_id, 16);
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PARAM_MAP_RC, buf, MAVLINK_MSG_ID_PARAM_MAP_RC_MIN_LEN, MAVLINK_MSG_ID_PARAM_MAP_RC_LEN, MAVLINK_MSG_ID_PARAM_MAP_RC_CRC);
+#else
+    mavlink_param_map_rc_t *packet = (mavlink_param_map_rc_t *)msgbuf;
+    packet->param_value0 = param_value0;
+    packet->scale = scale;
+    packet->param_value_min = param_value_min;
+    packet->param_value_max = param_value_max;
+    packet->param_index = param_index;
+    packet->target_system = target_system;
+    packet->target_component = target_component;
+    packet->parameter_rc_channel_index = parameter_rc_channel_index;
+    mav_array_memcpy(packet->param_id, param_id, sizeof(char)*16);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PARAM_MAP_RC, (const char *)packet, MAVLINK_MSG_ID_PARAM_MAP_RC_MIN_LEN, MAVLINK_MSG_ID_PARAM_MAP_RC_LEN, MAVLINK_MSG_ID_PARAM_MAP_RC_CRC);
 #endif
 }
@@ -295,7 +435,11 @@ static inline void mavlink_msg_param_map_rc_send_buf(mavlink_message_t *msgbuf, 
  */
 static inline uint8_t mavlink_msg_param_map_rc_get_target_system(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint8_t(msg,  18);
+=======
+    return _MAV_RETURN_uint8_t(msg,  18);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -305,7 +449,11 @@ static inline uint8_t mavlink_msg_param_map_rc_get_target_system(const mavlink_m
  */
 static inline uint8_t mavlink_msg_param_map_rc_get_target_component(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint8_t(msg,  19);
+=======
+    return _MAV_RETURN_uint8_t(msg,  19);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -315,7 +463,11 @@ static inline uint8_t mavlink_msg_param_map_rc_get_target_component(const mavlin
  */
 static inline uint16_t mavlink_msg_param_map_rc_get_param_id(const mavlink_message_t* msg, char *param_id)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_char_array(msg, param_id, 16,  20);
+=======
+    return _MAV_RETURN_char_array(msg, param_id, 16,  20);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -325,7 +477,11 @@ static inline uint16_t mavlink_msg_param_map_rc_get_param_id(const mavlink_messa
  */
 static inline int16_t mavlink_msg_param_map_rc_get_param_index(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_int16_t(msg,  16);
+=======
+    return _MAV_RETURN_int16_t(msg,  16);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -335,7 +491,11 @@ static inline int16_t mavlink_msg_param_map_rc_get_param_index(const mavlink_mes
  */
 static inline uint8_t mavlink_msg_param_map_rc_get_parameter_rc_channel_index(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint8_t(msg,  36);
+=======
+    return _MAV_RETURN_uint8_t(msg,  36);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -345,7 +505,11 @@ static inline uint8_t mavlink_msg_param_map_rc_get_parameter_rc_channel_index(co
  */
 static inline float mavlink_msg_param_map_rc_get_param_value0(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_float(msg,  0);
+=======
+    return _MAV_RETURN_float(msg,  0);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -355,7 +519,11 @@ static inline float mavlink_msg_param_map_rc_get_param_value0(const mavlink_mess
  */
 static inline float mavlink_msg_param_map_rc_get_scale(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_float(msg,  4);
+=======
+    return _MAV_RETURN_float(msg,  4);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -365,7 +533,11 @@ static inline float mavlink_msg_param_map_rc_get_scale(const mavlink_message_t* 
  */
 static inline float mavlink_msg_param_map_rc_get_param_value_min(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_float(msg,  8);
+=======
+    return _MAV_RETURN_float(msg,  8);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -375,7 +547,11 @@ static inline float mavlink_msg_param_map_rc_get_param_value_min(const mavlink_m
  */
 static inline float mavlink_msg_param_map_rc_get_param_value_max(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_float(msg,  12);
+=======
+    return _MAV_RETURN_float(msg,  12);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -387,6 +563,7 @@ static inline float mavlink_msg_param_map_rc_get_param_value_max(const mavlink_m
 static inline void mavlink_msg_param_map_rc_decode(const mavlink_message_t* msg, mavlink_param_map_rc_t* param_map_rc)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+<<<<<<< HEAD
 	param_map_rc->param_value0 = mavlink_msg_param_map_rc_get_param_value0(msg);
 	param_map_rc->scale = mavlink_msg_param_map_rc_get_scale(msg);
 	param_map_rc->param_value_min = mavlink_msg_param_map_rc_get_param_value_min(msg);
@@ -400,5 +577,20 @@ static inline void mavlink_msg_param_map_rc_decode(const mavlink_message_t* msg,
         uint8_t len = msg->len < MAVLINK_MSG_ID_PARAM_MAP_RC_LEN? msg->len : MAVLINK_MSG_ID_PARAM_MAP_RC_LEN;
         memset(param_map_rc, 0, MAVLINK_MSG_ID_PARAM_MAP_RC_LEN);
 	memcpy(param_map_rc, _MAV_PAYLOAD(msg), len);
+=======
+    param_map_rc->param_value0 = mavlink_msg_param_map_rc_get_param_value0(msg);
+    param_map_rc->scale = mavlink_msg_param_map_rc_get_scale(msg);
+    param_map_rc->param_value_min = mavlink_msg_param_map_rc_get_param_value_min(msg);
+    param_map_rc->param_value_max = mavlink_msg_param_map_rc_get_param_value_max(msg);
+    param_map_rc->param_index = mavlink_msg_param_map_rc_get_param_index(msg);
+    param_map_rc->target_system = mavlink_msg_param_map_rc_get_target_system(msg);
+    param_map_rc->target_component = mavlink_msg_param_map_rc_get_target_component(msg);
+    mavlink_msg_param_map_rc_get_param_id(msg, param_map_rc->param_id);
+    param_map_rc->parameter_rc_channel_index = mavlink_msg_param_map_rc_get_parameter_rc_channel_index(msg);
+#else
+        uint8_t len = msg->len < MAVLINK_MSG_ID_PARAM_MAP_RC_LEN? msg->len : MAVLINK_MSG_ID_PARAM_MAP_RC_LEN;
+        memset(param_map_rc, 0, MAVLINK_MSG_ID_PARAM_MAP_RC_LEN);
+    memcpy(param_map_rc, _MAV_PAYLOAD(msg), len);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 #endif
 }

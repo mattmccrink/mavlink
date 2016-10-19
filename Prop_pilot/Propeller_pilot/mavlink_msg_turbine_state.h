@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#pragma once
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 // MESSAGE TURBINE_STATE PACKING
 
 #define MAVLINK_MSG_ID_TURBINE_STATE 237
@@ -25,10 +29,17 @@ typedef struct __mavlink_turbine_state_t {
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_TURBINE_STATE { \
+<<<<<<< HEAD
 	237, \
 	"TURBINE_STATE", \
 	7, \
 	{  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_turbine_state_t, time_boot_ms) }, \
+=======
+    237, \
+    "TURBINE_STATE", \
+    7, \
+    {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_turbine_state_t, time_boot_ms) }, \
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "RPM", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_turbine_state_t, RPM) }, \
          { "EGT", NULL, MAVLINK_TYPE_INT16_T, 0, 8, offsetof(mavlink_turbine_state_t, EGT) }, \
          { "FuelConsumed", NULL, MAVLINK_TYPE_INT16_T, 0, 10, offsetof(mavlink_turbine_state_t, FuelConsumed) }, \
@@ -39,9 +50,15 @@ typedef struct __mavlink_turbine_state_t {
 }
 #else
 #define MAVLINK_MESSAGE_INFO_TURBINE_STATE { \
+<<<<<<< HEAD
 	"TURBINE_STATE", \
 	7, \
 	{  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_turbine_state_t, time_boot_ms) }, \
+=======
+    "TURBINE_STATE", \
+    7, \
+    {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_turbine_state_t, time_boot_ms) }, \
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "RPM", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_turbine_state_t, RPM) }, \
          { "EGT", NULL, MAVLINK_TYPE_INT16_T, 0, 8, offsetof(mavlink_turbine_state_t, EGT) }, \
          { "FuelConsumed", NULL, MAVLINK_TYPE_INT16_T, 0, 10, offsetof(mavlink_turbine_state_t, FuelConsumed) }, \
@@ -68,6 +85,7 @@ typedef struct __mavlink_turbine_state_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_turbine_state_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+<<<<<<< HEAD
 						       uint32_t time_boot_ms, int32_t RPM, int16_t EGT, int16_t FuelConsumed, int16_t FuelFlow, int16_t FuelRemaining, int8_t State)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -90,11 +108,39 @@ static inline uint16_t mavlink_msg_turbine_state_pack(uint8_t system_id, uint8_t
 	packet.FuelFlow = FuelFlow;
 	packet.FuelRemaining = FuelRemaining;
 	packet.State = State;
+=======
+                               uint32_t time_boot_ms, int32_t RPM, int16_t EGT, int16_t FuelConsumed, int16_t FuelFlow, int16_t FuelRemaining, int8_t State)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_TURBINE_STATE_LEN];
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_int32_t(buf, 4, RPM);
+    _mav_put_int16_t(buf, 8, EGT);
+    _mav_put_int16_t(buf, 10, FuelConsumed);
+    _mav_put_int16_t(buf, 12, FuelFlow);
+    _mav_put_int16_t(buf, 14, FuelRemaining);
+    _mav_put_int8_t(buf, 16, State);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_TURBINE_STATE_LEN);
+#else
+    mavlink_turbine_state_t packet;
+    packet.time_boot_ms = time_boot_ms;
+    packet.RPM = RPM;
+    packet.EGT = EGT;
+    packet.FuelConsumed = FuelConsumed;
+    packet.FuelFlow = FuelFlow;
+    packet.FuelRemaining = FuelRemaining;
+    packet.State = State;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_TURBINE_STATE_LEN);
 #endif
 
+<<<<<<< HEAD
 	msg->msgid = MAVLINK_MSG_ID_TURBINE_STATE;
+=======
+    msg->msgid = MAVLINK_MSG_ID_TURBINE_STATE;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_TURBINE_STATE_MIN_LEN, MAVLINK_MSG_ID_TURBINE_STATE_LEN, MAVLINK_MSG_ID_TURBINE_STATE_CRC);
 }
 
@@ -114,6 +160,7 @@ static inline uint16_t mavlink_msg_turbine_state_pack(uint8_t system_id, uint8_t
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_turbine_state_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+<<<<<<< HEAD
 							   mavlink_message_t* msg,
 						           uint32_t time_boot_ms,int32_t RPM,int16_t EGT,int16_t FuelConsumed,int16_t FuelFlow,int16_t FuelRemaining,int8_t State)
 {
@@ -137,11 +184,40 @@ static inline uint16_t mavlink_msg_turbine_state_pack_chan(uint8_t system_id, ui
 	packet.FuelFlow = FuelFlow;
 	packet.FuelRemaining = FuelRemaining;
 	packet.State = State;
+=======
+                               mavlink_message_t* msg,
+                                   uint32_t time_boot_ms,int32_t RPM,int16_t EGT,int16_t FuelConsumed,int16_t FuelFlow,int16_t FuelRemaining,int8_t State)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_TURBINE_STATE_LEN];
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_int32_t(buf, 4, RPM);
+    _mav_put_int16_t(buf, 8, EGT);
+    _mav_put_int16_t(buf, 10, FuelConsumed);
+    _mav_put_int16_t(buf, 12, FuelFlow);
+    _mav_put_int16_t(buf, 14, FuelRemaining);
+    _mav_put_int8_t(buf, 16, State);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_TURBINE_STATE_LEN);
+#else
+    mavlink_turbine_state_t packet;
+    packet.time_boot_ms = time_boot_ms;
+    packet.RPM = RPM;
+    packet.EGT = EGT;
+    packet.FuelConsumed = FuelConsumed;
+    packet.FuelFlow = FuelFlow;
+    packet.FuelRemaining = FuelRemaining;
+    packet.State = State;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_TURBINE_STATE_LEN);
 #endif
 
+<<<<<<< HEAD
 	msg->msgid = MAVLINK_MSG_ID_TURBINE_STATE;
+=======
+    msg->msgid = MAVLINK_MSG_ID_TURBINE_STATE;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_TURBINE_STATE_MIN_LEN, MAVLINK_MSG_ID_TURBINE_STATE_LEN, MAVLINK_MSG_ID_TURBINE_STATE_CRC);
 }
 
@@ -155,7 +231,11 @@ static inline uint16_t mavlink_msg_turbine_state_pack_chan(uint8_t system_id, ui
  */
 static inline uint16_t mavlink_msg_turbine_state_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_turbine_state_t* turbine_state)
 {
+<<<<<<< HEAD
 	return mavlink_msg_turbine_state_pack(system_id, component_id, msg, turbine_state->time_boot_ms, turbine_state->RPM, turbine_state->EGT, turbine_state->FuelConsumed, turbine_state->FuelFlow, turbine_state->FuelRemaining, turbine_state->State);
+=======
+    return mavlink_msg_turbine_state_pack(system_id, component_id, msg, turbine_state->time_boot_ms, turbine_state->RPM, turbine_state->EGT, turbine_state->FuelConsumed, turbine_state->FuelFlow, turbine_state->FuelRemaining, turbine_state->State);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -169,7 +249,11 @@ static inline uint16_t mavlink_msg_turbine_state_encode(uint8_t system_id, uint8
  */
 static inline uint16_t mavlink_msg_turbine_state_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_turbine_state_t* turbine_state)
 {
+<<<<<<< HEAD
 	return mavlink_msg_turbine_state_pack_chan(system_id, component_id, chan, msg, turbine_state->time_boot_ms, turbine_state->RPM, turbine_state->EGT, turbine_state->FuelConsumed, turbine_state->FuelFlow, turbine_state->FuelRemaining, turbine_state->State);
+=======
+    return mavlink_msg_turbine_state_pack_chan(system_id, component_id, chan, msg, turbine_state->time_boot_ms, turbine_state->RPM, turbine_state->EGT, turbine_state->FuelConsumed, turbine_state->FuelFlow, turbine_state->FuelRemaining, turbine_state->State);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -189,6 +273,7 @@ static inline uint16_t mavlink_msg_turbine_state_encode_chan(uint8_t system_id, 
 static inline void mavlink_msg_turbine_state_send(mavlink_channel_t chan, uint32_t time_boot_ms, int32_t RPM, int16_t EGT, int16_t FuelConsumed, int16_t FuelFlow, int16_t FuelRemaining, int8_t State)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+<<<<<<< HEAD
 	char buf[MAVLINK_MSG_ID_TURBINE_STATE_LEN];
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
 	_mav_put_int32_t(buf, 4, RPM);
@@ -208,6 +293,27 @@ static inline void mavlink_msg_turbine_state_send(mavlink_channel_t chan, uint32
 	packet.FuelFlow = FuelFlow;
 	packet.FuelRemaining = FuelRemaining;
 	packet.State = State;
+=======
+    char buf[MAVLINK_MSG_ID_TURBINE_STATE_LEN];
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_int32_t(buf, 4, RPM);
+    _mav_put_int16_t(buf, 8, EGT);
+    _mav_put_int16_t(buf, 10, FuelConsumed);
+    _mav_put_int16_t(buf, 12, FuelFlow);
+    _mav_put_int16_t(buf, 14, FuelRemaining);
+    _mav_put_int8_t(buf, 16, State);
+
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_TURBINE_STATE, buf, MAVLINK_MSG_ID_TURBINE_STATE_MIN_LEN, MAVLINK_MSG_ID_TURBINE_STATE_LEN, MAVLINK_MSG_ID_TURBINE_STATE_CRC);
+#else
+    mavlink_turbine_state_t packet;
+    packet.time_boot_ms = time_boot_ms;
+    packet.RPM = RPM;
+    packet.EGT = EGT;
+    packet.FuelConsumed = FuelConsumed;
+    packet.FuelFlow = FuelFlow;
+    packet.FuelRemaining = FuelRemaining;
+    packet.State = State;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_TURBINE_STATE, (const char *)&packet, MAVLINK_MSG_ID_TURBINE_STATE_MIN_LEN, MAVLINK_MSG_ID_TURBINE_STATE_LEN, MAVLINK_MSG_ID_TURBINE_STATE_CRC);
 #endif
@@ -238,6 +344,7 @@ static inline void mavlink_msg_turbine_state_send_struct(mavlink_channel_t chan,
 static inline void mavlink_msg_turbine_state_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, int32_t RPM, int16_t EGT, int16_t FuelConsumed, int16_t FuelFlow, int16_t FuelRemaining, int8_t State)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+<<<<<<< HEAD
 	char *buf = (char *)msgbuf;
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
 	_mav_put_int32_t(buf, 4, RPM);
@@ -257,6 +364,27 @@ static inline void mavlink_msg_turbine_state_send_buf(mavlink_message_t *msgbuf,
 	packet->FuelFlow = FuelFlow;
 	packet->FuelRemaining = FuelRemaining;
 	packet->State = State;
+=======
+    char *buf = (char *)msgbuf;
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_int32_t(buf, 4, RPM);
+    _mav_put_int16_t(buf, 8, EGT);
+    _mav_put_int16_t(buf, 10, FuelConsumed);
+    _mav_put_int16_t(buf, 12, FuelFlow);
+    _mav_put_int16_t(buf, 14, FuelRemaining);
+    _mav_put_int8_t(buf, 16, State);
+
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_TURBINE_STATE, buf, MAVLINK_MSG_ID_TURBINE_STATE_MIN_LEN, MAVLINK_MSG_ID_TURBINE_STATE_LEN, MAVLINK_MSG_ID_TURBINE_STATE_CRC);
+#else
+    mavlink_turbine_state_t *packet = (mavlink_turbine_state_t *)msgbuf;
+    packet->time_boot_ms = time_boot_ms;
+    packet->RPM = RPM;
+    packet->EGT = EGT;
+    packet->FuelConsumed = FuelConsumed;
+    packet->FuelFlow = FuelFlow;
+    packet->FuelRemaining = FuelRemaining;
+    packet->State = State;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_TURBINE_STATE, (const char *)packet, MAVLINK_MSG_ID_TURBINE_STATE_MIN_LEN, MAVLINK_MSG_ID_TURBINE_STATE_LEN, MAVLINK_MSG_ID_TURBINE_STATE_CRC);
 #endif
@@ -275,7 +403,11 @@ static inline void mavlink_msg_turbine_state_send_buf(mavlink_message_t *msgbuf,
  */
 static inline uint32_t mavlink_msg_turbine_state_get_time_boot_ms(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint32_t(msg,  0);
+=======
+    return _MAV_RETURN_uint32_t(msg,  0);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -285,7 +417,11 @@ static inline uint32_t mavlink_msg_turbine_state_get_time_boot_ms(const mavlink_
  */
 static inline int32_t mavlink_msg_turbine_state_get_RPM(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_int32_t(msg,  4);
+=======
+    return _MAV_RETURN_int32_t(msg,  4);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -295,7 +431,11 @@ static inline int32_t mavlink_msg_turbine_state_get_RPM(const mavlink_message_t*
  */
 static inline int16_t mavlink_msg_turbine_state_get_EGT(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_int16_t(msg,  8);
+=======
+    return _MAV_RETURN_int16_t(msg,  8);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -305,7 +445,11 @@ static inline int16_t mavlink_msg_turbine_state_get_EGT(const mavlink_message_t*
  */
 static inline int16_t mavlink_msg_turbine_state_get_FuelConsumed(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_int16_t(msg,  10);
+=======
+    return _MAV_RETURN_int16_t(msg,  10);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -315,7 +459,11 @@ static inline int16_t mavlink_msg_turbine_state_get_FuelConsumed(const mavlink_m
  */
 static inline int16_t mavlink_msg_turbine_state_get_FuelFlow(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_int16_t(msg,  12);
+=======
+    return _MAV_RETURN_int16_t(msg,  12);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -325,7 +473,11 @@ static inline int16_t mavlink_msg_turbine_state_get_FuelFlow(const mavlink_messa
  */
 static inline int16_t mavlink_msg_turbine_state_get_FuelRemaining(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_int16_t(msg,  14);
+=======
+    return _MAV_RETURN_int16_t(msg,  14);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -335,7 +487,11 @@ static inline int16_t mavlink_msg_turbine_state_get_FuelRemaining(const mavlink_
  */
 static inline int8_t mavlink_msg_turbine_state_get_State(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_int8_t(msg,  16);
+=======
+    return _MAV_RETURN_int8_t(msg,  16);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -347,6 +503,7 @@ static inline int8_t mavlink_msg_turbine_state_get_State(const mavlink_message_t
 static inline void mavlink_msg_turbine_state_decode(const mavlink_message_t* msg, mavlink_turbine_state_t* turbine_state)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+<<<<<<< HEAD
 	turbine_state->time_boot_ms = mavlink_msg_turbine_state_get_time_boot_ms(msg);
 	turbine_state->RPM = mavlink_msg_turbine_state_get_RPM(msg);
 	turbine_state->EGT = mavlink_msg_turbine_state_get_EGT(msg);
@@ -358,5 +515,18 @@ static inline void mavlink_msg_turbine_state_decode(const mavlink_message_t* msg
         uint8_t len = msg->len < MAVLINK_MSG_ID_TURBINE_STATE_LEN? msg->len : MAVLINK_MSG_ID_TURBINE_STATE_LEN;
         memset(turbine_state, 0, MAVLINK_MSG_ID_TURBINE_STATE_LEN);
 	memcpy(turbine_state, _MAV_PAYLOAD(msg), len);
+=======
+    turbine_state->time_boot_ms = mavlink_msg_turbine_state_get_time_boot_ms(msg);
+    turbine_state->RPM = mavlink_msg_turbine_state_get_RPM(msg);
+    turbine_state->EGT = mavlink_msg_turbine_state_get_EGT(msg);
+    turbine_state->FuelConsumed = mavlink_msg_turbine_state_get_FuelConsumed(msg);
+    turbine_state->FuelFlow = mavlink_msg_turbine_state_get_FuelFlow(msg);
+    turbine_state->FuelRemaining = mavlink_msg_turbine_state_get_FuelRemaining(msg);
+    turbine_state->State = mavlink_msg_turbine_state_get_State(msg);
+#else
+        uint8_t len = msg->len < MAVLINK_MSG_ID_TURBINE_STATE_LEN? msg->len : MAVLINK_MSG_ID_TURBINE_STATE_LEN;
+        memset(turbine_state, 0, MAVLINK_MSG_ID_TURBINE_STATE_LEN);
+    memcpy(turbine_state, _MAV_PAYLOAD(msg), len);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 #endif
 }

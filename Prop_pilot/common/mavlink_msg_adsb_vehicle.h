@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#pragma once
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 // MESSAGE ADSB_VEHICLE PACKING
 
 #define MAVLINK_MSG_ID_ADSB_VEHICLE 246
@@ -31,10 +35,17 @@ typedef struct __mavlink_adsb_vehicle_t {
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_ADSB_VEHICLE { \
+<<<<<<< HEAD
 	246, \
 	"ADSB_VEHICLE", \
 	13, \
 	{  { "ICAO_address", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_adsb_vehicle_t, ICAO_address) }, \
+=======
+    246, \
+    "ADSB_VEHICLE", \
+    13, \
+    {  { "ICAO_address", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_adsb_vehicle_t, ICAO_address) }, \
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_adsb_vehicle_t, lat) }, \
          { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_adsb_vehicle_t, lon) }, \
          { "altitude", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_adsb_vehicle_t, altitude) }, \
@@ -51,9 +62,15 @@ typedef struct __mavlink_adsb_vehicle_t {
 }
 #else
 #define MAVLINK_MESSAGE_INFO_ADSB_VEHICLE { \
+<<<<<<< HEAD
 	"ADSB_VEHICLE", \
 	13, \
 	{  { "ICAO_address", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_adsb_vehicle_t, ICAO_address) }, \
+=======
+    "ADSB_VEHICLE", \
+    13, \
+    {  { "ICAO_address", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_adsb_vehicle_t, ICAO_address) }, \
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "lat", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_adsb_vehicle_t, lat) }, \
          { "lon", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_adsb_vehicle_t, lon) }, \
          { "altitude", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_adsb_vehicle_t, altitude) }, \
@@ -92,6 +109,7 @@ typedef struct __mavlink_adsb_vehicle_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_adsb_vehicle_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+<<<<<<< HEAD
 						       uint32_t ICAO_address, int32_t lat, int32_t lon, uint8_t altitude_type, int32_t altitude, uint16_t heading, uint16_t hor_velocity, int16_t ver_velocity, const char *callsign, uint8_t emitter_type, uint8_t tslc, uint16_t flags, uint16_t squawk)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -129,6 +147,45 @@ static inline uint16_t mavlink_msg_adsb_vehicle_pack(uint8_t system_id, uint8_t 
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_ADSB_VEHICLE;
+=======
+                               uint32_t ICAO_address, int32_t lat, int32_t lon, uint8_t altitude_type, int32_t altitude, uint16_t heading, uint16_t hor_velocity, int16_t ver_velocity, const char *callsign, uint8_t emitter_type, uint8_t tslc, uint16_t flags, uint16_t squawk)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_ADSB_VEHICLE_LEN];
+    _mav_put_uint32_t(buf, 0, ICAO_address);
+    _mav_put_int32_t(buf, 4, lat);
+    _mav_put_int32_t(buf, 8, lon);
+    _mav_put_int32_t(buf, 12, altitude);
+    _mav_put_uint16_t(buf, 16, heading);
+    _mav_put_uint16_t(buf, 18, hor_velocity);
+    _mav_put_int16_t(buf, 20, ver_velocity);
+    _mav_put_uint16_t(buf, 22, flags);
+    _mav_put_uint16_t(buf, 24, squawk);
+    _mav_put_uint8_t(buf, 26, altitude_type);
+    _mav_put_uint8_t(buf, 36, emitter_type);
+    _mav_put_uint8_t(buf, 37, tslc);
+    _mav_put_char_array(buf, 27, callsign, 9);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN);
+#else
+    mavlink_adsb_vehicle_t packet;
+    packet.ICAO_address = ICAO_address;
+    packet.lat = lat;
+    packet.lon = lon;
+    packet.altitude = altitude;
+    packet.heading = heading;
+    packet.hor_velocity = hor_velocity;
+    packet.ver_velocity = ver_velocity;
+    packet.flags = flags;
+    packet.squawk = squawk;
+    packet.altitude_type = altitude_type;
+    packet.emitter_type = emitter_type;
+    packet.tslc = tslc;
+    mav_array_memcpy(packet.callsign, callsign, sizeof(char)*9);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_ADSB_VEHICLE;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_ADSB_VEHICLE_MIN_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_CRC);
 }
 
@@ -154,6 +211,7 @@ static inline uint16_t mavlink_msg_adsb_vehicle_pack(uint8_t system_id, uint8_t 
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_adsb_vehicle_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+<<<<<<< HEAD
 							   mavlink_message_t* msg,
 						           uint32_t ICAO_address,int32_t lat,int32_t lon,uint8_t altitude_type,int32_t altitude,uint16_t heading,uint16_t hor_velocity,int16_t ver_velocity,const char *callsign,uint8_t emitter_type,uint8_t tslc,uint16_t flags,uint16_t squawk)
 {
@@ -192,6 +250,46 @@ static inline uint16_t mavlink_msg_adsb_vehicle_pack_chan(uint8_t system_id, uin
 #endif
 
 	msg->msgid = MAVLINK_MSG_ID_ADSB_VEHICLE;
+=======
+                               mavlink_message_t* msg,
+                                   uint32_t ICAO_address,int32_t lat,int32_t lon,uint8_t altitude_type,int32_t altitude,uint16_t heading,uint16_t hor_velocity,int16_t ver_velocity,const char *callsign,uint8_t emitter_type,uint8_t tslc,uint16_t flags,uint16_t squawk)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_ADSB_VEHICLE_LEN];
+    _mav_put_uint32_t(buf, 0, ICAO_address);
+    _mav_put_int32_t(buf, 4, lat);
+    _mav_put_int32_t(buf, 8, lon);
+    _mav_put_int32_t(buf, 12, altitude);
+    _mav_put_uint16_t(buf, 16, heading);
+    _mav_put_uint16_t(buf, 18, hor_velocity);
+    _mav_put_int16_t(buf, 20, ver_velocity);
+    _mav_put_uint16_t(buf, 22, flags);
+    _mav_put_uint16_t(buf, 24, squawk);
+    _mav_put_uint8_t(buf, 26, altitude_type);
+    _mav_put_uint8_t(buf, 36, emitter_type);
+    _mav_put_uint8_t(buf, 37, tslc);
+    _mav_put_char_array(buf, 27, callsign, 9);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN);
+#else
+    mavlink_adsb_vehicle_t packet;
+    packet.ICAO_address = ICAO_address;
+    packet.lat = lat;
+    packet.lon = lon;
+    packet.altitude = altitude;
+    packet.heading = heading;
+    packet.hor_velocity = hor_velocity;
+    packet.ver_velocity = ver_velocity;
+    packet.flags = flags;
+    packet.squawk = squawk;
+    packet.altitude_type = altitude_type;
+    packet.emitter_type = emitter_type;
+    packet.tslc = tslc;
+    mav_array_memcpy(packet.callsign, callsign, sizeof(char)*9);
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN);
+#endif
+
+    msg->msgid = MAVLINK_MSG_ID_ADSB_VEHICLE;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_ADSB_VEHICLE_MIN_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_CRC);
 }
 
@@ -205,7 +303,11 @@ static inline uint16_t mavlink_msg_adsb_vehicle_pack_chan(uint8_t system_id, uin
  */
 static inline uint16_t mavlink_msg_adsb_vehicle_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_adsb_vehicle_t* adsb_vehicle)
 {
+<<<<<<< HEAD
 	return mavlink_msg_adsb_vehicle_pack(system_id, component_id, msg, adsb_vehicle->ICAO_address, adsb_vehicle->lat, adsb_vehicle->lon, adsb_vehicle->altitude_type, adsb_vehicle->altitude, adsb_vehicle->heading, adsb_vehicle->hor_velocity, adsb_vehicle->ver_velocity, adsb_vehicle->callsign, adsb_vehicle->emitter_type, adsb_vehicle->tslc, adsb_vehicle->flags, adsb_vehicle->squawk);
+=======
+    return mavlink_msg_adsb_vehicle_pack(system_id, component_id, msg, adsb_vehicle->ICAO_address, adsb_vehicle->lat, adsb_vehicle->lon, adsb_vehicle->altitude_type, adsb_vehicle->altitude, adsb_vehicle->heading, adsb_vehicle->hor_velocity, adsb_vehicle->ver_velocity, adsb_vehicle->callsign, adsb_vehicle->emitter_type, adsb_vehicle->tslc, adsb_vehicle->flags, adsb_vehicle->squawk);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -219,7 +321,11 @@ static inline uint16_t mavlink_msg_adsb_vehicle_encode(uint8_t system_id, uint8_
  */
 static inline uint16_t mavlink_msg_adsb_vehicle_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_adsb_vehicle_t* adsb_vehicle)
 {
+<<<<<<< HEAD
 	return mavlink_msg_adsb_vehicle_pack_chan(system_id, component_id, chan, msg, adsb_vehicle->ICAO_address, adsb_vehicle->lat, adsb_vehicle->lon, adsb_vehicle->altitude_type, adsb_vehicle->altitude, adsb_vehicle->heading, adsb_vehicle->hor_velocity, adsb_vehicle->ver_velocity, adsb_vehicle->callsign, adsb_vehicle->emitter_type, adsb_vehicle->tslc, adsb_vehicle->flags, adsb_vehicle->squawk);
+=======
+    return mavlink_msg_adsb_vehicle_pack_chan(system_id, component_id, chan, msg, adsb_vehicle->ICAO_address, adsb_vehicle->lat, adsb_vehicle->lon, adsb_vehicle->altitude_type, adsb_vehicle->altitude, adsb_vehicle->heading, adsb_vehicle->hor_velocity, adsb_vehicle->ver_velocity, adsb_vehicle->callsign, adsb_vehicle->emitter_type, adsb_vehicle->tslc, adsb_vehicle->flags, adsb_vehicle->squawk);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -245,6 +351,7 @@ static inline uint16_t mavlink_msg_adsb_vehicle_encode_chan(uint8_t system_id, u
 static inline void mavlink_msg_adsb_vehicle_send(mavlink_channel_t chan, uint32_t ICAO_address, int32_t lat, int32_t lon, uint8_t altitude_type, int32_t altitude, uint16_t heading, uint16_t hor_velocity, int16_t ver_velocity, const char *callsign, uint8_t emitter_type, uint8_t tslc, uint16_t flags, uint16_t squawk)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+<<<<<<< HEAD
 	char buf[MAVLINK_MSG_ID_ADSB_VEHICLE_LEN];
 	_mav_put_uint32_t(buf, 0, ICAO_address);
 	_mav_put_int32_t(buf, 4, lat);
@@ -275,6 +382,38 @@ static inline void mavlink_msg_adsb_vehicle_send(mavlink_channel_t chan, uint32_
 	packet.emitter_type = emitter_type;
 	packet.tslc = tslc;
 	mav_array_memcpy(packet.callsign, callsign, sizeof(char)*9);
+=======
+    char buf[MAVLINK_MSG_ID_ADSB_VEHICLE_LEN];
+    _mav_put_uint32_t(buf, 0, ICAO_address);
+    _mav_put_int32_t(buf, 4, lat);
+    _mav_put_int32_t(buf, 8, lon);
+    _mav_put_int32_t(buf, 12, altitude);
+    _mav_put_uint16_t(buf, 16, heading);
+    _mav_put_uint16_t(buf, 18, hor_velocity);
+    _mav_put_int16_t(buf, 20, ver_velocity);
+    _mav_put_uint16_t(buf, 22, flags);
+    _mav_put_uint16_t(buf, 24, squawk);
+    _mav_put_uint8_t(buf, 26, altitude_type);
+    _mav_put_uint8_t(buf, 36, emitter_type);
+    _mav_put_uint8_t(buf, 37, tslc);
+    _mav_put_char_array(buf, 27, callsign, 9);
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ADSB_VEHICLE, buf, MAVLINK_MSG_ID_ADSB_VEHICLE_MIN_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_CRC);
+#else
+    mavlink_adsb_vehicle_t packet;
+    packet.ICAO_address = ICAO_address;
+    packet.lat = lat;
+    packet.lon = lon;
+    packet.altitude = altitude;
+    packet.heading = heading;
+    packet.hor_velocity = hor_velocity;
+    packet.ver_velocity = ver_velocity;
+    packet.flags = flags;
+    packet.squawk = squawk;
+    packet.altitude_type = altitude_type;
+    packet.emitter_type = emitter_type;
+    packet.tslc = tslc;
+    mav_array_memcpy(packet.callsign, callsign, sizeof(char)*9);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ADSB_VEHICLE, (const char *)&packet, MAVLINK_MSG_ID_ADSB_VEHICLE_MIN_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_CRC);
 #endif
 }
@@ -304,6 +443,7 @@ static inline void mavlink_msg_adsb_vehicle_send_struct(mavlink_channel_t chan, 
 static inline void mavlink_msg_adsb_vehicle_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t ICAO_address, int32_t lat, int32_t lon, uint8_t altitude_type, int32_t altitude, uint16_t heading, uint16_t hor_velocity, int16_t ver_velocity, const char *callsign, uint8_t emitter_type, uint8_t tslc, uint16_t flags, uint16_t squawk)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+<<<<<<< HEAD
 	char *buf = (char *)msgbuf;
 	_mav_put_uint32_t(buf, 0, ICAO_address);
 	_mav_put_int32_t(buf, 4, lat);
@@ -334,6 +474,38 @@ static inline void mavlink_msg_adsb_vehicle_send_buf(mavlink_message_t *msgbuf, 
 	packet->emitter_type = emitter_type;
 	packet->tslc = tslc;
 	mav_array_memcpy(packet->callsign, callsign, sizeof(char)*9);
+=======
+    char *buf = (char *)msgbuf;
+    _mav_put_uint32_t(buf, 0, ICAO_address);
+    _mav_put_int32_t(buf, 4, lat);
+    _mav_put_int32_t(buf, 8, lon);
+    _mav_put_int32_t(buf, 12, altitude);
+    _mav_put_uint16_t(buf, 16, heading);
+    _mav_put_uint16_t(buf, 18, hor_velocity);
+    _mav_put_int16_t(buf, 20, ver_velocity);
+    _mav_put_uint16_t(buf, 22, flags);
+    _mav_put_uint16_t(buf, 24, squawk);
+    _mav_put_uint8_t(buf, 26, altitude_type);
+    _mav_put_uint8_t(buf, 36, emitter_type);
+    _mav_put_uint8_t(buf, 37, tslc);
+    _mav_put_char_array(buf, 27, callsign, 9);
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ADSB_VEHICLE, buf, MAVLINK_MSG_ID_ADSB_VEHICLE_MIN_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_CRC);
+#else
+    mavlink_adsb_vehicle_t *packet = (mavlink_adsb_vehicle_t *)msgbuf;
+    packet->ICAO_address = ICAO_address;
+    packet->lat = lat;
+    packet->lon = lon;
+    packet->altitude = altitude;
+    packet->heading = heading;
+    packet->hor_velocity = hor_velocity;
+    packet->ver_velocity = ver_velocity;
+    packet->flags = flags;
+    packet->squawk = squawk;
+    packet->altitude_type = altitude_type;
+    packet->emitter_type = emitter_type;
+    packet->tslc = tslc;
+    mav_array_memcpy(packet->callsign, callsign, sizeof(char)*9);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ADSB_VEHICLE, (const char *)packet, MAVLINK_MSG_ID_ADSB_VEHICLE_MIN_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN, MAVLINK_MSG_ID_ADSB_VEHICLE_CRC);
 #endif
 }
@@ -351,7 +523,11 @@ static inline void mavlink_msg_adsb_vehicle_send_buf(mavlink_message_t *msgbuf, 
  */
 static inline uint32_t mavlink_msg_adsb_vehicle_get_ICAO_address(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint32_t(msg,  0);
+=======
+    return _MAV_RETURN_uint32_t(msg,  0);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -361,7 +537,11 @@ static inline uint32_t mavlink_msg_adsb_vehicle_get_ICAO_address(const mavlink_m
  */
 static inline int32_t mavlink_msg_adsb_vehicle_get_lat(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_int32_t(msg,  4);
+=======
+    return _MAV_RETURN_int32_t(msg,  4);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -371,7 +551,11 @@ static inline int32_t mavlink_msg_adsb_vehicle_get_lat(const mavlink_message_t* 
  */
 static inline int32_t mavlink_msg_adsb_vehicle_get_lon(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_int32_t(msg,  8);
+=======
+    return _MAV_RETURN_int32_t(msg,  8);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -381,7 +565,11 @@ static inline int32_t mavlink_msg_adsb_vehicle_get_lon(const mavlink_message_t* 
  */
 static inline uint8_t mavlink_msg_adsb_vehicle_get_altitude_type(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint8_t(msg,  26);
+=======
+    return _MAV_RETURN_uint8_t(msg,  26);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -391,7 +579,11 @@ static inline uint8_t mavlink_msg_adsb_vehicle_get_altitude_type(const mavlink_m
  */
 static inline int32_t mavlink_msg_adsb_vehicle_get_altitude(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_int32_t(msg,  12);
+=======
+    return _MAV_RETURN_int32_t(msg,  12);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -401,7 +593,11 @@ static inline int32_t mavlink_msg_adsb_vehicle_get_altitude(const mavlink_messag
  */
 static inline uint16_t mavlink_msg_adsb_vehicle_get_heading(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint16_t(msg,  16);
+=======
+    return _MAV_RETURN_uint16_t(msg,  16);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -411,7 +607,11 @@ static inline uint16_t mavlink_msg_adsb_vehicle_get_heading(const mavlink_messag
  */
 static inline uint16_t mavlink_msg_adsb_vehicle_get_hor_velocity(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint16_t(msg,  18);
+=======
+    return _MAV_RETURN_uint16_t(msg,  18);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -421,7 +621,11 @@ static inline uint16_t mavlink_msg_adsb_vehicle_get_hor_velocity(const mavlink_m
  */
 static inline int16_t mavlink_msg_adsb_vehicle_get_ver_velocity(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_int16_t(msg,  20);
+=======
+    return _MAV_RETURN_int16_t(msg,  20);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -431,7 +635,11 @@ static inline int16_t mavlink_msg_adsb_vehicle_get_ver_velocity(const mavlink_me
  */
 static inline uint16_t mavlink_msg_adsb_vehicle_get_callsign(const mavlink_message_t* msg, char *callsign)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_char_array(msg, callsign, 9,  27);
+=======
+    return _MAV_RETURN_char_array(msg, callsign, 9,  27);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -441,7 +649,11 @@ static inline uint16_t mavlink_msg_adsb_vehicle_get_callsign(const mavlink_messa
  */
 static inline uint8_t mavlink_msg_adsb_vehicle_get_emitter_type(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint8_t(msg,  36);
+=======
+    return _MAV_RETURN_uint8_t(msg,  36);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -451,7 +663,11 @@ static inline uint8_t mavlink_msg_adsb_vehicle_get_emitter_type(const mavlink_me
  */
 static inline uint8_t mavlink_msg_adsb_vehicle_get_tslc(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint8_t(msg,  37);
+=======
+    return _MAV_RETURN_uint8_t(msg,  37);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -461,7 +677,11 @@ static inline uint8_t mavlink_msg_adsb_vehicle_get_tslc(const mavlink_message_t*
  */
 static inline uint16_t mavlink_msg_adsb_vehicle_get_flags(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint16_t(msg,  22);
+=======
+    return _MAV_RETURN_uint16_t(msg,  22);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -471,7 +691,11 @@ static inline uint16_t mavlink_msg_adsb_vehicle_get_flags(const mavlink_message_
  */
 static inline uint16_t mavlink_msg_adsb_vehicle_get_squawk(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint16_t(msg,  24);
+=======
+    return _MAV_RETURN_uint16_t(msg,  24);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -483,6 +707,7 @@ static inline uint16_t mavlink_msg_adsb_vehicle_get_squawk(const mavlink_message
 static inline void mavlink_msg_adsb_vehicle_decode(const mavlink_message_t* msg, mavlink_adsb_vehicle_t* adsb_vehicle)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+<<<<<<< HEAD
 	adsb_vehicle->ICAO_address = mavlink_msg_adsb_vehicle_get_ICAO_address(msg);
 	adsb_vehicle->lat = mavlink_msg_adsb_vehicle_get_lat(msg);
 	adsb_vehicle->lon = mavlink_msg_adsb_vehicle_get_lon(msg);
@@ -500,5 +725,24 @@ static inline void mavlink_msg_adsb_vehicle_decode(const mavlink_message_t* msg,
         uint8_t len = msg->len < MAVLINK_MSG_ID_ADSB_VEHICLE_LEN? msg->len : MAVLINK_MSG_ID_ADSB_VEHICLE_LEN;
         memset(adsb_vehicle, 0, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN);
 	memcpy(adsb_vehicle, _MAV_PAYLOAD(msg), len);
+=======
+    adsb_vehicle->ICAO_address = mavlink_msg_adsb_vehicle_get_ICAO_address(msg);
+    adsb_vehicle->lat = mavlink_msg_adsb_vehicle_get_lat(msg);
+    adsb_vehicle->lon = mavlink_msg_adsb_vehicle_get_lon(msg);
+    adsb_vehicle->altitude = mavlink_msg_adsb_vehicle_get_altitude(msg);
+    adsb_vehicle->heading = mavlink_msg_adsb_vehicle_get_heading(msg);
+    adsb_vehicle->hor_velocity = mavlink_msg_adsb_vehicle_get_hor_velocity(msg);
+    adsb_vehicle->ver_velocity = mavlink_msg_adsb_vehicle_get_ver_velocity(msg);
+    adsb_vehicle->flags = mavlink_msg_adsb_vehicle_get_flags(msg);
+    adsb_vehicle->squawk = mavlink_msg_adsb_vehicle_get_squawk(msg);
+    adsb_vehicle->altitude_type = mavlink_msg_adsb_vehicle_get_altitude_type(msg);
+    mavlink_msg_adsb_vehicle_get_callsign(msg, adsb_vehicle->callsign);
+    adsb_vehicle->emitter_type = mavlink_msg_adsb_vehicle_get_emitter_type(msg);
+    adsb_vehicle->tslc = mavlink_msg_adsb_vehicle_get_tslc(msg);
+#else
+        uint8_t len = msg->len < MAVLINK_MSG_ID_ADSB_VEHICLE_LEN? msg->len : MAVLINK_MSG_ID_ADSB_VEHICLE_LEN;
+        memset(adsb_vehicle, 0, MAVLINK_MSG_ID_ADSB_VEHICLE_LEN);
+    memcpy(adsb_vehicle, _MAV_PAYLOAD(msg), len);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 #endif
 }

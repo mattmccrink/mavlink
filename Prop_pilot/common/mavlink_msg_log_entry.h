@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#pragma once
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 // MESSAGE LOG_ENTRY PACKING
 
 #define MAVLINK_MSG_ID_LOG_ENTRY 118
@@ -23,10 +27,17 @@ typedef struct __mavlink_log_entry_t {
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_LOG_ENTRY { \
+<<<<<<< HEAD
 	118, \
 	"LOG_ENTRY", \
 	5, \
 	{  { "time_utc", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_log_entry_t, time_utc) }, \
+=======
+    118, \
+    "LOG_ENTRY", \
+    5, \
+    {  { "time_utc", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_log_entry_t, time_utc) }, \
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "size", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_log_entry_t, size) }, \
          { "id", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_log_entry_t, id) }, \
          { "num_logs", NULL, MAVLINK_TYPE_UINT16_T, 0, 10, offsetof(mavlink_log_entry_t, num_logs) }, \
@@ -35,9 +46,15 @@ typedef struct __mavlink_log_entry_t {
 }
 #else
 #define MAVLINK_MESSAGE_INFO_LOG_ENTRY { \
+<<<<<<< HEAD
 	"LOG_ENTRY", \
 	5, \
 	{  { "time_utc", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_log_entry_t, time_utc) }, \
+=======
+    "LOG_ENTRY", \
+    5, \
+    {  { "time_utc", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_log_entry_t, time_utc) }, \
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "size", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_log_entry_t, size) }, \
          { "id", NULL, MAVLINK_TYPE_UINT16_T, 0, 8, offsetof(mavlink_log_entry_t, id) }, \
          { "num_logs", NULL, MAVLINK_TYPE_UINT16_T, 0, 10, offsetof(mavlink_log_entry_t, num_logs) }, \
@@ -60,6 +77,7 @@ typedef struct __mavlink_log_entry_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_log_entry_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+<<<<<<< HEAD
 						       uint16_t id, uint16_t num_logs, uint16_t last_log_num, uint32_t time_utc, uint32_t size)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -78,11 +96,35 @@ static inline uint16_t mavlink_msg_log_entry_pack(uint8_t system_id, uint8_t com
 	packet.id = id;
 	packet.num_logs = num_logs;
 	packet.last_log_num = last_log_num;
+=======
+                               uint16_t id, uint16_t num_logs, uint16_t last_log_num, uint32_t time_utc, uint32_t size)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_LOG_ENTRY_LEN];
+    _mav_put_uint32_t(buf, 0, time_utc);
+    _mav_put_uint32_t(buf, 4, size);
+    _mav_put_uint16_t(buf, 8, id);
+    _mav_put_uint16_t(buf, 10, num_logs);
+    _mav_put_uint16_t(buf, 12, last_log_num);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_LOG_ENTRY_LEN);
+#else
+    mavlink_log_entry_t packet;
+    packet.time_utc = time_utc;
+    packet.size = size;
+    packet.id = id;
+    packet.num_logs = num_logs;
+    packet.last_log_num = last_log_num;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_LOG_ENTRY_LEN);
 #endif
 
+<<<<<<< HEAD
 	msg->msgid = MAVLINK_MSG_ID_LOG_ENTRY;
+=======
+    msg->msgid = MAVLINK_MSG_ID_LOG_ENTRY;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_LOG_ENTRY_MIN_LEN, MAVLINK_MSG_ID_LOG_ENTRY_LEN, MAVLINK_MSG_ID_LOG_ENTRY_CRC);
 }
 
@@ -100,6 +142,7 @@ static inline uint16_t mavlink_msg_log_entry_pack(uint8_t system_id, uint8_t com
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_log_entry_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+<<<<<<< HEAD
 							   mavlink_message_t* msg,
 						           uint16_t id,uint16_t num_logs,uint16_t last_log_num,uint32_t time_utc,uint32_t size)
 {
@@ -119,11 +162,36 @@ static inline uint16_t mavlink_msg_log_entry_pack_chan(uint8_t system_id, uint8_
 	packet.id = id;
 	packet.num_logs = num_logs;
 	packet.last_log_num = last_log_num;
+=======
+                               mavlink_message_t* msg,
+                                   uint16_t id,uint16_t num_logs,uint16_t last_log_num,uint32_t time_utc,uint32_t size)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    char buf[MAVLINK_MSG_ID_LOG_ENTRY_LEN];
+    _mav_put_uint32_t(buf, 0, time_utc);
+    _mav_put_uint32_t(buf, 4, size);
+    _mav_put_uint16_t(buf, 8, id);
+    _mav_put_uint16_t(buf, 10, num_logs);
+    _mav_put_uint16_t(buf, 12, last_log_num);
+
+        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_LOG_ENTRY_LEN);
+#else
+    mavlink_log_entry_t packet;
+    packet.time_utc = time_utc;
+    packet.size = size;
+    packet.id = id;
+    packet.num_logs = num_logs;
+    packet.last_log_num = last_log_num;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_LOG_ENTRY_LEN);
 #endif
 
+<<<<<<< HEAD
 	msg->msgid = MAVLINK_MSG_ID_LOG_ENTRY;
+=======
+    msg->msgid = MAVLINK_MSG_ID_LOG_ENTRY;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_LOG_ENTRY_MIN_LEN, MAVLINK_MSG_ID_LOG_ENTRY_LEN, MAVLINK_MSG_ID_LOG_ENTRY_CRC);
 }
 
@@ -137,7 +205,11 @@ static inline uint16_t mavlink_msg_log_entry_pack_chan(uint8_t system_id, uint8_
  */
 static inline uint16_t mavlink_msg_log_entry_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_log_entry_t* log_entry)
 {
+<<<<<<< HEAD
 	return mavlink_msg_log_entry_pack(system_id, component_id, msg, log_entry->id, log_entry->num_logs, log_entry->last_log_num, log_entry->time_utc, log_entry->size);
+=======
+    return mavlink_msg_log_entry_pack(system_id, component_id, msg, log_entry->id, log_entry->num_logs, log_entry->last_log_num, log_entry->time_utc, log_entry->size);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -151,7 +223,11 @@ static inline uint16_t mavlink_msg_log_entry_encode(uint8_t system_id, uint8_t c
  */
 static inline uint16_t mavlink_msg_log_entry_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_log_entry_t* log_entry)
 {
+<<<<<<< HEAD
 	return mavlink_msg_log_entry_pack_chan(system_id, component_id, chan, msg, log_entry->id, log_entry->num_logs, log_entry->last_log_num, log_entry->time_utc, log_entry->size);
+=======
+    return mavlink_msg_log_entry_pack_chan(system_id, component_id, chan, msg, log_entry->id, log_entry->num_logs, log_entry->last_log_num, log_entry->time_utc, log_entry->size);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -169,6 +245,7 @@ static inline uint16_t mavlink_msg_log_entry_encode_chan(uint8_t system_id, uint
 static inline void mavlink_msg_log_entry_send(mavlink_channel_t chan, uint16_t id, uint16_t num_logs, uint16_t last_log_num, uint32_t time_utc, uint32_t size)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+<<<<<<< HEAD
 	char buf[MAVLINK_MSG_ID_LOG_ENTRY_LEN];
 	_mav_put_uint32_t(buf, 0, time_utc);
 	_mav_put_uint32_t(buf, 4, size);
@@ -184,6 +261,23 @@ static inline void mavlink_msg_log_entry_send(mavlink_channel_t chan, uint16_t i
 	packet.id = id;
 	packet.num_logs = num_logs;
 	packet.last_log_num = last_log_num;
+=======
+    char buf[MAVLINK_MSG_ID_LOG_ENTRY_LEN];
+    _mav_put_uint32_t(buf, 0, time_utc);
+    _mav_put_uint32_t(buf, 4, size);
+    _mav_put_uint16_t(buf, 8, id);
+    _mav_put_uint16_t(buf, 10, num_logs);
+    _mav_put_uint16_t(buf, 12, last_log_num);
+
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LOG_ENTRY, buf, MAVLINK_MSG_ID_LOG_ENTRY_MIN_LEN, MAVLINK_MSG_ID_LOG_ENTRY_LEN, MAVLINK_MSG_ID_LOG_ENTRY_CRC);
+#else
+    mavlink_log_entry_t packet;
+    packet.time_utc = time_utc;
+    packet.size = size;
+    packet.id = id;
+    packet.num_logs = num_logs;
+    packet.last_log_num = last_log_num;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LOG_ENTRY, (const char *)&packet, MAVLINK_MSG_ID_LOG_ENTRY_MIN_LEN, MAVLINK_MSG_ID_LOG_ENTRY_LEN, MAVLINK_MSG_ID_LOG_ENTRY_CRC);
 #endif
@@ -214,6 +308,7 @@ static inline void mavlink_msg_log_entry_send_struct(mavlink_channel_t chan, con
 static inline void mavlink_msg_log_entry_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint16_t id, uint16_t num_logs, uint16_t last_log_num, uint32_t time_utc, uint32_t size)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+<<<<<<< HEAD
 	char *buf = (char *)msgbuf;
 	_mav_put_uint32_t(buf, 0, time_utc);
 	_mav_put_uint32_t(buf, 4, size);
@@ -229,6 +324,23 @@ static inline void mavlink_msg_log_entry_send_buf(mavlink_message_t *msgbuf, mav
 	packet->id = id;
 	packet->num_logs = num_logs;
 	packet->last_log_num = last_log_num;
+=======
+    char *buf = (char *)msgbuf;
+    _mav_put_uint32_t(buf, 0, time_utc);
+    _mav_put_uint32_t(buf, 4, size);
+    _mav_put_uint16_t(buf, 8, id);
+    _mav_put_uint16_t(buf, 10, num_logs);
+    _mav_put_uint16_t(buf, 12, last_log_num);
+
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LOG_ENTRY, buf, MAVLINK_MSG_ID_LOG_ENTRY_MIN_LEN, MAVLINK_MSG_ID_LOG_ENTRY_LEN, MAVLINK_MSG_ID_LOG_ENTRY_CRC);
+#else
+    mavlink_log_entry_t *packet = (mavlink_log_entry_t *)msgbuf;
+    packet->time_utc = time_utc;
+    packet->size = size;
+    packet->id = id;
+    packet->num_logs = num_logs;
+    packet->last_log_num = last_log_num;
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LOG_ENTRY, (const char *)packet, MAVLINK_MSG_ID_LOG_ENTRY_MIN_LEN, MAVLINK_MSG_ID_LOG_ENTRY_LEN, MAVLINK_MSG_ID_LOG_ENTRY_CRC);
 #endif
@@ -247,7 +359,11 @@ static inline void mavlink_msg_log_entry_send_buf(mavlink_message_t *msgbuf, mav
  */
 static inline uint16_t mavlink_msg_log_entry_get_id(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint16_t(msg,  8);
+=======
+    return _MAV_RETURN_uint16_t(msg,  8);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -257,7 +373,11 @@ static inline uint16_t mavlink_msg_log_entry_get_id(const mavlink_message_t* msg
  */
 static inline uint16_t mavlink_msg_log_entry_get_num_logs(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint16_t(msg,  10);
+=======
+    return _MAV_RETURN_uint16_t(msg,  10);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -267,7 +387,11 @@ static inline uint16_t mavlink_msg_log_entry_get_num_logs(const mavlink_message_
  */
 static inline uint16_t mavlink_msg_log_entry_get_last_log_num(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint16_t(msg,  12);
+=======
+    return _MAV_RETURN_uint16_t(msg,  12);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -277,7 +401,11 @@ static inline uint16_t mavlink_msg_log_entry_get_last_log_num(const mavlink_mess
  */
 static inline uint32_t mavlink_msg_log_entry_get_time_utc(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint32_t(msg,  0);
+=======
+    return _MAV_RETURN_uint32_t(msg,  0);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -287,7 +415,11 @@ static inline uint32_t mavlink_msg_log_entry_get_time_utc(const mavlink_message_
  */
 static inline uint32_t mavlink_msg_log_entry_get_size(const mavlink_message_t* msg)
 {
+<<<<<<< HEAD
 	return _MAV_RETURN_uint32_t(msg,  4);
+=======
+    return _MAV_RETURN_uint32_t(msg,  4);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -299,6 +431,7 @@ static inline uint32_t mavlink_msg_log_entry_get_size(const mavlink_message_t* m
 static inline void mavlink_msg_log_entry_decode(const mavlink_message_t* msg, mavlink_log_entry_t* log_entry)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+<<<<<<< HEAD
 	log_entry->time_utc = mavlink_msg_log_entry_get_time_utc(msg);
 	log_entry->size = mavlink_msg_log_entry_get_size(msg);
 	log_entry->id = mavlink_msg_log_entry_get_id(msg);
@@ -308,5 +441,16 @@ static inline void mavlink_msg_log_entry_decode(const mavlink_message_t* msg, ma
         uint8_t len = msg->len < MAVLINK_MSG_ID_LOG_ENTRY_LEN? msg->len : MAVLINK_MSG_ID_LOG_ENTRY_LEN;
         memset(log_entry, 0, MAVLINK_MSG_ID_LOG_ENTRY_LEN);
 	memcpy(log_entry, _MAV_PAYLOAD(msg), len);
+=======
+    log_entry->time_utc = mavlink_msg_log_entry_get_time_utc(msg);
+    log_entry->size = mavlink_msg_log_entry_get_size(msg);
+    log_entry->id = mavlink_msg_log_entry_get_id(msg);
+    log_entry->num_logs = mavlink_msg_log_entry_get_num_logs(msg);
+    log_entry->last_log_num = mavlink_msg_log_entry_get_last_log_num(msg);
+#else
+        uint8_t len = msg->len < MAVLINK_MSG_ID_LOG_ENTRY_LEN? msg->len : MAVLINK_MSG_ID_LOG_ENTRY_LEN;
+        memset(log_entry, 0, MAVLINK_MSG_ID_LOG_ENTRY_LEN);
+    memcpy(log_entry, _MAV_PAYLOAD(msg), len);
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 #endif
 }

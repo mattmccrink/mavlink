@@ -1,10 +1,22 @@
 /** @file
+<<<<<<< HEAD
  *	@brief MAVLink comm protocol built from common.xml
  *	@see http://mavlink.org
  */
 #ifndef MAVLINK_H
 #define MAVLINK_H
 
+=======
+ *  @brief MAVLink comm protocol built from common.xml
+ *  @see http://mavlink.org
+ */
+#pragma once
+#ifndef MAVLINK_H
+#define MAVLINK_H
+
+#define MAVLINK_PRIMARY_XML_IDX 1
+
+>>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 #ifndef MAVLINK_STX
 #define MAVLINK_STX 254
 #endif
