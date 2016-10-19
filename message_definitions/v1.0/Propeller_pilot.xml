@@ -5,7 +5,7 @@
     <include>uAvionix.xml</include>
 
     <messages>
-    <message id="234" name="COMPACT_STATE">
+    <message id="238" name="COMPACT_STATE">
       <description>Compact state estimate</description>
       <field type="uint32_t" name="time_boot_ms">Timestamp of the component clock since boot time in milliseconds.</field>
       <field type="int32_t" name="q1">Quaternion component 1, w (2^30 in null-rotation)</field>

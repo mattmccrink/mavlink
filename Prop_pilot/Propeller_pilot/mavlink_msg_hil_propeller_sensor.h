@@ -1,3 +1,4 @@
+#pragma once
 // MESSAGE HIL_PROPELLER_SENSOR PACKING
 
 #define MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR 236
@@ -33,10 +34,10 @@ typedef struct __mavlink_hil_propeller_sensor_t {
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_HIL_PROPELLER_SENSOR { \
-	236, \
-	"HIL_PROPELLER_SENSOR", \
-	15, \
-	{  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_hil_propeller_sensor_t, time_usec) }, \
+    236, \
+    "HIL_PROPELLER_SENSOR", \
+    15, \
+    {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_hil_propeller_sensor_t, time_usec) }, \
          { "xacc", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_hil_propeller_sensor_t, xacc) }, \
          { "yacc", NULL, MAVLINK_TYPE_UINT32_T, 0, 12, offsetof(mavlink_hil_propeller_sensor_t, yacc) }, \
          { "zacc", NULL, MAVLINK_TYPE_UINT32_T, 0, 16, offsetof(mavlink_hil_propeller_sensor_t, zacc) }, \
@@ -55,9 +56,9 @@ typedef struct __mavlink_hil_propeller_sensor_t {
 }
 #else
 #define MAVLINK_MESSAGE_INFO_HIL_PROPELLER_SENSOR { \
-	"HIL_PROPELLER_SENSOR", \
-	15, \
-	{  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_hil_propeller_sensor_t, time_usec) }, \
+    "HIL_PROPELLER_SENSOR", \
+    15, \
+    {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_hil_propeller_sensor_t, time_usec) }, \
          { "xacc", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_hil_propeller_sensor_t, xacc) }, \
          { "yacc", NULL, MAVLINK_TYPE_UINT32_T, 0, 12, offsetof(mavlink_hil_propeller_sensor_t, yacc) }, \
          { "zacc", NULL, MAVLINK_TYPE_UINT32_T, 0, 16, offsetof(mavlink_hil_propeller_sensor_t, zacc) }, \
@@ -100,49 +101,49 @@ typedef struct __mavlink_hil_propeller_sensor_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_hil_propeller_sensor_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint64_t time_usec, uint32_t xacc, uint32_t yacc, uint32_t zacc, uint32_t xgyro, uint32_t ygyro, uint32_t zgyro, uint32_t xmag, uint32_t ymag, uint32_t zmag, uint32_t abs_pressure, uint32_t diff_pressure, uint32_t pressure_alt, uint32_t temperature, uint32_t fields_updated)
+                               uint64_t time_usec, uint32_t xacc, uint32_t yacc, uint32_t zacc, uint32_t xgyro, uint32_t ygyro, uint32_t zgyro, uint32_t xmag, uint32_t ymag, uint32_t zmag, uint32_t abs_pressure, uint32_t diff_pressure, uint32_t pressure_alt, uint32_t temperature, uint32_t fields_updated)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN];
-	_mav_put_uint64_t(buf, 0, time_usec);
-	_mav_put_uint32_t(buf, 8, xacc);
-	_mav_put_uint32_t(buf, 12, yacc);
-	_mav_put_uint32_t(buf, 16, zacc);
-	_mav_put_uint32_t(buf, 20, xgyro);
-	_mav_put_uint32_t(buf, 24, ygyro);
-	_mav_put_uint32_t(buf, 28, zgyro);
-	_mav_put_uint32_t(buf, 32, xmag);
-	_mav_put_uint32_t(buf, 36, ymag);
-	_mav_put_uint32_t(buf, 40, zmag);
-	_mav_put_uint32_t(buf, 44, abs_pressure);
-	_mav_put_uint32_t(buf, 48, diff_pressure);
-	_mav_put_uint32_t(buf, 52, pressure_alt);
-	_mav_put_uint32_t(buf, 56, temperature);
-	_mav_put_uint32_t(buf, 60, fields_updated);
+    char buf[MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN];
+    _mav_put_uint64_t(buf, 0, time_usec);
+    _mav_put_uint32_t(buf, 8, xacc);
+    _mav_put_uint32_t(buf, 12, yacc);
+    _mav_put_uint32_t(buf, 16, zacc);
+    _mav_put_uint32_t(buf, 20, xgyro);
+    _mav_put_uint32_t(buf, 24, ygyro);
+    _mav_put_uint32_t(buf, 28, zgyro);
+    _mav_put_uint32_t(buf, 32, xmag);
+    _mav_put_uint32_t(buf, 36, ymag);
+    _mav_put_uint32_t(buf, 40, zmag);
+    _mav_put_uint32_t(buf, 44, abs_pressure);
+    _mav_put_uint32_t(buf, 48, diff_pressure);
+    _mav_put_uint32_t(buf, 52, pressure_alt);
+    _mav_put_uint32_t(buf, 56, temperature);
+    _mav_put_uint32_t(buf, 60, fields_updated);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN);
 #else
-	mavlink_hil_propeller_sensor_t packet;
-	packet.time_usec = time_usec;
-	packet.xacc = xacc;
-	packet.yacc = yacc;
-	packet.zacc = zacc;
-	packet.xgyro = xgyro;
-	packet.ygyro = ygyro;
-	packet.zgyro = zgyro;
-	packet.xmag = xmag;
-	packet.ymag = ymag;
-	packet.zmag = zmag;
-	packet.abs_pressure = abs_pressure;
-	packet.diff_pressure = diff_pressure;
-	packet.pressure_alt = pressure_alt;
-	packet.temperature = temperature;
-	packet.fields_updated = fields_updated;
+    mavlink_hil_propeller_sensor_t packet;
+    packet.time_usec = time_usec;
+    packet.xacc = xacc;
+    packet.yacc = yacc;
+    packet.zacc = zacc;
+    packet.xgyro = xgyro;
+    packet.ygyro = ygyro;
+    packet.zgyro = zgyro;
+    packet.xmag = xmag;
+    packet.ymag = ymag;
+    packet.zmag = zmag;
+    packet.abs_pressure = abs_pressure;
+    packet.diff_pressure = diff_pressure;
+    packet.pressure_alt = pressure_alt;
+    packet.temperature = temperature;
+    packet.fields_updated = fields_updated;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN);
 #endif
 
-	msg->msgid = MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR;
+    msg->msgid = MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR;
     return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_MIN_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_CRC);
 }
 
@@ -170,50 +171,50 @@ static inline uint16_t mavlink_msg_hil_propeller_sensor_pack(uint8_t system_id, 
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_hil_propeller_sensor_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
-							   mavlink_message_t* msg,
-						           uint64_t time_usec,uint32_t xacc,uint32_t yacc,uint32_t zacc,uint32_t xgyro,uint32_t ygyro,uint32_t zgyro,uint32_t xmag,uint32_t ymag,uint32_t zmag,uint32_t abs_pressure,uint32_t diff_pressure,uint32_t pressure_alt,uint32_t temperature,uint32_t fields_updated)
+                               mavlink_message_t* msg,
+                                   uint64_t time_usec,uint32_t xacc,uint32_t yacc,uint32_t zacc,uint32_t xgyro,uint32_t ygyro,uint32_t zgyro,uint32_t xmag,uint32_t ymag,uint32_t zmag,uint32_t abs_pressure,uint32_t diff_pressure,uint32_t pressure_alt,uint32_t temperature,uint32_t fields_updated)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN];
-	_mav_put_uint64_t(buf, 0, time_usec);
-	_mav_put_uint32_t(buf, 8, xacc);
-	_mav_put_uint32_t(buf, 12, yacc);
-	_mav_put_uint32_t(buf, 16, zacc);
-	_mav_put_uint32_t(buf, 20, xgyro);
-	_mav_put_uint32_t(buf, 24, ygyro);
-	_mav_put_uint32_t(buf, 28, zgyro);
-	_mav_put_uint32_t(buf, 32, xmag);
-	_mav_put_uint32_t(buf, 36, ymag);
-	_mav_put_uint32_t(buf, 40, zmag);
-	_mav_put_uint32_t(buf, 44, abs_pressure);
-	_mav_put_uint32_t(buf, 48, diff_pressure);
-	_mav_put_uint32_t(buf, 52, pressure_alt);
-	_mav_put_uint32_t(buf, 56, temperature);
-	_mav_put_uint32_t(buf, 60, fields_updated);
+    char buf[MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN];
+    _mav_put_uint64_t(buf, 0, time_usec);
+    _mav_put_uint32_t(buf, 8, xacc);
+    _mav_put_uint32_t(buf, 12, yacc);
+    _mav_put_uint32_t(buf, 16, zacc);
+    _mav_put_uint32_t(buf, 20, xgyro);
+    _mav_put_uint32_t(buf, 24, ygyro);
+    _mav_put_uint32_t(buf, 28, zgyro);
+    _mav_put_uint32_t(buf, 32, xmag);
+    _mav_put_uint32_t(buf, 36, ymag);
+    _mav_put_uint32_t(buf, 40, zmag);
+    _mav_put_uint32_t(buf, 44, abs_pressure);
+    _mav_put_uint32_t(buf, 48, diff_pressure);
+    _mav_put_uint32_t(buf, 52, pressure_alt);
+    _mav_put_uint32_t(buf, 56, temperature);
+    _mav_put_uint32_t(buf, 60, fields_updated);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN);
 #else
-	mavlink_hil_propeller_sensor_t packet;
-	packet.time_usec = time_usec;
-	packet.xacc = xacc;
-	packet.yacc = yacc;
-	packet.zacc = zacc;
-	packet.xgyro = xgyro;
-	packet.ygyro = ygyro;
-	packet.zgyro = zgyro;
-	packet.xmag = xmag;
-	packet.ymag = ymag;
-	packet.zmag = zmag;
-	packet.abs_pressure = abs_pressure;
-	packet.diff_pressure = diff_pressure;
-	packet.pressure_alt = pressure_alt;
-	packet.temperature = temperature;
-	packet.fields_updated = fields_updated;
+    mavlink_hil_propeller_sensor_t packet;
+    packet.time_usec = time_usec;
+    packet.xacc = xacc;
+    packet.yacc = yacc;
+    packet.zacc = zacc;
+    packet.xgyro = xgyro;
+    packet.ygyro = ygyro;
+    packet.zgyro = zgyro;
+    packet.xmag = xmag;
+    packet.ymag = ymag;
+    packet.zmag = zmag;
+    packet.abs_pressure = abs_pressure;
+    packet.diff_pressure = diff_pressure;
+    packet.pressure_alt = pressure_alt;
+    packet.temperature = temperature;
+    packet.fields_updated = fields_updated;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN);
 #endif
 
-	msg->msgid = MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR;
+    msg->msgid = MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR;
     return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_MIN_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_CRC);
 }
 
@@ -227,7 +228,7 @@ static inline uint16_t mavlink_msg_hil_propeller_sensor_pack_chan(uint8_t system
  */
 static inline uint16_t mavlink_msg_hil_propeller_sensor_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_hil_propeller_sensor_t* hil_propeller_sensor)
 {
-	return mavlink_msg_hil_propeller_sensor_pack(system_id, component_id, msg, hil_propeller_sensor->time_usec, hil_propeller_sensor->xacc, hil_propeller_sensor->yacc, hil_propeller_sensor->zacc, hil_propeller_sensor->xgyro, hil_propeller_sensor->ygyro, hil_propeller_sensor->zgyro, hil_propeller_sensor->xmag, hil_propeller_sensor->ymag, hil_propeller_sensor->zmag, hil_propeller_sensor->abs_pressure, hil_propeller_sensor->diff_pressure, hil_propeller_sensor->pressure_alt, hil_propeller_sensor->temperature, hil_propeller_sensor->fields_updated);
+    return mavlink_msg_hil_propeller_sensor_pack(system_id, component_id, msg, hil_propeller_sensor->time_usec, hil_propeller_sensor->xacc, hil_propeller_sensor->yacc, hil_propeller_sensor->zacc, hil_propeller_sensor->xgyro, hil_propeller_sensor->ygyro, hil_propeller_sensor->zgyro, hil_propeller_sensor->xmag, hil_propeller_sensor->ymag, hil_propeller_sensor->zmag, hil_propeller_sensor->abs_pressure, hil_propeller_sensor->diff_pressure, hil_propeller_sensor->pressure_alt, hil_propeller_sensor->temperature, hil_propeller_sensor->fields_updated);
 }
 
 /**
@@ -241,7 +242,7 @@ static inline uint16_t mavlink_msg_hil_propeller_sensor_encode(uint8_t system_id
  */
 static inline uint16_t mavlink_msg_hil_propeller_sensor_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_hil_propeller_sensor_t* hil_propeller_sensor)
 {
-	return mavlink_msg_hil_propeller_sensor_pack_chan(system_id, component_id, chan, msg, hil_propeller_sensor->time_usec, hil_propeller_sensor->xacc, hil_propeller_sensor->yacc, hil_propeller_sensor->zacc, hil_propeller_sensor->xgyro, hil_propeller_sensor->ygyro, hil_propeller_sensor->zgyro, hil_propeller_sensor->xmag, hil_propeller_sensor->ymag, hil_propeller_sensor->zmag, hil_propeller_sensor->abs_pressure, hil_propeller_sensor->diff_pressure, hil_propeller_sensor->pressure_alt, hil_propeller_sensor->temperature, hil_propeller_sensor->fields_updated);
+    return mavlink_msg_hil_propeller_sensor_pack_chan(system_id, component_id, chan, msg, hil_propeller_sensor->time_usec, hil_propeller_sensor->xacc, hil_propeller_sensor->yacc, hil_propeller_sensor->zacc, hil_propeller_sensor->xgyro, hil_propeller_sensor->ygyro, hil_propeller_sensor->zgyro, hil_propeller_sensor->xmag, hil_propeller_sensor->ymag, hil_propeller_sensor->zmag, hil_propeller_sensor->abs_pressure, hil_propeller_sensor->diff_pressure, hil_propeller_sensor->pressure_alt, hil_propeller_sensor->temperature, hil_propeller_sensor->fields_updated);
 }
 
 /**
@@ -269,41 +270,41 @@ static inline uint16_t mavlink_msg_hil_propeller_sensor_encode_chan(uint8_t syst
 static inline void mavlink_msg_hil_propeller_sensor_send(mavlink_channel_t chan, uint64_t time_usec, uint32_t xacc, uint32_t yacc, uint32_t zacc, uint32_t xgyro, uint32_t ygyro, uint32_t zgyro, uint32_t xmag, uint32_t ymag, uint32_t zmag, uint32_t abs_pressure, uint32_t diff_pressure, uint32_t pressure_alt, uint32_t temperature, uint32_t fields_updated)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN];
-	_mav_put_uint64_t(buf, 0, time_usec);
-	_mav_put_uint32_t(buf, 8, xacc);
-	_mav_put_uint32_t(buf, 12, yacc);
-	_mav_put_uint32_t(buf, 16, zacc);
-	_mav_put_uint32_t(buf, 20, xgyro);
-	_mav_put_uint32_t(buf, 24, ygyro);
-	_mav_put_uint32_t(buf, 28, zgyro);
-	_mav_put_uint32_t(buf, 32, xmag);
-	_mav_put_uint32_t(buf, 36, ymag);
-	_mav_put_uint32_t(buf, 40, zmag);
-	_mav_put_uint32_t(buf, 44, abs_pressure);
-	_mav_put_uint32_t(buf, 48, diff_pressure);
-	_mav_put_uint32_t(buf, 52, pressure_alt);
-	_mav_put_uint32_t(buf, 56, temperature);
-	_mav_put_uint32_t(buf, 60, fields_updated);
+    char buf[MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN];
+    _mav_put_uint64_t(buf, 0, time_usec);
+    _mav_put_uint32_t(buf, 8, xacc);
+    _mav_put_uint32_t(buf, 12, yacc);
+    _mav_put_uint32_t(buf, 16, zacc);
+    _mav_put_uint32_t(buf, 20, xgyro);
+    _mav_put_uint32_t(buf, 24, ygyro);
+    _mav_put_uint32_t(buf, 28, zgyro);
+    _mav_put_uint32_t(buf, 32, xmag);
+    _mav_put_uint32_t(buf, 36, ymag);
+    _mav_put_uint32_t(buf, 40, zmag);
+    _mav_put_uint32_t(buf, 44, abs_pressure);
+    _mav_put_uint32_t(buf, 48, diff_pressure);
+    _mav_put_uint32_t(buf, 52, pressure_alt);
+    _mav_put_uint32_t(buf, 56, temperature);
+    _mav_put_uint32_t(buf, 60, fields_updated);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR, buf, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_MIN_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_CRC);
 #else
-	mavlink_hil_propeller_sensor_t packet;
-	packet.time_usec = time_usec;
-	packet.xacc = xacc;
-	packet.yacc = yacc;
-	packet.zacc = zacc;
-	packet.xgyro = xgyro;
-	packet.ygyro = ygyro;
-	packet.zgyro = zgyro;
-	packet.xmag = xmag;
-	packet.ymag = ymag;
-	packet.zmag = zmag;
-	packet.abs_pressure = abs_pressure;
-	packet.diff_pressure = diff_pressure;
-	packet.pressure_alt = pressure_alt;
-	packet.temperature = temperature;
-	packet.fields_updated = fields_updated;
+    mavlink_hil_propeller_sensor_t packet;
+    packet.time_usec = time_usec;
+    packet.xacc = xacc;
+    packet.yacc = yacc;
+    packet.zacc = zacc;
+    packet.xgyro = xgyro;
+    packet.ygyro = ygyro;
+    packet.zgyro = zgyro;
+    packet.xmag = xmag;
+    packet.ymag = ymag;
+    packet.zmag = zmag;
+    packet.abs_pressure = abs_pressure;
+    packet.diff_pressure = diff_pressure;
+    packet.pressure_alt = pressure_alt;
+    packet.temperature = temperature;
+    packet.fields_updated = fields_updated;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR, (const char *)&packet, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_MIN_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_CRC);
 #endif
@@ -334,41 +335,41 @@ static inline void mavlink_msg_hil_propeller_sensor_send_struct(mavlink_channel_
 static inline void mavlink_msg_hil_propeller_sensor_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, uint32_t xacc, uint32_t yacc, uint32_t zacc, uint32_t xgyro, uint32_t ygyro, uint32_t zgyro, uint32_t xmag, uint32_t ymag, uint32_t zmag, uint32_t abs_pressure, uint32_t diff_pressure, uint32_t pressure_alt, uint32_t temperature, uint32_t fields_updated)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char *buf = (char *)msgbuf;
-	_mav_put_uint64_t(buf, 0, time_usec);
-	_mav_put_uint32_t(buf, 8, xacc);
-	_mav_put_uint32_t(buf, 12, yacc);
-	_mav_put_uint32_t(buf, 16, zacc);
-	_mav_put_uint32_t(buf, 20, xgyro);
-	_mav_put_uint32_t(buf, 24, ygyro);
-	_mav_put_uint32_t(buf, 28, zgyro);
-	_mav_put_uint32_t(buf, 32, xmag);
-	_mav_put_uint32_t(buf, 36, ymag);
-	_mav_put_uint32_t(buf, 40, zmag);
-	_mav_put_uint32_t(buf, 44, abs_pressure);
-	_mav_put_uint32_t(buf, 48, diff_pressure);
-	_mav_put_uint32_t(buf, 52, pressure_alt);
-	_mav_put_uint32_t(buf, 56, temperature);
-	_mav_put_uint32_t(buf, 60, fields_updated);
+    char *buf = (char *)msgbuf;
+    _mav_put_uint64_t(buf, 0, time_usec);
+    _mav_put_uint32_t(buf, 8, xacc);
+    _mav_put_uint32_t(buf, 12, yacc);
+    _mav_put_uint32_t(buf, 16, zacc);
+    _mav_put_uint32_t(buf, 20, xgyro);
+    _mav_put_uint32_t(buf, 24, ygyro);
+    _mav_put_uint32_t(buf, 28, zgyro);
+    _mav_put_uint32_t(buf, 32, xmag);
+    _mav_put_uint32_t(buf, 36, ymag);
+    _mav_put_uint32_t(buf, 40, zmag);
+    _mav_put_uint32_t(buf, 44, abs_pressure);
+    _mav_put_uint32_t(buf, 48, diff_pressure);
+    _mav_put_uint32_t(buf, 52, pressure_alt);
+    _mav_put_uint32_t(buf, 56, temperature);
+    _mav_put_uint32_t(buf, 60, fields_updated);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR, buf, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_MIN_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_CRC);
 #else
-	mavlink_hil_propeller_sensor_t *packet = (mavlink_hil_propeller_sensor_t *)msgbuf;
-	packet->time_usec = time_usec;
-	packet->xacc = xacc;
-	packet->yacc = yacc;
-	packet->zacc = zacc;
-	packet->xgyro = xgyro;
-	packet->ygyro = ygyro;
-	packet->zgyro = zgyro;
-	packet->xmag = xmag;
-	packet->ymag = ymag;
-	packet->zmag = zmag;
-	packet->abs_pressure = abs_pressure;
-	packet->diff_pressure = diff_pressure;
-	packet->pressure_alt = pressure_alt;
-	packet->temperature = temperature;
-	packet->fields_updated = fields_updated;
+    mavlink_hil_propeller_sensor_t *packet = (mavlink_hil_propeller_sensor_t *)msgbuf;
+    packet->time_usec = time_usec;
+    packet->xacc = xacc;
+    packet->yacc = yacc;
+    packet->zacc = zacc;
+    packet->xgyro = xgyro;
+    packet->ygyro = ygyro;
+    packet->zgyro = zgyro;
+    packet->xmag = xmag;
+    packet->ymag = ymag;
+    packet->zmag = zmag;
+    packet->abs_pressure = abs_pressure;
+    packet->diff_pressure = diff_pressure;
+    packet->pressure_alt = pressure_alt;
+    packet->temperature = temperature;
+    packet->fields_updated = fields_updated;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR, (const char *)packet, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_MIN_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_CRC);
 #endif
@@ -387,7 +388,7 @@ static inline void mavlink_msg_hil_propeller_sensor_send_buf(mavlink_message_t *
  */
 static inline uint64_t mavlink_msg_hil_propeller_sensor_get_time_usec(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint64_t(msg,  0);
+    return _MAV_RETURN_uint64_t(msg,  0);
 }
 
 /**
@@ -397,7 +398,7 @@ static inline uint64_t mavlink_msg_hil_propeller_sensor_get_time_usec(const mavl
  */
 static inline uint32_t mavlink_msg_hil_propeller_sensor_get_xacc(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint32_t(msg,  8);
+    return _MAV_RETURN_uint32_t(msg,  8);
 }
 
 /**
@@ -407,7 +408,7 @@ static inline uint32_t mavlink_msg_hil_propeller_sensor_get_xacc(const mavlink_m
  */
 static inline uint32_t mavlink_msg_hil_propeller_sensor_get_yacc(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint32_t(msg,  12);
+    return _MAV_RETURN_uint32_t(msg,  12);
 }
 
 /**
@@ -417,7 +418,7 @@ static inline uint32_t mavlink_msg_hil_propeller_sensor_get_yacc(const mavlink_m
  */
 static inline uint32_t mavlink_msg_hil_propeller_sensor_get_zacc(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint32_t(msg,  16);
+    return _MAV_RETURN_uint32_t(msg,  16);
 }
 
 /**
@@ -427,7 +428,7 @@ static inline uint32_t mavlink_msg_hil_propeller_sensor_get_zacc(const mavlink_m
  */
 static inline uint32_t mavlink_msg_hil_propeller_sensor_get_xgyro(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint32_t(msg,  20);
+    return _MAV_RETURN_uint32_t(msg,  20);
 }
 
 /**
@@ -437,7 +438,7 @@ static inline uint32_t mavlink_msg_hil_propeller_sensor_get_xgyro(const mavlink_
  */
 static inline uint32_t mavlink_msg_hil_propeller_sensor_get_ygyro(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint32_t(msg,  24);
+    return _MAV_RETURN_uint32_t(msg,  24);
 }
 
 /**
@@ -447,7 +448,7 @@ static inline uint32_t mavlink_msg_hil_propeller_sensor_get_ygyro(const mavlink_
  */
 static inline uint32_t mavlink_msg_hil_propeller_sensor_get_zgyro(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint32_t(msg,  28);
+    return _MAV_RETURN_uint32_t(msg,  28);
 }
 
 /**
@@ -457,7 +458,7 @@ static inline uint32_t mavlink_msg_hil_propeller_sensor_get_zgyro(const mavlink_
  */
 static inline uint32_t mavlink_msg_hil_propeller_sensor_get_xmag(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint32_t(msg,  32);
+    return _MAV_RETURN_uint32_t(msg,  32);
 }
 
 /**
@@ -467,7 +468,7 @@ static inline uint32_t mavlink_msg_hil_propeller_sensor_get_xmag(const mavlink_m
  */
 static inline uint32_t mavlink_msg_hil_propeller_sensor_get_ymag(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint32_t(msg,  36);
+    return _MAV_RETURN_uint32_t(msg,  36);
 }
 
 /**
@@ -477,7 +478,7 @@ static inline uint32_t mavlink_msg_hil_propeller_sensor_get_ymag(const mavlink_m
  */
 static inline uint32_t mavlink_msg_hil_propeller_sensor_get_zmag(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint32_t(msg,  40);
+    return _MAV_RETURN_uint32_t(msg,  40);
 }
 
 /**
@@ -487,7 +488,7 @@ static inline uint32_t mavlink_msg_hil_propeller_sensor_get_zmag(const mavlink_m
  */
 static inline uint32_t mavlink_msg_hil_propeller_sensor_get_abs_pressure(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint32_t(msg,  44);
+    return _MAV_RETURN_uint32_t(msg,  44);
 }
 
 /**
@@ -497,7 +498,7 @@ static inline uint32_t mavlink_msg_hil_propeller_sensor_get_abs_pressure(const m
  */
 static inline uint32_t mavlink_msg_hil_propeller_sensor_get_diff_pressure(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint32_t(msg,  48);
+    return _MAV_RETURN_uint32_t(msg,  48);
 }
 
 /**
@@ -507,7 +508,7 @@ static inline uint32_t mavlink_msg_hil_propeller_sensor_get_diff_pressure(const 
  */
 static inline uint32_t mavlink_msg_hil_propeller_sensor_get_pressure_alt(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint32_t(msg,  52);
+    return _MAV_RETURN_uint32_t(msg,  52);
 }
 
 /**
@@ -517,7 +518,7 @@ static inline uint32_t mavlink_msg_hil_propeller_sensor_get_pressure_alt(const m
  */
 static inline uint32_t mavlink_msg_hil_propeller_sensor_get_temperature(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint32_t(msg,  56);
+    return _MAV_RETURN_uint32_t(msg,  56);
 }
 
 /**
@@ -527,7 +528,7 @@ static inline uint32_t mavlink_msg_hil_propeller_sensor_get_temperature(const ma
  */
 static inline uint32_t mavlink_msg_hil_propeller_sensor_get_fields_updated(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint32_t(msg,  60);
+    return _MAV_RETURN_uint32_t(msg,  60);
 }
 
 /**
@@ -539,24 +540,24 @@ static inline uint32_t mavlink_msg_hil_propeller_sensor_get_fields_updated(const
 static inline void mavlink_msg_hil_propeller_sensor_decode(const mavlink_message_t* msg, mavlink_hil_propeller_sensor_t* hil_propeller_sensor)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	hil_propeller_sensor->time_usec = mavlink_msg_hil_propeller_sensor_get_time_usec(msg);
-	hil_propeller_sensor->xacc = mavlink_msg_hil_propeller_sensor_get_xacc(msg);
-	hil_propeller_sensor->yacc = mavlink_msg_hil_propeller_sensor_get_yacc(msg);
-	hil_propeller_sensor->zacc = mavlink_msg_hil_propeller_sensor_get_zacc(msg);
-	hil_propeller_sensor->xgyro = mavlink_msg_hil_propeller_sensor_get_xgyro(msg);
-	hil_propeller_sensor->ygyro = mavlink_msg_hil_propeller_sensor_get_ygyro(msg);
-	hil_propeller_sensor->zgyro = mavlink_msg_hil_propeller_sensor_get_zgyro(msg);
-	hil_propeller_sensor->xmag = mavlink_msg_hil_propeller_sensor_get_xmag(msg);
-	hil_propeller_sensor->ymag = mavlink_msg_hil_propeller_sensor_get_ymag(msg);
-	hil_propeller_sensor->zmag = mavlink_msg_hil_propeller_sensor_get_zmag(msg);
-	hil_propeller_sensor->abs_pressure = mavlink_msg_hil_propeller_sensor_get_abs_pressure(msg);
-	hil_propeller_sensor->diff_pressure = mavlink_msg_hil_propeller_sensor_get_diff_pressure(msg);
-	hil_propeller_sensor->pressure_alt = mavlink_msg_hil_propeller_sensor_get_pressure_alt(msg);
-	hil_propeller_sensor->temperature = mavlink_msg_hil_propeller_sensor_get_temperature(msg);
-	hil_propeller_sensor->fields_updated = mavlink_msg_hil_propeller_sensor_get_fields_updated(msg);
+    hil_propeller_sensor->time_usec = mavlink_msg_hil_propeller_sensor_get_time_usec(msg);
+    hil_propeller_sensor->xacc = mavlink_msg_hil_propeller_sensor_get_xacc(msg);
+    hil_propeller_sensor->yacc = mavlink_msg_hil_propeller_sensor_get_yacc(msg);
+    hil_propeller_sensor->zacc = mavlink_msg_hil_propeller_sensor_get_zacc(msg);
+    hil_propeller_sensor->xgyro = mavlink_msg_hil_propeller_sensor_get_xgyro(msg);
+    hil_propeller_sensor->ygyro = mavlink_msg_hil_propeller_sensor_get_ygyro(msg);
+    hil_propeller_sensor->zgyro = mavlink_msg_hil_propeller_sensor_get_zgyro(msg);
+    hil_propeller_sensor->xmag = mavlink_msg_hil_propeller_sensor_get_xmag(msg);
+    hil_propeller_sensor->ymag = mavlink_msg_hil_propeller_sensor_get_ymag(msg);
+    hil_propeller_sensor->zmag = mavlink_msg_hil_propeller_sensor_get_zmag(msg);
+    hil_propeller_sensor->abs_pressure = mavlink_msg_hil_propeller_sensor_get_abs_pressure(msg);
+    hil_propeller_sensor->diff_pressure = mavlink_msg_hil_propeller_sensor_get_diff_pressure(msg);
+    hil_propeller_sensor->pressure_alt = mavlink_msg_hil_propeller_sensor_get_pressure_alt(msg);
+    hil_propeller_sensor->temperature = mavlink_msg_hil_propeller_sensor_get_temperature(msg);
+    hil_propeller_sensor->fields_updated = mavlink_msg_hil_propeller_sensor_get_fields_updated(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN? msg->len : MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN;
         memset(hil_propeller_sensor, 0, MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN);
-	memcpy(hil_propeller_sensor, _MAV_PAYLOAD(msg), len);
+    memcpy(hil_propeller_sensor, _MAV_PAYLOAD(msg), len);
 #endif
 }
