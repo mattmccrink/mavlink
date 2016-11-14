@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 #pragma once
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 // MESSAGE MAG_CAL_REPORT PACKING
 
 #define MAVLINK_MSG_ID_MAG_CAL_REPORT 192
@@ -36,17 +33,10 @@ typedef struct __mavlink_mag_cal_report_t {
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_MAG_CAL_REPORT { \
-<<<<<<< HEAD
-	192, \
-	"MAG_CAL_REPORT", \
-	14, \
-	{  { "fitness", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_mag_cal_report_t, fitness) }, \
-=======
     192, \
     "MAG_CAL_REPORT", \
     14, \
     {  { "fitness", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_mag_cal_report_t, fitness) }, \
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "ofs_x", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_mag_cal_report_t, ofs_x) }, \
          { "ofs_y", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_mag_cal_report_t, ofs_y) }, \
          { "ofs_z", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_mag_cal_report_t, ofs_z) }, \
@@ -64,15 +54,9 @@ typedef struct __mavlink_mag_cal_report_t {
 }
 #else
 #define MAVLINK_MESSAGE_INFO_MAG_CAL_REPORT { \
-<<<<<<< HEAD
-	"MAG_CAL_REPORT", \
-	14, \
-	{  { "fitness", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_mag_cal_report_t, fitness) }, \
-=======
     "MAG_CAL_REPORT", \
     14, \
     {  { "fitness", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_mag_cal_report_t, fitness) }, \
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "ofs_x", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_mag_cal_report_t, ofs_x) }, \
          { "ofs_y", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_mag_cal_report_t, ofs_y) }, \
          { "ofs_z", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_mag_cal_report_t, ofs_z) }, \
@@ -113,44 +97,6 @@ typedef struct __mavlink_mag_cal_report_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_mag_cal_report_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-<<<<<<< HEAD
-						       uint8_t compass_id, uint8_t cal_mask, uint8_t cal_status, uint8_t autosaved, float fitness, float ofs_x, float ofs_y, float ofs_z, float diag_x, float diag_y, float diag_z, float offdiag_x, float offdiag_y, float offdiag_z)
-{
-#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN];
-	_mav_put_float(buf, 0, fitness);
-	_mav_put_float(buf, 4, ofs_x);
-	_mav_put_float(buf, 8, ofs_y);
-	_mav_put_float(buf, 12, ofs_z);
-	_mav_put_float(buf, 16, diag_x);
-	_mav_put_float(buf, 20, diag_y);
-	_mav_put_float(buf, 24, diag_z);
-	_mav_put_float(buf, 28, offdiag_x);
-	_mav_put_float(buf, 32, offdiag_y);
-	_mav_put_float(buf, 36, offdiag_z);
-	_mav_put_uint8_t(buf, 40, compass_id);
-	_mav_put_uint8_t(buf, 41, cal_mask);
-	_mav_put_uint8_t(buf, 42, cal_status);
-	_mav_put_uint8_t(buf, 43, autosaved);
-
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN);
-#else
-	mavlink_mag_cal_report_t packet;
-	packet.fitness = fitness;
-	packet.ofs_x = ofs_x;
-	packet.ofs_y = ofs_y;
-	packet.ofs_z = ofs_z;
-	packet.diag_x = diag_x;
-	packet.diag_y = diag_y;
-	packet.diag_z = diag_z;
-	packet.offdiag_x = offdiag_x;
-	packet.offdiag_y = offdiag_y;
-	packet.offdiag_z = offdiag_z;
-	packet.compass_id = compass_id;
-	packet.cal_mask = cal_mask;
-	packet.cal_status = cal_status;
-	packet.autosaved = autosaved;
-=======
                                uint8_t compass_id, uint8_t cal_mask, uint8_t cal_status, uint8_t autosaved, float fitness, float ofs_x, float ofs_y, float ofs_z, float diag_x, float diag_y, float diag_z, float offdiag_x, float offdiag_y, float offdiag_z)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -187,16 +133,11 @@ static inline uint16_t mavlink_msg_mag_cal_report_pack(uint8_t system_id, uint8_
     packet.cal_mask = cal_mask;
     packet.cal_status = cal_status;
     packet.autosaved = autosaved;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN);
 #endif
 
-<<<<<<< HEAD
-	msg->msgid = MAVLINK_MSG_ID_MAG_CAL_REPORT;
-=======
     msg->msgid = MAVLINK_MSG_ID_MAG_CAL_REPORT;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_MAG_CAL_REPORT_MIN_LEN, MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN, MAVLINK_MSG_ID_MAG_CAL_REPORT_CRC);
 }
 
@@ -223,45 +164,6 @@ static inline uint16_t mavlink_msg_mag_cal_report_pack(uint8_t system_id, uint8_
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_mag_cal_report_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
-<<<<<<< HEAD
-							   mavlink_message_t* msg,
-						           uint8_t compass_id,uint8_t cal_mask,uint8_t cal_status,uint8_t autosaved,float fitness,float ofs_x,float ofs_y,float ofs_z,float diag_x,float diag_y,float diag_z,float offdiag_x,float offdiag_y,float offdiag_z)
-{
-#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN];
-	_mav_put_float(buf, 0, fitness);
-	_mav_put_float(buf, 4, ofs_x);
-	_mav_put_float(buf, 8, ofs_y);
-	_mav_put_float(buf, 12, ofs_z);
-	_mav_put_float(buf, 16, diag_x);
-	_mav_put_float(buf, 20, diag_y);
-	_mav_put_float(buf, 24, diag_z);
-	_mav_put_float(buf, 28, offdiag_x);
-	_mav_put_float(buf, 32, offdiag_y);
-	_mav_put_float(buf, 36, offdiag_z);
-	_mav_put_uint8_t(buf, 40, compass_id);
-	_mav_put_uint8_t(buf, 41, cal_mask);
-	_mav_put_uint8_t(buf, 42, cal_status);
-	_mav_put_uint8_t(buf, 43, autosaved);
-
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN);
-#else
-	mavlink_mag_cal_report_t packet;
-	packet.fitness = fitness;
-	packet.ofs_x = ofs_x;
-	packet.ofs_y = ofs_y;
-	packet.ofs_z = ofs_z;
-	packet.diag_x = diag_x;
-	packet.diag_y = diag_y;
-	packet.diag_z = diag_z;
-	packet.offdiag_x = offdiag_x;
-	packet.offdiag_y = offdiag_y;
-	packet.offdiag_z = offdiag_z;
-	packet.compass_id = compass_id;
-	packet.cal_mask = cal_mask;
-	packet.cal_status = cal_status;
-	packet.autosaved = autosaved;
-=======
                                mavlink_message_t* msg,
                                    uint8_t compass_id,uint8_t cal_mask,uint8_t cal_status,uint8_t autosaved,float fitness,float ofs_x,float ofs_y,float ofs_z,float diag_x,float diag_y,float diag_z,float offdiag_x,float offdiag_y,float offdiag_z)
 {
@@ -299,16 +201,11 @@ static inline uint16_t mavlink_msg_mag_cal_report_pack_chan(uint8_t system_id, u
     packet.cal_mask = cal_mask;
     packet.cal_status = cal_status;
     packet.autosaved = autosaved;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN);
 #endif
 
-<<<<<<< HEAD
-	msg->msgid = MAVLINK_MSG_ID_MAG_CAL_REPORT;
-=======
     msg->msgid = MAVLINK_MSG_ID_MAG_CAL_REPORT;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_MAG_CAL_REPORT_MIN_LEN, MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN, MAVLINK_MSG_ID_MAG_CAL_REPORT_CRC);
 }
 
@@ -322,11 +219,7 @@ static inline uint16_t mavlink_msg_mag_cal_report_pack_chan(uint8_t system_id, u
  */
 static inline uint16_t mavlink_msg_mag_cal_report_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mag_cal_report_t* mag_cal_report)
 {
-<<<<<<< HEAD
-	return mavlink_msg_mag_cal_report_pack(system_id, component_id, msg, mag_cal_report->compass_id, mag_cal_report->cal_mask, mag_cal_report->cal_status, mag_cal_report->autosaved, mag_cal_report->fitness, mag_cal_report->ofs_x, mag_cal_report->ofs_y, mag_cal_report->ofs_z, mag_cal_report->diag_x, mag_cal_report->diag_y, mag_cal_report->diag_z, mag_cal_report->offdiag_x, mag_cal_report->offdiag_y, mag_cal_report->offdiag_z);
-=======
     return mavlink_msg_mag_cal_report_pack(system_id, component_id, msg, mag_cal_report->compass_id, mag_cal_report->cal_mask, mag_cal_report->cal_status, mag_cal_report->autosaved, mag_cal_report->fitness, mag_cal_report->ofs_x, mag_cal_report->ofs_y, mag_cal_report->ofs_z, mag_cal_report->diag_x, mag_cal_report->diag_y, mag_cal_report->diag_z, mag_cal_report->offdiag_x, mag_cal_report->offdiag_y, mag_cal_report->offdiag_z);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -340,11 +233,7 @@ static inline uint16_t mavlink_msg_mag_cal_report_encode(uint8_t system_id, uint
  */
 static inline uint16_t mavlink_msg_mag_cal_report_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_mag_cal_report_t* mag_cal_report)
 {
-<<<<<<< HEAD
-	return mavlink_msg_mag_cal_report_pack_chan(system_id, component_id, chan, msg, mag_cal_report->compass_id, mag_cal_report->cal_mask, mag_cal_report->cal_status, mag_cal_report->autosaved, mag_cal_report->fitness, mag_cal_report->ofs_x, mag_cal_report->ofs_y, mag_cal_report->ofs_z, mag_cal_report->diag_x, mag_cal_report->diag_y, mag_cal_report->diag_z, mag_cal_report->offdiag_x, mag_cal_report->offdiag_y, mag_cal_report->offdiag_z);
-=======
     return mavlink_msg_mag_cal_report_pack_chan(system_id, component_id, chan, msg, mag_cal_report->compass_id, mag_cal_report->cal_mask, mag_cal_report->cal_status, mag_cal_report->autosaved, mag_cal_report->fitness, mag_cal_report->ofs_x, mag_cal_report->ofs_y, mag_cal_report->ofs_z, mag_cal_report->diag_x, mag_cal_report->diag_y, mag_cal_report->diag_z, mag_cal_report->offdiag_x, mag_cal_report->offdiag_y, mag_cal_report->offdiag_z);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -371,41 +260,6 @@ static inline uint16_t mavlink_msg_mag_cal_report_encode_chan(uint8_t system_id,
 static inline void mavlink_msg_mag_cal_report_send(mavlink_channel_t chan, uint8_t compass_id, uint8_t cal_mask, uint8_t cal_status, uint8_t autosaved, float fitness, float ofs_x, float ofs_y, float ofs_z, float diag_x, float diag_y, float diag_z, float offdiag_x, float offdiag_y, float offdiag_z)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	char buf[MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN];
-	_mav_put_float(buf, 0, fitness);
-	_mav_put_float(buf, 4, ofs_x);
-	_mav_put_float(buf, 8, ofs_y);
-	_mav_put_float(buf, 12, ofs_z);
-	_mav_put_float(buf, 16, diag_x);
-	_mav_put_float(buf, 20, diag_y);
-	_mav_put_float(buf, 24, diag_z);
-	_mav_put_float(buf, 28, offdiag_x);
-	_mav_put_float(buf, 32, offdiag_y);
-	_mav_put_float(buf, 36, offdiag_z);
-	_mav_put_uint8_t(buf, 40, compass_id);
-	_mav_put_uint8_t(buf, 41, cal_mask);
-	_mav_put_uint8_t(buf, 42, cal_status);
-	_mav_put_uint8_t(buf, 43, autosaved);
-
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MAG_CAL_REPORT, buf, MAVLINK_MSG_ID_MAG_CAL_REPORT_MIN_LEN, MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN, MAVLINK_MSG_ID_MAG_CAL_REPORT_CRC);
-#else
-	mavlink_mag_cal_report_t packet;
-	packet.fitness = fitness;
-	packet.ofs_x = ofs_x;
-	packet.ofs_y = ofs_y;
-	packet.ofs_z = ofs_z;
-	packet.diag_x = diag_x;
-	packet.diag_y = diag_y;
-	packet.diag_z = diag_z;
-	packet.offdiag_x = offdiag_x;
-	packet.offdiag_y = offdiag_y;
-	packet.offdiag_z = offdiag_z;
-	packet.compass_id = compass_id;
-	packet.cal_mask = cal_mask;
-	packet.cal_status = cal_status;
-	packet.autosaved = autosaved;
-=======
     char buf[MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN];
     _mav_put_float(buf, 0, fitness);
     _mav_put_float(buf, 4, ofs_x);
@@ -439,7 +293,6 @@ static inline void mavlink_msg_mag_cal_report_send(mavlink_channel_t chan, uint8
     packet.cal_mask = cal_mask;
     packet.cal_status = cal_status;
     packet.autosaved = autosaved;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MAG_CAL_REPORT, (const char *)&packet, MAVLINK_MSG_ID_MAG_CAL_REPORT_MIN_LEN, MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN, MAVLINK_MSG_ID_MAG_CAL_REPORT_CRC);
 #endif
@@ -470,41 +323,6 @@ static inline void mavlink_msg_mag_cal_report_send_struct(mavlink_channel_t chan
 static inline void mavlink_msg_mag_cal_report_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t compass_id, uint8_t cal_mask, uint8_t cal_status, uint8_t autosaved, float fitness, float ofs_x, float ofs_y, float ofs_z, float diag_x, float diag_y, float diag_z, float offdiag_x, float offdiag_y, float offdiag_z)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	char *buf = (char *)msgbuf;
-	_mav_put_float(buf, 0, fitness);
-	_mav_put_float(buf, 4, ofs_x);
-	_mav_put_float(buf, 8, ofs_y);
-	_mav_put_float(buf, 12, ofs_z);
-	_mav_put_float(buf, 16, diag_x);
-	_mav_put_float(buf, 20, diag_y);
-	_mav_put_float(buf, 24, diag_z);
-	_mav_put_float(buf, 28, offdiag_x);
-	_mav_put_float(buf, 32, offdiag_y);
-	_mav_put_float(buf, 36, offdiag_z);
-	_mav_put_uint8_t(buf, 40, compass_id);
-	_mav_put_uint8_t(buf, 41, cal_mask);
-	_mav_put_uint8_t(buf, 42, cal_status);
-	_mav_put_uint8_t(buf, 43, autosaved);
-
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MAG_CAL_REPORT, buf, MAVLINK_MSG_ID_MAG_CAL_REPORT_MIN_LEN, MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN, MAVLINK_MSG_ID_MAG_CAL_REPORT_CRC);
-#else
-	mavlink_mag_cal_report_t *packet = (mavlink_mag_cal_report_t *)msgbuf;
-	packet->fitness = fitness;
-	packet->ofs_x = ofs_x;
-	packet->ofs_y = ofs_y;
-	packet->ofs_z = ofs_z;
-	packet->diag_x = diag_x;
-	packet->diag_y = diag_y;
-	packet->diag_z = diag_z;
-	packet->offdiag_x = offdiag_x;
-	packet->offdiag_y = offdiag_y;
-	packet->offdiag_z = offdiag_z;
-	packet->compass_id = compass_id;
-	packet->cal_mask = cal_mask;
-	packet->cal_status = cal_status;
-	packet->autosaved = autosaved;
-=======
     char *buf = (char *)msgbuf;
     _mav_put_float(buf, 0, fitness);
     _mav_put_float(buf, 4, ofs_x);
@@ -538,7 +356,6 @@ static inline void mavlink_msg_mag_cal_report_send_buf(mavlink_message_t *msgbuf
     packet->cal_mask = cal_mask;
     packet->cal_status = cal_status;
     packet->autosaved = autosaved;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MAG_CAL_REPORT, (const char *)packet, MAVLINK_MSG_ID_MAG_CAL_REPORT_MIN_LEN, MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN, MAVLINK_MSG_ID_MAG_CAL_REPORT_CRC);
 #endif
@@ -557,11 +374,7 @@ static inline void mavlink_msg_mag_cal_report_send_buf(mavlink_message_t *msgbuf
  */
 static inline uint8_t mavlink_msg_mag_cal_report_get_compass_id(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_uint8_t(msg,  40);
-=======
     return _MAV_RETURN_uint8_t(msg,  40);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -571,11 +384,7 @@ static inline uint8_t mavlink_msg_mag_cal_report_get_compass_id(const mavlink_me
  */
 static inline uint8_t mavlink_msg_mag_cal_report_get_cal_mask(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_uint8_t(msg,  41);
-=======
     return _MAV_RETURN_uint8_t(msg,  41);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -585,11 +394,7 @@ static inline uint8_t mavlink_msg_mag_cal_report_get_cal_mask(const mavlink_mess
  */
 static inline uint8_t mavlink_msg_mag_cal_report_get_cal_status(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_uint8_t(msg,  42);
-=======
     return _MAV_RETURN_uint8_t(msg,  42);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -599,11 +404,7 @@ static inline uint8_t mavlink_msg_mag_cal_report_get_cal_status(const mavlink_me
  */
 static inline uint8_t mavlink_msg_mag_cal_report_get_autosaved(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_uint8_t(msg,  43);
-=======
     return _MAV_RETURN_uint8_t(msg,  43);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -613,11 +414,7 @@ static inline uint8_t mavlink_msg_mag_cal_report_get_autosaved(const mavlink_mes
  */
 static inline float mavlink_msg_mag_cal_report_get_fitness(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  0);
-=======
     return _MAV_RETURN_float(msg,  0);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -627,11 +424,7 @@ static inline float mavlink_msg_mag_cal_report_get_fitness(const mavlink_message
  */
 static inline float mavlink_msg_mag_cal_report_get_ofs_x(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  4);
-=======
     return _MAV_RETURN_float(msg,  4);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -641,11 +434,7 @@ static inline float mavlink_msg_mag_cal_report_get_ofs_x(const mavlink_message_t
  */
 static inline float mavlink_msg_mag_cal_report_get_ofs_y(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  8);
-=======
     return _MAV_RETURN_float(msg,  8);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -655,11 +444,7 @@ static inline float mavlink_msg_mag_cal_report_get_ofs_y(const mavlink_message_t
  */
 static inline float mavlink_msg_mag_cal_report_get_ofs_z(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  12);
-=======
     return _MAV_RETURN_float(msg,  12);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -669,11 +454,7 @@ static inline float mavlink_msg_mag_cal_report_get_ofs_z(const mavlink_message_t
  */
 static inline float mavlink_msg_mag_cal_report_get_diag_x(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  16);
-=======
     return _MAV_RETURN_float(msg,  16);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -683,11 +464,7 @@ static inline float mavlink_msg_mag_cal_report_get_diag_x(const mavlink_message_
  */
 static inline float mavlink_msg_mag_cal_report_get_diag_y(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  20);
-=======
     return _MAV_RETURN_float(msg,  20);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -697,11 +474,7 @@ static inline float mavlink_msg_mag_cal_report_get_diag_y(const mavlink_message_
  */
 static inline float mavlink_msg_mag_cal_report_get_diag_z(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  24);
-=======
     return _MAV_RETURN_float(msg,  24);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -711,11 +484,7 @@ static inline float mavlink_msg_mag_cal_report_get_diag_z(const mavlink_message_
  */
 static inline float mavlink_msg_mag_cal_report_get_offdiag_x(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  28);
-=======
     return _MAV_RETURN_float(msg,  28);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -725,11 +494,7 @@ static inline float mavlink_msg_mag_cal_report_get_offdiag_x(const mavlink_messa
  */
 static inline float mavlink_msg_mag_cal_report_get_offdiag_y(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  32);
-=======
     return _MAV_RETURN_float(msg,  32);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -739,11 +504,7 @@ static inline float mavlink_msg_mag_cal_report_get_offdiag_y(const mavlink_messa
  */
 static inline float mavlink_msg_mag_cal_report_get_offdiag_z(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  36);
-=======
     return _MAV_RETURN_float(msg,  36);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -755,26 +516,6 @@ static inline float mavlink_msg_mag_cal_report_get_offdiag_z(const mavlink_messa
 static inline void mavlink_msg_mag_cal_report_decode(const mavlink_message_t* msg, mavlink_mag_cal_report_t* mag_cal_report)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	mag_cal_report->fitness = mavlink_msg_mag_cal_report_get_fitness(msg);
-	mag_cal_report->ofs_x = mavlink_msg_mag_cal_report_get_ofs_x(msg);
-	mag_cal_report->ofs_y = mavlink_msg_mag_cal_report_get_ofs_y(msg);
-	mag_cal_report->ofs_z = mavlink_msg_mag_cal_report_get_ofs_z(msg);
-	mag_cal_report->diag_x = mavlink_msg_mag_cal_report_get_diag_x(msg);
-	mag_cal_report->diag_y = mavlink_msg_mag_cal_report_get_diag_y(msg);
-	mag_cal_report->diag_z = mavlink_msg_mag_cal_report_get_diag_z(msg);
-	mag_cal_report->offdiag_x = mavlink_msg_mag_cal_report_get_offdiag_x(msg);
-	mag_cal_report->offdiag_y = mavlink_msg_mag_cal_report_get_offdiag_y(msg);
-	mag_cal_report->offdiag_z = mavlink_msg_mag_cal_report_get_offdiag_z(msg);
-	mag_cal_report->compass_id = mavlink_msg_mag_cal_report_get_compass_id(msg);
-	mag_cal_report->cal_mask = mavlink_msg_mag_cal_report_get_cal_mask(msg);
-	mag_cal_report->cal_status = mavlink_msg_mag_cal_report_get_cal_status(msg);
-	mag_cal_report->autosaved = mavlink_msg_mag_cal_report_get_autosaved(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN? msg->len : MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN;
-        memset(mag_cal_report, 0, MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN);
-	memcpy(mag_cal_report, _MAV_PAYLOAD(msg), len);
-=======
     mag_cal_report->fitness = mavlink_msg_mag_cal_report_get_fitness(msg);
     mag_cal_report->ofs_x = mavlink_msg_mag_cal_report_get_ofs_x(msg);
     mag_cal_report->ofs_y = mavlink_msg_mag_cal_report_get_ofs_y(msg);
@@ -793,6 +534,5 @@ static inline void mavlink_msg_mag_cal_report_decode(const mavlink_message_t* ms
         uint8_t len = msg->len < MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN? msg->len : MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN;
         memset(mag_cal_report, 0, MAVLINK_MSG_ID_MAG_CAL_REPORT_LEN);
     memcpy(mag_cal_report, _MAV_PAYLOAD(msg), len);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 #endif
 }

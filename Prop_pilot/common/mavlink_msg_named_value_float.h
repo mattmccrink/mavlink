@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 #pragma once
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 // MESSAGE NAMED_VALUE_FLOAT PACKING
 
 #define MAVLINK_MSG_ID_NAMED_VALUE_FLOAT 251
@@ -25,32 +22,19 @@ typedef struct __mavlink_named_value_float_t {
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_NAMED_VALUE_FLOAT { \
-<<<<<<< HEAD
-	251, \
-	"NAMED_VALUE_FLOAT", \
-	3, \
-	{  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_named_value_float_t, time_boot_ms) }, \
-=======
     251, \
     "NAMED_VALUE_FLOAT", \
     3, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_named_value_float_t, time_boot_ms) }, \
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "value", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_named_value_float_t, value) }, \
          { "name", NULL, MAVLINK_TYPE_CHAR, 10, 8, offsetof(mavlink_named_value_float_t, name) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_NAMED_VALUE_FLOAT { \
-<<<<<<< HEAD
-	"NAMED_VALUE_FLOAT", \
-	3, \
-	{  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_named_value_float_t, time_boot_ms) }, \
-=======
     "NAMED_VALUE_FLOAT", \
     3, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_named_value_float_t, time_boot_ms) }, \
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "value", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_named_value_float_t, value) }, \
          { "name", NULL, MAVLINK_TYPE_CHAR, 10, 8, offsetof(mavlink_named_value_float_t, name) }, \
          } \
@@ -69,25 +53,6 @@ typedef struct __mavlink_named_value_float_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_named_value_float_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-<<<<<<< HEAD
-						       uint32_t time_boot_ms, const char *name, float value)
-{
-#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN];
-	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, value);
-	_mav_put_char_array(buf, 8, name, 10);
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN);
-#else
-	mavlink_named_value_float_t packet;
-	packet.time_boot_ms = time_boot_ms;
-	packet.value = value;
-	mav_array_memcpy(packet.name, name, sizeof(char)*10);
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN);
-#endif
-
-	msg->msgid = MAVLINK_MSG_ID_NAMED_VALUE_FLOAT;
-=======
                                uint32_t time_boot_ms, const char *name, float value)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -105,7 +70,6 @@ static inline uint16_t mavlink_msg_named_value_float_pack(uint8_t system_id, uin
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_NAMED_VALUE_FLOAT;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_MIN_LEN, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_CRC);
 }
 
@@ -121,26 +85,6 @@ static inline uint16_t mavlink_msg_named_value_float_pack(uint8_t system_id, uin
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_named_value_float_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
-<<<<<<< HEAD
-							   mavlink_message_t* msg,
-						           uint32_t time_boot_ms,const char *name,float value)
-{
-#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN];
-	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, value);
-	_mav_put_char_array(buf, 8, name, 10);
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN);
-#else
-	mavlink_named_value_float_t packet;
-	packet.time_boot_ms = time_boot_ms;
-	packet.value = value;
-	mav_array_memcpy(packet.name, name, sizeof(char)*10);
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN);
-#endif
-
-	msg->msgid = MAVLINK_MSG_ID_NAMED_VALUE_FLOAT;
-=======
                                mavlink_message_t* msg,
                                    uint32_t time_boot_ms,const char *name,float value)
 {
@@ -159,7 +103,6 @@ static inline uint16_t mavlink_msg_named_value_float_pack_chan(uint8_t system_id
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_NAMED_VALUE_FLOAT;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_MIN_LEN, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_CRC);
 }
 
@@ -173,11 +116,7 @@ static inline uint16_t mavlink_msg_named_value_float_pack_chan(uint8_t system_id
  */
 static inline uint16_t mavlink_msg_named_value_float_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_named_value_float_t* named_value_float)
 {
-<<<<<<< HEAD
-	return mavlink_msg_named_value_float_pack(system_id, component_id, msg, named_value_float->time_boot_ms, named_value_float->name, named_value_float->value);
-=======
     return mavlink_msg_named_value_float_pack(system_id, component_id, msg, named_value_float->time_boot_ms, named_value_float->name, named_value_float->value);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -191,11 +130,7 @@ static inline uint16_t mavlink_msg_named_value_float_encode(uint8_t system_id, u
  */
 static inline uint16_t mavlink_msg_named_value_float_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_named_value_float_t* named_value_float)
 {
-<<<<<<< HEAD
-	return mavlink_msg_named_value_float_pack_chan(system_id, component_id, chan, msg, named_value_float->time_boot_ms, named_value_float->name, named_value_float->value);
-=======
     return mavlink_msg_named_value_float_pack_chan(system_id, component_id, chan, msg, named_value_float->time_boot_ms, named_value_float->name, named_value_float->value);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -211,18 +146,6 @@ static inline uint16_t mavlink_msg_named_value_float_encode_chan(uint8_t system_
 static inline void mavlink_msg_named_value_float_send(mavlink_channel_t chan, uint32_t time_boot_ms, const char *name, float value)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	char buf[MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN];
-	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, value);
-	_mav_put_char_array(buf, 8, name, 10);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT, buf, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_MIN_LEN, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_CRC);
-#else
-	mavlink_named_value_float_t packet;
-	packet.time_boot_ms = time_boot_ms;
-	packet.value = value;
-	mav_array_memcpy(packet.name, name, sizeof(char)*10);
-=======
     char buf[MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN];
     _mav_put_uint32_t(buf, 0, time_boot_ms);
     _mav_put_float(buf, 4, value);
@@ -233,7 +156,6 @@ static inline void mavlink_msg_named_value_float_send(mavlink_channel_t chan, ui
     packet.time_boot_ms = time_boot_ms;
     packet.value = value;
     mav_array_memcpy(packet.name, name, sizeof(char)*10);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT, (const char *)&packet, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_MIN_LEN, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_CRC);
 #endif
 }
@@ -263,18 +185,6 @@ static inline void mavlink_msg_named_value_float_send_struct(mavlink_channel_t c
 static inline void mavlink_msg_named_value_float_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, const char *name, float value)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	char *buf = (char *)msgbuf;
-	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, value);
-	_mav_put_char_array(buf, 8, name, 10);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT, buf, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_MIN_LEN, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_CRC);
-#else
-	mavlink_named_value_float_t *packet = (mavlink_named_value_float_t *)msgbuf;
-	packet->time_boot_ms = time_boot_ms;
-	packet->value = value;
-	mav_array_memcpy(packet->name, name, sizeof(char)*10);
-=======
     char *buf = (char *)msgbuf;
     _mav_put_uint32_t(buf, 0, time_boot_ms);
     _mav_put_float(buf, 4, value);
@@ -285,7 +195,6 @@ static inline void mavlink_msg_named_value_float_send_buf(mavlink_message_t *msg
     packet->time_boot_ms = time_boot_ms;
     packet->value = value;
     mav_array_memcpy(packet->name, name, sizeof(char)*10);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT, (const char *)packet, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_MIN_LEN, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_CRC);
 #endif
 }
@@ -303,11 +212,7 @@ static inline void mavlink_msg_named_value_float_send_buf(mavlink_message_t *msg
  */
 static inline uint32_t mavlink_msg_named_value_float_get_time_boot_ms(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_uint32_t(msg,  0);
-=======
     return _MAV_RETURN_uint32_t(msg,  0);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -317,11 +222,7 @@ static inline uint32_t mavlink_msg_named_value_float_get_time_boot_ms(const mavl
  */
 static inline uint16_t mavlink_msg_named_value_float_get_name(const mavlink_message_t* msg, char *name)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_char_array(msg, name, 10,  8);
-=======
     return _MAV_RETURN_char_array(msg, name, 10,  8);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -331,11 +232,7 @@ static inline uint16_t mavlink_msg_named_value_float_get_name(const mavlink_mess
  */
 static inline float mavlink_msg_named_value_float_get_value(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  4);
-=======
     return _MAV_RETURN_float(msg,  4);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -347,15 +244,6 @@ static inline float mavlink_msg_named_value_float_get_value(const mavlink_messag
 static inline void mavlink_msg_named_value_float_decode(const mavlink_message_t* msg, mavlink_named_value_float_t* named_value_float)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	named_value_float->time_boot_ms = mavlink_msg_named_value_float_get_time_boot_ms(msg);
-	named_value_float->value = mavlink_msg_named_value_float_get_value(msg);
-	mavlink_msg_named_value_float_get_name(msg, named_value_float->name);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN? msg->len : MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN;
-        memset(named_value_float, 0, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN);
-	memcpy(named_value_float, _MAV_PAYLOAD(msg), len);
-=======
     named_value_float->time_boot_ms = mavlink_msg_named_value_float_get_time_boot_ms(msg);
     named_value_float->value = mavlink_msg_named_value_float_get_value(msg);
     mavlink_msg_named_value_float_get_name(msg, named_value_float->name);
@@ -363,6 +251,5 @@ static inline void mavlink_msg_named_value_float_decode(const mavlink_message_t*
         uint8_t len = msg->len < MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN? msg->len : MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN;
         memset(named_value_float, 0, MAVLINK_MSG_ID_NAMED_VALUE_FLOAT_LEN);
     memcpy(named_value_float, _MAV_PAYLOAD(msg), len);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 #endif
 }

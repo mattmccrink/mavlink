@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 #pragma once
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 // MESSAGE LOG_ERASE PACKING
 
 #define MAVLINK_MSG_ID_LOG_ERASE 121
@@ -24,31 +21,18 @@ typedef struct __mavlink_log_erase_t {
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_LOG_ERASE { \
-<<<<<<< HEAD
-	121, \
-	"LOG_ERASE", \
-	2, \
-	{  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_log_erase_t, target_system) }, \
-=======
     121, \
     "LOG_ERASE", \
     2, \
     {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_log_erase_t, target_system) }, \
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 1, offsetof(mavlink_log_erase_t, target_component) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_LOG_ERASE { \
-<<<<<<< HEAD
-	"LOG_ERASE", \
-	2, \
-	{  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_log_erase_t, target_system) }, \
-=======
     "LOG_ERASE", \
     2, \
     {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_log_erase_t, target_system) }, \
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 1, offsetof(mavlink_log_erase_t, target_component) }, \
          } \
 }
@@ -65,20 +49,6 @@ typedef struct __mavlink_log_erase_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_log_erase_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-<<<<<<< HEAD
-						       uint8_t target_system, uint8_t target_component)
-{
-#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_LOG_ERASE_LEN];
-	_mav_put_uint8_t(buf, 0, target_system);
-	_mav_put_uint8_t(buf, 1, target_component);
-
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_LOG_ERASE_LEN);
-#else
-	mavlink_log_erase_t packet;
-	packet.target_system = target_system;
-	packet.target_component = target_component;
-=======
                                uint8_t target_system, uint8_t target_component)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -91,16 +61,11 @@ static inline uint16_t mavlink_msg_log_erase_pack(uint8_t system_id, uint8_t com
     mavlink_log_erase_t packet;
     packet.target_system = target_system;
     packet.target_component = target_component;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_LOG_ERASE_LEN);
 #endif
 
-<<<<<<< HEAD
-	msg->msgid = MAVLINK_MSG_ID_LOG_ERASE;
-=======
     msg->msgid = MAVLINK_MSG_ID_LOG_ERASE;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_LOG_ERASE_MIN_LEN, MAVLINK_MSG_ID_LOG_ERASE_LEN, MAVLINK_MSG_ID_LOG_ERASE_CRC);
 }
 
@@ -115,21 +80,6 @@ static inline uint16_t mavlink_msg_log_erase_pack(uint8_t system_id, uint8_t com
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_log_erase_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
-<<<<<<< HEAD
-							   mavlink_message_t* msg,
-						           uint8_t target_system,uint8_t target_component)
-{
-#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_LOG_ERASE_LEN];
-	_mav_put_uint8_t(buf, 0, target_system);
-	_mav_put_uint8_t(buf, 1, target_component);
-
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_LOG_ERASE_LEN);
-#else
-	mavlink_log_erase_t packet;
-	packet.target_system = target_system;
-	packet.target_component = target_component;
-=======
                                mavlink_message_t* msg,
                                    uint8_t target_system,uint8_t target_component)
 {
@@ -143,16 +93,11 @@ static inline uint16_t mavlink_msg_log_erase_pack_chan(uint8_t system_id, uint8_
     mavlink_log_erase_t packet;
     packet.target_system = target_system;
     packet.target_component = target_component;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_LOG_ERASE_LEN);
 #endif
 
-<<<<<<< HEAD
-	msg->msgid = MAVLINK_MSG_ID_LOG_ERASE;
-=======
     msg->msgid = MAVLINK_MSG_ID_LOG_ERASE;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_LOG_ERASE_MIN_LEN, MAVLINK_MSG_ID_LOG_ERASE_LEN, MAVLINK_MSG_ID_LOG_ERASE_CRC);
 }
 
@@ -166,11 +111,7 @@ static inline uint16_t mavlink_msg_log_erase_pack_chan(uint8_t system_id, uint8_
  */
 static inline uint16_t mavlink_msg_log_erase_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_log_erase_t* log_erase)
 {
-<<<<<<< HEAD
-	return mavlink_msg_log_erase_pack(system_id, component_id, msg, log_erase->target_system, log_erase->target_component);
-=======
     return mavlink_msg_log_erase_pack(system_id, component_id, msg, log_erase->target_system, log_erase->target_component);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -184,11 +125,7 @@ static inline uint16_t mavlink_msg_log_erase_encode(uint8_t system_id, uint8_t c
  */
 static inline uint16_t mavlink_msg_log_erase_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_log_erase_t* log_erase)
 {
-<<<<<<< HEAD
-	return mavlink_msg_log_erase_pack_chan(system_id, component_id, chan, msg, log_erase->target_system, log_erase->target_component);
-=======
     return mavlink_msg_log_erase_pack_chan(system_id, component_id, chan, msg, log_erase->target_system, log_erase->target_component);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -203,17 +140,6 @@ static inline uint16_t mavlink_msg_log_erase_encode_chan(uint8_t system_id, uint
 static inline void mavlink_msg_log_erase_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	char buf[MAVLINK_MSG_ID_LOG_ERASE_LEN];
-	_mav_put_uint8_t(buf, 0, target_system);
-	_mav_put_uint8_t(buf, 1, target_component);
-
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LOG_ERASE, buf, MAVLINK_MSG_ID_LOG_ERASE_MIN_LEN, MAVLINK_MSG_ID_LOG_ERASE_LEN, MAVLINK_MSG_ID_LOG_ERASE_CRC);
-#else
-	mavlink_log_erase_t packet;
-	packet.target_system = target_system;
-	packet.target_component = target_component;
-=======
     char buf[MAVLINK_MSG_ID_LOG_ERASE_LEN];
     _mav_put_uint8_t(buf, 0, target_system);
     _mav_put_uint8_t(buf, 1, target_component);
@@ -223,7 +149,6 @@ static inline void mavlink_msg_log_erase_send(mavlink_channel_t chan, uint8_t ta
     mavlink_log_erase_t packet;
     packet.target_system = target_system;
     packet.target_component = target_component;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LOG_ERASE, (const char *)&packet, MAVLINK_MSG_ID_LOG_ERASE_MIN_LEN, MAVLINK_MSG_ID_LOG_ERASE_LEN, MAVLINK_MSG_ID_LOG_ERASE_CRC);
 #endif
@@ -254,17 +179,6 @@ static inline void mavlink_msg_log_erase_send_struct(mavlink_channel_t chan, con
 static inline void mavlink_msg_log_erase_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	char *buf = (char *)msgbuf;
-	_mav_put_uint8_t(buf, 0, target_system);
-	_mav_put_uint8_t(buf, 1, target_component);
-
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LOG_ERASE, buf, MAVLINK_MSG_ID_LOG_ERASE_MIN_LEN, MAVLINK_MSG_ID_LOG_ERASE_LEN, MAVLINK_MSG_ID_LOG_ERASE_CRC);
-#else
-	mavlink_log_erase_t *packet = (mavlink_log_erase_t *)msgbuf;
-	packet->target_system = target_system;
-	packet->target_component = target_component;
-=======
     char *buf = (char *)msgbuf;
     _mav_put_uint8_t(buf, 0, target_system);
     _mav_put_uint8_t(buf, 1, target_component);
@@ -274,7 +188,6 @@ static inline void mavlink_msg_log_erase_send_buf(mavlink_message_t *msgbuf, mav
     mavlink_log_erase_t *packet = (mavlink_log_erase_t *)msgbuf;
     packet->target_system = target_system;
     packet->target_component = target_component;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_LOG_ERASE, (const char *)packet, MAVLINK_MSG_ID_LOG_ERASE_MIN_LEN, MAVLINK_MSG_ID_LOG_ERASE_LEN, MAVLINK_MSG_ID_LOG_ERASE_CRC);
 #endif
@@ -293,11 +206,7 @@ static inline void mavlink_msg_log_erase_send_buf(mavlink_message_t *msgbuf, mav
  */
 static inline uint8_t mavlink_msg_log_erase_get_target_system(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_uint8_t(msg,  0);
-=======
     return _MAV_RETURN_uint8_t(msg,  0);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -307,11 +216,7 @@ static inline uint8_t mavlink_msg_log_erase_get_target_system(const mavlink_mess
  */
 static inline uint8_t mavlink_msg_log_erase_get_target_component(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_uint8_t(msg,  1);
-=======
     return _MAV_RETURN_uint8_t(msg,  1);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -323,20 +228,11 @@ static inline uint8_t mavlink_msg_log_erase_get_target_component(const mavlink_m
 static inline void mavlink_msg_log_erase_decode(const mavlink_message_t* msg, mavlink_log_erase_t* log_erase)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	log_erase->target_system = mavlink_msg_log_erase_get_target_system(msg);
-	log_erase->target_component = mavlink_msg_log_erase_get_target_component(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_LOG_ERASE_LEN? msg->len : MAVLINK_MSG_ID_LOG_ERASE_LEN;
-        memset(log_erase, 0, MAVLINK_MSG_ID_LOG_ERASE_LEN);
-	memcpy(log_erase, _MAV_PAYLOAD(msg), len);
-=======
     log_erase->target_system = mavlink_msg_log_erase_get_target_system(msg);
     log_erase->target_component = mavlink_msg_log_erase_get_target_component(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_LOG_ERASE_LEN? msg->len : MAVLINK_MSG_ID_LOG_ERASE_LEN;
         memset(log_erase, 0, MAVLINK_MSG_ID_LOG_ERASE_LEN);
     memcpy(log_erase, _MAV_PAYLOAD(msg), len);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 #endif
 }

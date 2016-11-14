@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 #pragma once
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 // MESSAGE SCALED_PRESSURE PACKING
 
 #define MAVLINK_MSG_ID_SCALED_PRESSURE 29
@@ -26,17 +23,10 @@ typedef struct __mavlink_scaled_pressure_t {
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_SCALED_PRESSURE { \
-<<<<<<< HEAD
-	29, \
-	"SCALED_PRESSURE", \
-	4, \
-	{  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_scaled_pressure_t, time_boot_ms) }, \
-=======
     29, \
     "SCALED_PRESSURE", \
     4, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_scaled_pressure_t, time_boot_ms) }, \
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "press_abs", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_scaled_pressure_t, press_abs) }, \
          { "press_diff", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_scaled_pressure_t, press_diff) }, \
          { "temperature", NULL, MAVLINK_TYPE_INT16_T, 0, 12, offsetof(mavlink_scaled_pressure_t, temperature) }, \
@@ -44,15 +34,9 @@ typedef struct __mavlink_scaled_pressure_t {
 }
 #else
 #define MAVLINK_MESSAGE_INFO_SCALED_PRESSURE { \
-<<<<<<< HEAD
-	"SCALED_PRESSURE", \
-	4, \
-	{  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_scaled_pressure_t, time_boot_ms) }, \
-=======
     "SCALED_PRESSURE", \
     4, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_scaled_pressure_t, time_boot_ms) }, \
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "press_abs", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_scaled_pressure_t, press_abs) }, \
          { "press_diff", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_scaled_pressure_t, press_diff) }, \
          { "temperature", NULL, MAVLINK_TYPE_INT16_T, 0, 12, offsetof(mavlink_scaled_pressure_t, temperature) }, \
@@ -73,24 +57,6 @@ typedef struct __mavlink_scaled_pressure_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_scaled_pressure_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-<<<<<<< HEAD
-						       uint32_t time_boot_ms, float press_abs, float press_diff, int16_t temperature)
-{
-#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_SCALED_PRESSURE_LEN];
-	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, press_abs);
-	_mav_put_float(buf, 8, press_diff);
-	_mav_put_int16_t(buf, 12, temperature);
-
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SCALED_PRESSURE_LEN);
-#else
-	mavlink_scaled_pressure_t packet;
-	packet.time_boot_ms = time_boot_ms;
-	packet.press_abs = press_abs;
-	packet.press_diff = press_diff;
-	packet.temperature = temperature;
-=======
                                uint32_t time_boot_ms, float press_abs, float press_diff, int16_t temperature)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -107,16 +73,11 @@ static inline uint16_t mavlink_msg_scaled_pressure_pack(uint8_t system_id, uint8
     packet.press_abs = press_abs;
     packet.press_diff = press_diff;
     packet.temperature = temperature;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SCALED_PRESSURE_LEN);
 #endif
 
-<<<<<<< HEAD
-	msg->msgid = MAVLINK_MSG_ID_SCALED_PRESSURE;
-=======
     msg->msgid = MAVLINK_MSG_ID_SCALED_PRESSURE;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_SCALED_PRESSURE_MIN_LEN, MAVLINK_MSG_ID_SCALED_PRESSURE_LEN, MAVLINK_MSG_ID_SCALED_PRESSURE_CRC);
 }
 
@@ -133,25 +94,6 @@ static inline uint16_t mavlink_msg_scaled_pressure_pack(uint8_t system_id, uint8
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_scaled_pressure_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
-<<<<<<< HEAD
-							   mavlink_message_t* msg,
-						           uint32_t time_boot_ms,float press_abs,float press_diff,int16_t temperature)
-{
-#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_SCALED_PRESSURE_LEN];
-	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, press_abs);
-	_mav_put_float(buf, 8, press_diff);
-	_mav_put_int16_t(buf, 12, temperature);
-
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SCALED_PRESSURE_LEN);
-#else
-	mavlink_scaled_pressure_t packet;
-	packet.time_boot_ms = time_boot_ms;
-	packet.press_abs = press_abs;
-	packet.press_diff = press_diff;
-	packet.temperature = temperature;
-=======
                                mavlink_message_t* msg,
                                    uint32_t time_boot_ms,float press_abs,float press_diff,int16_t temperature)
 {
@@ -169,16 +111,11 @@ static inline uint16_t mavlink_msg_scaled_pressure_pack_chan(uint8_t system_id, 
     packet.press_abs = press_abs;
     packet.press_diff = press_diff;
     packet.temperature = temperature;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SCALED_PRESSURE_LEN);
 #endif
 
-<<<<<<< HEAD
-	msg->msgid = MAVLINK_MSG_ID_SCALED_PRESSURE;
-=======
     msg->msgid = MAVLINK_MSG_ID_SCALED_PRESSURE;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_SCALED_PRESSURE_MIN_LEN, MAVLINK_MSG_ID_SCALED_PRESSURE_LEN, MAVLINK_MSG_ID_SCALED_PRESSURE_CRC);
 }
 
@@ -192,11 +129,7 @@ static inline uint16_t mavlink_msg_scaled_pressure_pack_chan(uint8_t system_id, 
  */
 static inline uint16_t mavlink_msg_scaled_pressure_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_scaled_pressure_t* scaled_pressure)
 {
-<<<<<<< HEAD
-	return mavlink_msg_scaled_pressure_pack(system_id, component_id, msg, scaled_pressure->time_boot_ms, scaled_pressure->press_abs, scaled_pressure->press_diff, scaled_pressure->temperature);
-=======
     return mavlink_msg_scaled_pressure_pack(system_id, component_id, msg, scaled_pressure->time_boot_ms, scaled_pressure->press_abs, scaled_pressure->press_diff, scaled_pressure->temperature);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -210,11 +143,7 @@ static inline uint16_t mavlink_msg_scaled_pressure_encode(uint8_t system_id, uin
  */
 static inline uint16_t mavlink_msg_scaled_pressure_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_scaled_pressure_t* scaled_pressure)
 {
-<<<<<<< HEAD
-	return mavlink_msg_scaled_pressure_pack_chan(system_id, component_id, chan, msg, scaled_pressure->time_boot_ms, scaled_pressure->press_abs, scaled_pressure->press_diff, scaled_pressure->temperature);
-=======
     return mavlink_msg_scaled_pressure_pack_chan(system_id, component_id, chan, msg, scaled_pressure->time_boot_ms, scaled_pressure->press_abs, scaled_pressure->press_diff, scaled_pressure->temperature);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -231,21 +160,6 @@ static inline uint16_t mavlink_msg_scaled_pressure_encode_chan(uint8_t system_id
 static inline void mavlink_msg_scaled_pressure_send(mavlink_channel_t chan, uint32_t time_boot_ms, float press_abs, float press_diff, int16_t temperature)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	char buf[MAVLINK_MSG_ID_SCALED_PRESSURE_LEN];
-	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, press_abs);
-	_mav_put_float(buf, 8, press_diff);
-	_mav_put_int16_t(buf, 12, temperature);
-
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SCALED_PRESSURE, buf, MAVLINK_MSG_ID_SCALED_PRESSURE_MIN_LEN, MAVLINK_MSG_ID_SCALED_PRESSURE_LEN, MAVLINK_MSG_ID_SCALED_PRESSURE_CRC);
-#else
-	mavlink_scaled_pressure_t packet;
-	packet.time_boot_ms = time_boot_ms;
-	packet.press_abs = press_abs;
-	packet.press_diff = press_diff;
-	packet.temperature = temperature;
-=======
     char buf[MAVLINK_MSG_ID_SCALED_PRESSURE_LEN];
     _mav_put_uint32_t(buf, 0, time_boot_ms);
     _mav_put_float(buf, 4, press_abs);
@@ -259,7 +173,6 @@ static inline void mavlink_msg_scaled_pressure_send(mavlink_channel_t chan, uint
     packet.press_abs = press_abs;
     packet.press_diff = press_diff;
     packet.temperature = temperature;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SCALED_PRESSURE, (const char *)&packet, MAVLINK_MSG_ID_SCALED_PRESSURE_MIN_LEN, MAVLINK_MSG_ID_SCALED_PRESSURE_LEN, MAVLINK_MSG_ID_SCALED_PRESSURE_CRC);
 #endif
@@ -290,21 +203,6 @@ static inline void mavlink_msg_scaled_pressure_send_struct(mavlink_channel_t cha
 static inline void mavlink_msg_scaled_pressure_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, float press_abs, float press_diff, int16_t temperature)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	char *buf = (char *)msgbuf;
-	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, press_abs);
-	_mav_put_float(buf, 8, press_diff);
-	_mav_put_int16_t(buf, 12, temperature);
-
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SCALED_PRESSURE, buf, MAVLINK_MSG_ID_SCALED_PRESSURE_MIN_LEN, MAVLINK_MSG_ID_SCALED_PRESSURE_LEN, MAVLINK_MSG_ID_SCALED_PRESSURE_CRC);
-#else
-	mavlink_scaled_pressure_t *packet = (mavlink_scaled_pressure_t *)msgbuf;
-	packet->time_boot_ms = time_boot_ms;
-	packet->press_abs = press_abs;
-	packet->press_diff = press_diff;
-	packet->temperature = temperature;
-=======
     char *buf = (char *)msgbuf;
     _mav_put_uint32_t(buf, 0, time_boot_ms);
     _mav_put_float(buf, 4, press_abs);
@@ -318,7 +216,6 @@ static inline void mavlink_msg_scaled_pressure_send_buf(mavlink_message_t *msgbu
     packet->press_abs = press_abs;
     packet->press_diff = press_diff;
     packet->temperature = temperature;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SCALED_PRESSURE, (const char *)packet, MAVLINK_MSG_ID_SCALED_PRESSURE_MIN_LEN, MAVLINK_MSG_ID_SCALED_PRESSURE_LEN, MAVLINK_MSG_ID_SCALED_PRESSURE_CRC);
 #endif
@@ -337,11 +234,7 @@ static inline void mavlink_msg_scaled_pressure_send_buf(mavlink_message_t *msgbu
  */
 static inline uint32_t mavlink_msg_scaled_pressure_get_time_boot_ms(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_uint32_t(msg,  0);
-=======
     return _MAV_RETURN_uint32_t(msg,  0);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -351,11 +244,7 @@ static inline uint32_t mavlink_msg_scaled_pressure_get_time_boot_ms(const mavlin
  */
 static inline float mavlink_msg_scaled_pressure_get_press_abs(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  4);
-=======
     return _MAV_RETURN_float(msg,  4);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -365,11 +254,7 @@ static inline float mavlink_msg_scaled_pressure_get_press_abs(const mavlink_mess
  */
 static inline float mavlink_msg_scaled_pressure_get_press_diff(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  8);
-=======
     return _MAV_RETURN_float(msg,  8);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -379,11 +264,7 @@ static inline float mavlink_msg_scaled_pressure_get_press_diff(const mavlink_mes
  */
 static inline int16_t mavlink_msg_scaled_pressure_get_temperature(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_int16_t(msg,  12);
-=======
     return _MAV_RETURN_int16_t(msg,  12);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -395,16 +276,6 @@ static inline int16_t mavlink_msg_scaled_pressure_get_temperature(const mavlink_
 static inline void mavlink_msg_scaled_pressure_decode(const mavlink_message_t* msg, mavlink_scaled_pressure_t* scaled_pressure)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	scaled_pressure->time_boot_ms = mavlink_msg_scaled_pressure_get_time_boot_ms(msg);
-	scaled_pressure->press_abs = mavlink_msg_scaled_pressure_get_press_abs(msg);
-	scaled_pressure->press_diff = mavlink_msg_scaled_pressure_get_press_diff(msg);
-	scaled_pressure->temperature = mavlink_msg_scaled_pressure_get_temperature(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SCALED_PRESSURE_LEN? msg->len : MAVLINK_MSG_ID_SCALED_PRESSURE_LEN;
-        memset(scaled_pressure, 0, MAVLINK_MSG_ID_SCALED_PRESSURE_LEN);
-	memcpy(scaled_pressure, _MAV_PAYLOAD(msg), len);
-=======
     scaled_pressure->time_boot_ms = mavlink_msg_scaled_pressure_get_time_boot_ms(msg);
     scaled_pressure->press_abs = mavlink_msg_scaled_pressure_get_press_abs(msg);
     scaled_pressure->press_diff = mavlink_msg_scaled_pressure_get_press_diff(msg);
@@ -413,6 +284,5 @@ static inline void mavlink_msg_scaled_pressure_decode(const mavlink_message_t* m
         uint8_t len = msg->len < MAVLINK_MSG_ID_SCALED_PRESSURE_LEN? msg->len : MAVLINK_MSG_ID_SCALED_PRESSURE_LEN;
         memset(scaled_pressure, 0, MAVLINK_MSG_ID_SCALED_PRESSURE_LEN);
     memcpy(scaled_pressure, _MAV_PAYLOAD(msg), len);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 #endif
 }

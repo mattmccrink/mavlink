@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 #pragma once
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 // MESSAGE PID_TUNING PACKING
 
 #define MAVLINK_MSG_ID_PID_TUNING 194
@@ -29,17 +26,10 @@ typedef struct __mavlink_pid_tuning_t {
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_PID_TUNING { \
-<<<<<<< HEAD
-	194, \
-	"PID_TUNING", \
-	7, \
-	{  { "desired", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_pid_tuning_t, desired) }, \
-=======
     194, \
     "PID_TUNING", \
     7, \
     {  { "desired", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_pid_tuning_t, desired) }, \
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "achieved", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_pid_tuning_t, achieved) }, \
          { "FF", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_pid_tuning_t, FF) }, \
          { "P", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_pid_tuning_t, P) }, \
@@ -50,15 +40,9 @@ typedef struct __mavlink_pid_tuning_t {
 }
 #else
 #define MAVLINK_MESSAGE_INFO_PID_TUNING { \
-<<<<<<< HEAD
-	"PID_TUNING", \
-	7, \
-	{  { "desired", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_pid_tuning_t, desired) }, \
-=======
     "PID_TUNING", \
     7, \
     {  { "desired", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_pid_tuning_t, desired) }, \
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "achieved", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_pid_tuning_t, achieved) }, \
          { "FF", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_pid_tuning_t, FF) }, \
          { "P", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_pid_tuning_t, P) }, \
@@ -85,30 +69,6 @@ typedef struct __mavlink_pid_tuning_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_pid_tuning_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-<<<<<<< HEAD
-						       uint8_t axis, float desired, float achieved, float FF, float P, float I, float D)
-{
-#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_PID_TUNING_LEN];
-	_mav_put_float(buf, 0, desired);
-	_mav_put_float(buf, 4, achieved);
-	_mav_put_float(buf, 8, FF);
-	_mav_put_float(buf, 12, P);
-	_mav_put_float(buf, 16, I);
-	_mav_put_float(buf, 20, D);
-	_mav_put_uint8_t(buf, 24, axis);
-
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PID_TUNING_LEN);
-#else
-	mavlink_pid_tuning_t packet;
-	packet.desired = desired;
-	packet.achieved = achieved;
-	packet.FF = FF;
-	packet.P = P;
-	packet.I = I;
-	packet.D = D;
-	packet.axis = axis;
-=======
                                uint8_t axis, float desired, float achieved, float FF, float P, float I, float D)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -131,16 +91,11 @@ static inline uint16_t mavlink_msg_pid_tuning_pack(uint8_t system_id, uint8_t co
     packet.I = I;
     packet.D = D;
     packet.axis = axis;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PID_TUNING_LEN);
 #endif
 
-<<<<<<< HEAD
-	msg->msgid = MAVLINK_MSG_ID_PID_TUNING;
-=======
     msg->msgid = MAVLINK_MSG_ID_PID_TUNING;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_PID_TUNING_MIN_LEN, MAVLINK_MSG_ID_PID_TUNING_LEN, MAVLINK_MSG_ID_PID_TUNING_CRC);
 }
 
@@ -160,31 +115,6 @@ static inline uint16_t mavlink_msg_pid_tuning_pack(uint8_t system_id, uint8_t co
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_pid_tuning_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
-<<<<<<< HEAD
-							   mavlink_message_t* msg,
-						           uint8_t axis,float desired,float achieved,float FF,float P,float I,float D)
-{
-#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_PID_TUNING_LEN];
-	_mav_put_float(buf, 0, desired);
-	_mav_put_float(buf, 4, achieved);
-	_mav_put_float(buf, 8, FF);
-	_mav_put_float(buf, 12, P);
-	_mav_put_float(buf, 16, I);
-	_mav_put_float(buf, 20, D);
-	_mav_put_uint8_t(buf, 24, axis);
-
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PID_TUNING_LEN);
-#else
-	mavlink_pid_tuning_t packet;
-	packet.desired = desired;
-	packet.achieved = achieved;
-	packet.FF = FF;
-	packet.P = P;
-	packet.I = I;
-	packet.D = D;
-	packet.axis = axis;
-=======
                                mavlink_message_t* msg,
                                    uint8_t axis,float desired,float achieved,float FF,float P,float I,float D)
 {
@@ -208,16 +138,11 @@ static inline uint16_t mavlink_msg_pid_tuning_pack_chan(uint8_t system_id, uint8
     packet.I = I;
     packet.D = D;
     packet.axis = axis;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PID_TUNING_LEN);
 #endif
 
-<<<<<<< HEAD
-	msg->msgid = MAVLINK_MSG_ID_PID_TUNING;
-=======
     msg->msgid = MAVLINK_MSG_ID_PID_TUNING;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_PID_TUNING_MIN_LEN, MAVLINK_MSG_ID_PID_TUNING_LEN, MAVLINK_MSG_ID_PID_TUNING_CRC);
 }
 
@@ -231,11 +156,7 @@ static inline uint16_t mavlink_msg_pid_tuning_pack_chan(uint8_t system_id, uint8
  */
 static inline uint16_t mavlink_msg_pid_tuning_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_pid_tuning_t* pid_tuning)
 {
-<<<<<<< HEAD
-	return mavlink_msg_pid_tuning_pack(system_id, component_id, msg, pid_tuning->axis, pid_tuning->desired, pid_tuning->achieved, pid_tuning->FF, pid_tuning->P, pid_tuning->I, pid_tuning->D);
-=======
     return mavlink_msg_pid_tuning_pack(system_id, component_id, msg, pid_tuning->axis, pid_tuning->desired, pid_tuning->achieved, pid_tuning->FF, pid_tuning->P, pid_tuning->I, pid_tuning->D);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -249,11 +170,7 @@ static inline uint16_t mavlink_msg_pid_tuning_encode(uint8_t system_id, uint8_t 
  */
 static inline uint16_t mavlink_msg_pid_tuning_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_pid_tuning_t* pid_tuning)
 {
-<<<<<<< HEAD
-	return mavlink_msg_pid_tuning_pack_chan(system_id, component_id, chan, msg, pid_tuning->axis, pid_tuning->desired, pid_tuning->achieved, pid_tuning->FF, pid_tuning->P, pid_tuning->I, pid_tuning->D);
-=======
     return mavlink_msg_pid_tuning_pack_chan(system_id, component_id, chan, msg, pid_tuning->axis, pid_tuning->desired, pid_tuning->achieved, pid_tuning->FF, pid_tuning->P, pid_tuning->I, pid_tuning->D);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -273,27 +190,6 @@ static inline uint16_t mavlink_msg_pid_tuning_encode_chan(uint8_t system_id, uin
 static inline void mavlink_msg_pid_tuning_send(mavlink_channel_t chan, uint8_t axis, float desired, float achieved, float FF, float P, float I, float D)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	char buf[MAVLINK_MSG_ID_PID_TUNING_LEN];
-	_mav_put_float(buf, 0, desired);
-	_mav_put_float(buf, 4, achieved);
-	_mav_put_float(buf, 8, FF);
-	_mav_put_float(buf, 12, P);
-	_mav_put_float(buf, 16, I);
-	_mav_put_float(buf, 20, D);
-	_mav_put_uint8_t(buf, 24, axis);
-
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PID_TUNING, buf, MAVLINK_MSG_ID_PID_TUNING_MIN_LEN, MAVLINK_MSG_ID_PID_TUNING_LEN, MAVLINK_MSG_ID_PID_TUNING_CRC);
-#else
-	mavlink_pid_tuning_t packet;
-	packet.desired = desired;
-	packet.achieved = achieved;
-	packet.FF = FF;
-	packet.P = P;
-	packet.I = I;
-	packet.D = D;
-	packet.axis = axis;
-=======
     char buf[MAVLINK_MSG_ID_PID_TUNING_LEN];
     _mav_put_float(buf, 0, desired);
     _mav_put_float(buf, 4, achieved);
@@ -313,7 +209,6 @@ static inline void mavlink_msg_pid_tuning_send(mavlink_channel_t chan, uint8_t a
     packet.I = I;
     packet.D = D;
     packet.axis = axis;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PID_TUNING, (const char *)&packet, MAVLINK_MSG_ID_PID_TUNING_MIN_LEN, MAVLINK_MSG_ID_PID_TUNING_LEN, MAVLINK_MSG_ID_PID_TUNING_CRC);
 #endif
@@ -344,27 +239,6 @@ static inline void mavlink_msg_pid_tuning_send_struct(mavlink_channel_t chan, co
 static inline void mavlink_msg_pid_tuning_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t axis, float desired, float achieved, float FF, float P, float I, float D)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	char *buf = (char *)msgbuf;
-	_mav_put_float(buf, 0, desired);
-	_mav_put_float(buf, 4, achieved);
-	_mav_put_float(buf, 8, FF);
-	_mav_put_float(buf, 12, P);
-	_mav_put_float(buf, 16, I);
-	_mav_put_float(buf, 20, D);
-	_mav_put_uint8_t(buf, 24, axis);
-
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PID_TUNING, buf, MAVLINK_MSG_ID_PID_TUNING_MIN_LEN, MAVLINK_MSG_ID_PID_TUNING_LEN, MAVLINK_MSG_ID_PID_TUNING_CRC);
-#else
-	mavlink_pid_tuning_t *packet = (mavlink_pid_tuning_t *)msgbuf;
-	packet->desired = desired;
-	packet->achieved = achieved;
-	packet->FF = FF;
-	packet->P = P;
-	packet->I = I;
-	packet->D = D;
-	packet->axis = axis;
-=======
     char *buf = (char *)msgbuf;
     _mav_put_float(buf, 0, desired);
     _mav_put_float(buf, 4, achieved);
@@ -384,7 +258,6 @@ static inline void mavlink_msg_pid_tuning_send_buf(mavlink_message_t *msgbuf, ma
     packet->I = I;
     packet->D = D;
     packet->axis = axis;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PID_TUNING, (const char *)packet, MAVLINK_MSG_ID_PID_TUNING_MIN_LEN, MAVLINK_MSG_ID_PID_TUNING_LEN, MAVLINK_MSG_ID_PID_TUNING_CRC);
 #endif
@@ -403,11 +276,7 @@ static inline void mavlink_msg_pid_tuning_send_buf(mavlink_message_t *msgbuf, ma
  */
 static inline uint8_t mavlink_msg_pid_tuning_get_axis(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_uint8_t(msg,  24);
-=======
     return _MAV_RETURN_uint8_t(msg,  24);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -417,11 +286,7 @@ static inline uint8_t mavlink_msg_pid_tuning_get_axis(const mavlink_message_t* m
  */
 static inline float mavlink_msg_pid_tuning_get_desired(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  0);
-=======
     return _MAV_RETURN_float(msg,  0);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -431,11 +296,7 @@ static inline float mavlink_msg_pid_tuning_get_desired(const mavlink_message_t* 
  */
 static inline float mavlink_msg_pid_tuning_get_achieved(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  4);
-=======
     return _MAV_RETURN_float(msg,  4);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -445,11 +306,7 @@ static inline float mavlink_msg_pid_tuning_get_achieved(const mavlink_message_t*
  */
 static inline float mavlink_msg_pid_tuning_get_FF(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  8);
-=======
     return _MAV_RETURN_float(msg,  8);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -459,11 +316,7 @@ static inline float mavlink_msg_pid_tuning_get_FF(const mavlink_message_t* msg)
  */
 static inline float mavlink_msg_pid_tuning_get_P(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  12);
-=======
     return _MAV_RETURN_float(msg,  12);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -473,11 +326,7 @@ static inline float mavlink_msg_pid_tuning_get_P(const mavlink_message_t* msg)
  */
 static inline float mavlink_msg_pid_tuning_get_I(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  16);
-=======
     return _MAV_RETURN_float(msg,  16);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -487,11 +336,7 @@ static inline float mavlink_msg_pid_tuning_get_I(const mavlink_message_t* msg)
  */
 static inline float mavlink_msg_pid_tuning_get_D(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float(msg,  20);
-=======
     return _MAV_RETURN_float(msg,  20);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -503,19 +348,6 @@ static inline float mavlink_msg_pid_tuning_get_D(const mavlink_message_t* msg)
 static inline void mavlink_msg_pid_tuning_decode(const mavlink_message_t* msg, mavlink_pid_tuning_t* pid_tuning)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	pid_tuning->desired = mavlink_msg_pid_tuning_get_desired(msg);
-	pid_tuning->achieved = mavlink_msg_pid_tuning_get_achieved(msg);
-	pid_tuning->FF = mavlink_msg_pid_tuning_get_FF(msg);
-	pid_tuning->P = mavlink_msg_pid_tuning_get_P(msg);
-	pid_tuning->I = mavlink_msg_pid_tuning_get_I(msg);
-	pid_tuning->D = mavlink_msg_pid_tuning_get_D(msg);
-	pid_tuning->axis = mavlink_msg_pid_tuning_get_axis(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_PID_TUNING_LEN? msg->len : MAVLINK_MSG_ID_PID_TUNING_LEN;
-        memset(pid_tuning, 0, MAVLINK_MSG_ID_PID_TUNING_LEN);
-	memcpy(pid_tuning, _MAV_PAYLOAD(msg), len);
-=======
     pid_tuning->desired = mavlink_msg_pid_tuning_get_desired(msg);
     pid_tuning->achieved = mavlink_msg_pid_tuning_get_achieved(msg);
     pid_tuning->FF = mavlink_msg_pid_tuning_get_FF(msg);
@@ -527,6 +359,5 @@ static inline void mavlink_msg_pid_tuning_decode(const mavlink_message_t* msg, m
         uint8_t len = msg->len < MAVLINK_MSG_ID_PID_TUNING_LEN? msg->len : MAVLINK_MSG_ID_PID_TUNING_LEN;
         memset(pid_tuning, 0, MAVLINK_MSG_ID_PID_TUNING_LEN);
     memcpy(pid_tuning, _MAV_PAYLOAD(msg), len);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 #endif
 }

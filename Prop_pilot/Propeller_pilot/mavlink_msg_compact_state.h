@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-// MESSAGE COMPACT_STATE PACKING
-
-#define MAVLINK_MSG_ID_COMPACT_STATE 234
-=======
 #pragma once
 // MESSAGE COMPACT_STATE PACKING
 
 #define MAVLINK_MSG_ID_COMPACT_STATE 238
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
 MAVPACKED(
 typedef struct __mavlink_compact_state_t {
@@ -27,35 +21,20 @@ typedef struct __mavlink_compact_state_t {
 
 #define MAVLINK_MSG_ID_COMPACT_STATE_LEN 48
 #define MAVLINK_MSG_ID_COMPACT_STATE_MIN_LEN 48
-<<<<<<< HEAD
-#define MAVLINK_MSG_ID_234_LEN 48
-#define MAVLINK_MSG_ID_234_MIN_LEN 48
-
-#define MAVLINK_MSG_ID_COMPACT_STATE_CRC 42
-#define MAVLINK_MSG_ID_234_CRC 42
-=======
 #define MAVLINK_MSG_ID_238_LEN 48
 #define MAVLINK_MSG_ID_238_MIN_LEN 48
 
 #define MAVLINK_MSG_ID_COMPACT_STATE_CRC 42
 #define MAVLINK_MSG_ID_238_CRC 42
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_COMPACT_STATE { \
-<<<<<<< HEAD
-	234, \
-	"COMPACT_STATE", \
-	12, \
-	{  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_compact_state_t, time_boot_ms) }, \
-=======
     238, \
     "COMPACT_STATE", \
     12, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_compact_state_t, time_boot_ms) }, \
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "q1", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_compact_state_t, q1) }, \
          { "q2", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_compact_state_t, q2) }, \
          { "q3", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_compact_state_t, q3) }, \
@@ -71,15 +50,9 @@ typedef struct __mavlink_compact_state_t {
 }
 #else
 #define MAVLINK_MESSAGE_INFO_COMPACT_STATE { \
-<<<<<<< HEAD
-	"COMPACT_STATE", \
-	12, \
-	{  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_compact_state_t, time_boot_ms) }, \
-=======
     "COMPACT_STATE", \
     12, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_compact_state_t, time_boot_ms) }, \
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "q1", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_compact_state_t, q1) }, \
          { "q2", NULL, MAVLINK_TYPE_INT32_T, 0, 8, offsetof(mavlink_compact_state_t, q2) }, \
          { "q3", NULL, MAVLINK_TYPE_INT32_T, 0, 12, offsetof(mavlink_compact_state_t, q3) }, \
@@ -116,40 +89,6 @@ typedef struct __mavlink_compact_state_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_compact_state_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-<<<<<<< HEAD
-						       uint32_t time_boot_ms, int32_t q1, int32_t q2, int32_t q3, int32_t q4, int32_t x, int32_t y, int32_t z, int32_t vx, int32_t vy, int32_t vz, int32_t airspeed)
-{
-#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_COMPACT_STATE_LEN];
-	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_int32_t(buf, 4, q1);
-	_mav_put_int32_t(buf, 8, q2);
-	_mav_put_int32_t(buf, 12, q3);
-	_mav_put_int32_t(buf, 16, q4);
-	_mav_put_int32_t(buf, 20, x);
-	_mav_put_int32_t(buf, 24, y);
-	_mav_put_int32_t(buf, 28, z);
-	_mav_put_int32_t(buf, 32, vx);
-	_mav_put_int32_t(buf, 36, vy);
-	_mav_put_int32_t(buf, 40, vz);
-	_mav_put_int32_t(buf, 44, airspeed);
-
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_COMPACT_STATE_LEN);
-#else
-	mavlink_compact_state_t packet;
-	packet.time_boot_ms = time_boot_ms;
-	packet.q1 = q1;
-	packet.q2 = q2;
-	packet.q3 = q3;
-	packet.q4 = q4;
-	packet.x = x;
-	packet.y = y;
-	packet.z = z;
-	packet.vx = vx;
-	packet.vy = vy;
-	packet.vz = vz;
-	packet.airspeed = airspeed;
-=======
                                uint32_t time_boot_ms, int32_t q1, int32_t q2, int32_t q3, int32_t q4, int32_t x, int32_t y, int32_t z, int32_t vx, int32_t vy, int32_t vz, int32_t airspeed)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -182,16 +121,11 @@ static inline uint16_t mavlink_msg_compact_state_pack(uint8_t system_id, uint8_t
     packet.vy = vy;
     packet.vz = vz;
     packet.airspeed = airspeed;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_COMPACT_STATE_LEN);
 #endif
 
-<<<<<<< HEAD
-	msg->msgid = MAVLINK_MSG_ID_COMPACT_STATE;
-=======
     msg->msgid = MAVLINK_MSG_ID_COMPACT_STATE;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_COMPACT_STATE_MIN_LEN, MAVLINK_MSG_ID_COMPACT_STATE_LEN, MAVLINK_MSG_ID_COMPACT_STATE_CRC);
 }
 
@@ -216,41 +150,6 @@ static inline uint16_t mavlink_msg_compact_state_pack(uint8_t system_id, uint8_t
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_compact_state_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
-<<<<<<< HEAD
-							   mavlink_message_t* msg,
-						           uint32_t time_boot_ms,int32_t q1,int32_t q2,int32_t q3,int32_t q4,int32_t x,int32_t y,int32_t z,int32_t vx,int32_t vy,int32_t vz,int32_t airspeed)
-{
-#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_COMPACT_STATE_LEN];
-	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_int32_t(buf, 4, q1);
-	_mav_put_int32_t(buf, 8, q2);
-	_mav_put_int32_t(buf, 12, q3);
-	_mav_put_int32_t(buf, 16, q4);
-	_mav_put_int32_t(buf, 20, x);
-	_mav_put_int32_t(buf, 24, y);
-	_mav_put_int32_t(buf, 28, z);
-	_mav_put_int32_t(buf, 32, vx);
-	_mav_put_int32_t(buf, 36, vy);
-	_mav_put_int32_t(buf, 40, vz);
-	_mav_put_int32_t(buf, 44, airspeed);
-
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_COMPACT_STATE_LEN);
-#else
-	mavlink_compact_state_t packet;
-	packet.time_boot_ms = time_boot_ms;
-	packet.q1 = q1;
-	packet.q2 = q2;
-	packet.q3 = q3;
-	packet.q4 = q4;
-	packet.x = x;
-	packet.y = y;
-	packet.z = z;
-	packet.vx = vx;
-	packet.vy = vy;
-	packet.vz = vz;
-	packet.airspeed = airspeed;
-=======
                                mavlink_message_t* msg,
                                    uint32_t time_boot_ms,int32_t q1,int32_t q2,int32_t q3,int32_t q4,int32_t x,int32_t y,int32_t z,int32_t vx,int32_t vy,int32_t vz,int32_t airspeed)
 {
@@ -284,16 +183,11 @@ static inline uint16_t mavlink_msg_compact_state_pack_chan(uint8_t system_id, ui
     packet.vy = vy;
     packet.vz = vz;
     packet.airspeed = airspeed;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_COMPACT_STATE_LEN);
 #endif
 
-<<<<<<< HEAD
-	msg->msgid = MAVLINK_MSG_ID_COMPACT_STATE;
-=======
     msg->msgid = MAVLINK_MSG_ID_COMPACT_STATE;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_COMPACT_STATE_MIN_LEN, MAVLINK_MSG_ID_COMPACT_STATE_LEN, MAVLINK_MSG_ID_COMPACT_STATE_CRC);
 }
 
@@ -307,11 +201,7 @@ static inline uint16_t mavlink_msg_compact_state_pack_chan(uint8_t system_id, ui
  */
 static inline uint16_t mavlink_msg_compact_state_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_compact_state_t* compact_state)
 {
-<<<<<<< HEAD
-	return mavlink_msg_compact_state_pack(system_id, component_id, msg, compact_state->time_boot_ms, compact_state->q1, compact_state->q2, compact_state->q3, compact_state->q4, compact_state->x, compact_state->y, compact_state->z, compact_state->vx, compact_state->vy, compact_state->vz, compact_state->airspeed);
-=======
     return mavlink_msg_compact_state_pack(system_id, component_id, msg, compact_state->time_boot_ms, compact_state->q1, compact_state->q2, compact_state->q3, compact_state->q4, compact_state->x, compact_state->y, compact_state->z, compact_state->vx, compact_state->vy, compact_state->vz, compact_state->airspeed);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -325,11 +215,7 @@ static inline uint16_t mavlink_msg_compact_state_encode(uint8_t system_id, uint8
  */
 static inline uint16_t mavlink_msg_compact_state_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_compact_state_t* compact_state)
 {
-<<<<<<< HEAD
-	return mavlink_msg_compact_state_pack_chan(system_id, component_id, chan, msg, compact_state->time_boot_ms, compact_state->q1, compact_state->q2, compact_state->q3, compact_state->q4, compact_state->x, compact_state->y, compact_state->z, compact_state->vx, compact_state->vy, compact_state->vz, compact_state->airspeed);
-=======
     return mavlink_msg_compact_state_pack_chan(system_id, component_id, chan, msg, compact_state->time_boot_ms, compact_state->q1, compact_state->q2, compact_state->q3, compact_state->q4, compact_state->x, compact_state->y, compact_state->z, compact_state->vx, compact_state->vy, compact_state->vz, compact_state->airspeed);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -354,37 +240,6 @@ static inline uint16_t mavlink_msg_compact_state_encode_chan(uint8_t system_id, 
 static inline void mavlink_msg_compact_state_send(mavlink_channel_t chan, uint32_t time_boot_ms, int32_t q1, int32_t q2, int32_t q3, int32_t q4, int32_t x, int32_t y, int32_t z, int32_t vx, int32_t vy, int32_t vz, int32_t airspeed)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	char buf[MAVLINK_MSG_ID_COMPACT_STATE_LEN];
-	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_int32_t(buf, 4, q1);
-	_mav_put_int32_t(buf, 8, q2);
-	_mav_put_int32_t(buf, 12, q3);
-	_mav_put_int32_t(buf, 16, q4);
-	_mav_put_int32_t(buf, 20, x);
-	_mav_put_int32_t(buf, 24, y);
-	_mav_put_int32_t(buf, 28, z);
-	_mav_put_int32_t(buf, 32, vx);
-	_mav_put_int32_t(buf, 36, vy);
-	_mav_put_int32_t(buf, 40, vz);
-	_mav_put_int32_t(buf, 44, airspeed);
-
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_COMPACT_STATE, buf, MAVLINK_MSG_ID_COMPACT_STATE_MIN_LEN, MAVLINK_MSG_ID_COMPACT_STATE_LEN, MAVLINK_MSG_ID_COMPACT_STATE_CRC);
-#else
-	mavlink_compact_state_t packet;
-	packet.time_boot_ms = time_boot_ms;
-	packet.q1 = q1;
-	packet.q2 = q2;
-	packet.q3 = q3;
-	packet.q4 = q4;
-	packet.x = x;
-	packet.y = y;
-	packet.z = z;
-	packet.vx = vx;
-	packet.vy = vy;
-	packet.vz = vz;
-	packet.airspeed = airspeed;
-=======
     char buf[MAVLINK_MSG_ID_COMPACT_STATE_LEN];
     _mav_put_uint32_t(buf, 0, time_boot_ms);
     _mav_put_int32_t(buf, 4, q1);
@@ -414,7 +269,6 @@ static inline void mavlink_msg_compact_state_send(mavlink_channel_t chan, uint32
     packet.vy = vy;
     packet.vz = vz;
     packet.airspeed = airspeed;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_COMPACT_STATE, (const char *)&packet, MAVLINK_MSG_ID_COMPACT_STATE_MIN_LEN, MAVLINK_MSG_ID_COMPACT_STATE_LEN, MAVLINK_MSG_ID_COMPACT_STATE_CRC);
 #endif
@@ -445,37 +299,6 @@ static inline void mavlink_msg_compact_state_send_struct(mavlink_channel_t chan,
 static inline void mavlink_msg_compact_state_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, int32_t q1, int32_t q2, int32_t q3, int32_t q4, int32_t x, int32_t y, int32_t z, int32_t vx, int32_t vy, int32_t vz, int32_t airspeed)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	char *buf = (char *)msgbuf;
-	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_int32_t(buf, 4, q1);
-	_mav_put_int32_t(buf, 8, q2);
-	_mav_put_int32_t(buf, 12, q3);
-	_mav_put_int32_t(buf, 16, q4);
-	_mav_put_int32_t(buf, 20, x);
-	_mav_put_int32_t(buf, 24, y);
-	_mav_put_int32_t(buf, 28, z);
-	_mav_put_int32_t(buf, 32, vx);
-	_mav_put_int32_t(buf, 36, vy);
-	_mav_put_int32_t(buf, 40, vz);
-	_mav_put_int32_t(buf, 44, airspeed);
-
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_COMPACT_STATE, buf, MAVLINK_MSG_ID_COMPACT_STATE_MIN_LEN, MAVLINK_MSG_ID_COMPACT_STATE_LEN, MAVLINK_MSG_ID_COMPACT_STATE_CRC);
-#else
-	mavlink_compact_state_t *packet = (mavlink_compact_state_t *)msgbuf;
-	packet->time_boot_ms = time_boot_ms;
-	packet->q1 = q1;
-	packet->q2 = q2;
-	packet->q3 = q3;
-	packet->q4 = q4;
-	packet->x = x;
-	packet->y = y;
-	packet->z = z;
-	packet->vx = vx;
-	packet->vy = vy;
-	packet->vz = vz;
-	packet->airspeed = airspeed;
-=======
     char *buf = (char *)msgbuf;
     _mav_put_uint32_t(buf, 0, time_boot_ms);
     _mav_put_int32_t(buf, 4, q1);
@@ -505,7 +328,6 @@ static inline void mavlink_msg_compact_state_send_buf(mavlink_message_t *msgbuf,
     packet->vy = vy;
     packet->vz = vz;
     packet->airspeed = airspeed;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_COMPACT_STATE, (const char *)packet, MAVLINK_MSG_ID_COMPACT_STATE_MIN_LEN, MAVLINK_MSG_ID_COMPACT_STATE_LEN, MAVLINK_MSG_ID_COMPACT_STATE_CRC);
 #endif
@@ -524,11 +346,7 @@ static inline void mavlink_msg_compact_state_send_buf(mavlink_message_t *msgbuf,
  */
 static inline uint32_t mavlink_msg_compact_state_get_time_boot_ms(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_uint32_t(msg,  0);
-=======
     return _MAV_RETURN_uint32_t(msg,  0);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -538,11 +356,7 @@ static inline uint32_t mavlink_msg_compact_state_get_time_boot_ms(const mavlink_
  */
 static inline int32_t mavlink_msg_compact_state_get_q1(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_int32_t(msg,  4);
-=======
     return _MAV_RETURN_int32_t(msg,  4);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -552,11 +366,7 @@ static inline int32_t mavlink_msg_compact_state_get_q1(const mavlink_message_t* 
  */
 static inline int32_t mavlink_msg_compact_state_get_q2(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_int32_t(msg,  8);
-=======
     return _MAV_RETURN_int32_t(msg,  8);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -566,11 +376,7 @@ static inline int32_t mavlink_msg_compact_state_get_q2(const mavlink_message_t* 
  */
 static inline int32_t mavlink_msg_compact_state_get_q3(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_int32_t(msg,  12);
-=======
     return _MAV_RETURN_int32_t(msg,  12);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -580,11 +386,7 @@ static inline int32_t mavlink_msg_compact_state_get_q3(const mavlink_message_t* 
  */
 static inline int32_t mavlink_msg_compact_state_get_q4(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_int32_t(msg,  16);
-=======
     return _MAV_RETURN_int32_t(msg,  16);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -594,11 +396,7 @@ static inline int32_t mavlink_msg_compact_state_get_q4(const mavlink_message_t* 
  */
 static inline int32_t mavlink_msg_compact_state_get_x(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_int32_t(msg,  20);
-=======
     return _MAV_RETURN_int32_t(msg,  20);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -608,11 +406,7 @@ static inline int32_t mavlink_msg_compact_state_get_x(const mavlink_message_t* m
  */
 static inline int32_t mavlink_msg_compact_state_get_y(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_int32_t(msg,  24);
-=======
     return _MAV_RETURN_int32_t(msg,  24);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -622,11 +416,7 @@ static inline int32_t mavlink_msg_compact_state_get_y(const mavlink_message_t* m
  */
 static inline int32_t mavlink_msg_compact_state_get_z(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_int32_t(msg,  28);
-=======
     return _MAV_RETURN_int32_t(msg,  28);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -636,11 +426,7 @@ static inline int32_t mavlink_msg_compact_state_get_z(const mavlink_message_t* m
  */
 static inline int32_t mavlink_msg_compact_state_get_vx(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_int32_t(msg,  32);
-=======
     return _MAV_RETURN_int32_t(msg,  32);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -650,11 +436,7 @@ static inline int32_t mavlink_msg_compact_state_get_vx(const mavlink_message_t* 
  */
 static inline int32_t mavlink_msg_compact_state_get_vy(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_int32_t(msg,  36);
-=======
     return _MAV_RETURN_int32_t(msg,  36);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -664,11 +446,7 @@ static inline int32_t mavlink_msg_compact_state_get_vy(const mavlink_message_t* 
  */
 static inline int32_t mavlink_msg_compact_state_get_vz(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_int32_t(msg,  40);
-=======
     return _MAV_RETURN_int32_t(msg,  40);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -678,11 +456,7 @@ static inline int32_t mavlink_msg_compact_state_get_vz(const mavlink_message_t* 
  */
 static inline int32_t mavlink_msg_compact_state_get_airspeed(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_int32_t(msg,  44);
-=======
     return _MAV_RETURN_int32_t(msg,  44);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -694,24 +468,6 @@ static inline int32_t mavlink_msg_compact_state_get_airspeed(const mavlink_messa
 static inline void mavlink_msg_compact_state_decode(const mavlink_message_t* msg, mavlink_compact_state_t* compact_state)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	compact_state->time_boot_ms = mavlink_msg_compact_state_get_time_boot_ms(msg);
-	compact_state->q1 = mavlink_msg_compact_state_get_q1(msg);
-	compact_state->q2 = mavlink_msg_compact_state_get_q2(msg);
-	compact_state->q3 = mavlink_msg_compact_state_get_q3(msg);
-	compact_state->q4 = mavlink_msg_compact_state_get_q4(msg);
-	compact_state->x = mavlink_msg_compact_state_get_x(msg);
-	compact_state->y = mavlink_msg_compact_state_get_y(msg);
-	compact_state->z = mavlink_msg_compact_state_get_z(msg);
-	compact_state->vx = mavlink_msg_compact_state_get_vx(msg);
-	compact_state->vy = mavlink_msg_compact_state_get_vy(msg);
-	compact_state->vz = mavlink_msg_compact_state_get_vz(msg);
-	compact_state->airspeed = mavlink_msg_compact_state_get_airspeed(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_COMPACT_STATE_LEN? msg->len : MAVLINK_MSG_ID_COMPACT_STATE_LEN;
-        memset(compact_state, 0, MAVLINK_MSG_ID_COMPACT_STATE_LEN);
-	memcpy(compact_state, _MAV_PAYLOAD(msg), len);
-=======
     compact_state->time_boot_ms = mavlink_msg_compact_state_get_time_boot_ms(msg);
     compact_state->q1 = mavlink_msg_compact_state_get_q1(msg);
     compact_state->q2 = mavlink_msg_compact_state_get_q2(msg);
@@ -728,6 +484,5 @@ static inline void mavlink_msg_compact_state_decode(const mavlink_message_t* msg
         uint8_t len = msg->len < MAVLINK_MSG_ID_COMPACT_STATE_LEN? msg->len : MAVLINK_MSG_ID_COMPACT_STATE_LEN;
         memset(compact_state, 0, MAVLINK_MSG_ID_COMPACT_STATE_LEN);
     memcpy(compact_state, _MAV_PAYLOAD(msg), len);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 #endif
 }

@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 #pragma once
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 // MESSAGE ACTUATOR_CONTROL_TARGET PACKING
 
 #define MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET 140
@@ -25,32 +22,19 @@ typedef struct __mavlink_actuator_control_target_t {
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_ACTUATOR_CONTROL_TARGET { \
-<<<<<<< HEAD
-	140, \
-	"ACTUATOR_CONTROL_TARGET", \
-	3, \
-	{  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_actuator_control_target_t, time_usec) }, \
-=======
     140, \
     "ACTUATOR_CONTROL_TARGET", \
     3, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_actuator_control_target_t, time_usec) }, \
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "controls", NULL, MAVLINK_TYPE_FLOAT, 8, 8, offsetof(mavlink_actuator_control_target_t, controls) }, \
          { "group_mlx", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_actuator_control_target_t, group_mlx) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_ACTUATOR_CONTROL_TARGET { \
-<<<<<<< HEAD
-	"ACTUATOR_CONTROL_TARGET", \
-	3, \
-	{  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_actuator_control_target_t, time_usec) }, \
-=======
     "ACTUATOR_CONTROL_TARGET", \
     3, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_actuator_control_target_t, time_usec) }, \
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
          { "controls", NULL, MAVLINK_TYPE_FLOAT, 8, 8, offsetof(mavlink_actuator_control_target_t, controls) }, \
          { "group_mlx", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_actuator_control_target_t, group_mlx) }, \
          } \
@@ -69,25 +53,6 @@ typedef struct __mavlink_actuator_control_target_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_actuator_control_target_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-<<<<<<< HEAD
-						       uint64_t time_usec, uint8_t group_mlx, const float *controls)
-{
-#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN];
-	_mav_put_uint64_t(buf, 0, time_usec);
-	_mav_put_uint8_t(buf, 40, group_mlx);
-	_mav_put_float_array(buf, 8, controls, 8);
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN);
-#else
-	mavlink_actuator_control_target_t packet;
-	packet.time_usec = time_usec;
-	packet.group_mlx = group_mlx;
-	mav_array_memcpy(packet.controls, controls, sizeof(float)*8);
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN);
-#endif
-
-	msg->msgid = MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET;
-=======
                                uint64_t time_usec, uint8_t group_mlx, const float *controls)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -105,7 +70,6 @@ static inline uint16_t mavlink_msg_actuator_control_target_pack(uint8_t system_i
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_MIN_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_CRC);
 }
 
@@ -121,26 +85,6 @@ static inline uint16_t mavlink_msg_actuator_control_target_pack(uint8_t system_i
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_actuator_control_target_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
-<<<<<<< HEAD
-							   mavlink_message_t* msg,
-						           uint64_t time_usec,uint8_t group_mlx,const float *controls)
-{
-#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN];
-	_mav_put_uint64_t(buf, 0, time_usec);
-	_mav_put_uint8_t(buf, 40, group_mlx);
-	_mav_put_float_array(buf, 8, controls, 8);
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN);
-#else
-	mavlink_actuator_control_target_t packet;
-	packet.time_usec = time_usec;
-	packet.group_mlx = group_mlx;
-	mav_array_memcpy(packet.controls, controls, sizeof(float)*8);
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN);
-#endif
-
-	msg->msgid = MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET;
-=======
                                mavlink_message_t* msg,
                                    uint64_t time_usec,uint8_t group_mlx,const float *controls)
 {
@@ -159,7 +103,6 @@ static inline uint16_t mavlink_msg_actuator_control_target_pack_chan(uint8_t sys
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET;
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_MIN_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_CRC);
 }
 
@@ -173,11 +116,7 @@ static inline uint16_t mavlink_msg_actuator_control_target_pack_chan(uint8_t sys
  */
 static inline uint16_t mavlink_msg_actuator_control_target_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_actuator_control_target_t* actuator_control_target)
 {
-<<<<<<< HEAD
-	return mavlink_msg_actuator_control_target_pack(system_id, component_id, msg, actuator_control_target->time_usec, actuator_control_target->group_mlx, actuator_control_target->controls);
-=======
     return mavlink_msg_actuator_control_target_pack(system_id, component_id, msg, actuator_control_target->time_usec, actuator_control_target->group_mlx, actuator_control_target->controls);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -191,11 +130,7 @@ static inline uint16_t mavlink_msg_actuator_control_target_encode(uint8_t system
  */
 static inline uint16_t mavlink_msg_actuator_control_target_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_actuator_control_target_t* actuator_control_target)
 {
-<<<<<<< HEAD
-	return mavlink_msg_actuator_control_target_pack_chan(system_id, component_id, chan, msg, actuator_control_target->time_usec, actuator_control_target->group_mlx, actuator_control_target->controls);
-=======
     return mavlink_msg_actuator_control_target_pack_chan(system_id, component_id, chan, msg, actuator_control_target->time_usec, actuator_control_target->group_mlx, actuator_control_target->controls);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -211,18 +146,6 @@ static inline uint16_t mavlink_msg_actuator_control_target_encode_chan(uint8_t s
 static inline void mavlink_msg_actuator_control_target_send(mavlink_channel_t chan, uint64_t time_usec, uint8_t group_mlx, const float *controls)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	char buf[MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN];
-	_mav_put_uint64_t(buf, 0, time_usec);
-	_mav_put_uint8_t(buf, 40, group_mlx);
-	_mav_put_float_array(buf, 8, controls, 8);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET, buf, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_MIN_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_CRC);
-#else
-	mavlink_actuator_control_target_t packet;
-	packet.time_usec = time_usec;
-	packet.group_mlx = group_mlx;
-	mav_array_memcpy(packet.controls, controls, sizeof(float)*8);
-=======
     char buf[MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN];
     _mav_put_uint64_t(buf, 0, time_usec);
     _mav_put_uint8_t(buf, 40, group_mlx);
@@ -233,7 +156,6 @@ static inline void mavlink_msg_actuator_control_target_send(mavlink_channel_t ch
     packet.time_usec = time_usec;
     packet.group_mlx = group_mlx;
     mav_array_memcpy(packet.controls, controls, sizeof(float)*8);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET, (const char *)&packet, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_MIN_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_CRC);
 #endif
 }
@@ -263,18 +185,6 @@ static inline void mavlink_msg_actuator_control_target_send_struct(mavlink_chann
 static inline void mavlink_msg_actuator_control_target_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, uint8_t group_mlx, const float *controls)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	char *buf = (char *)msgbuf;
-	_mav_put_uint64_t(buf, 0, time_usec);
-	_mav_put_uint8_t(buf, 40, group_mlx);
-	_mav_put_float_array(buf, 8, controls, 8);
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET, buf, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_MIN_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_CRC);
-#else
-	mavlink_actuator_control_target_t *packet = (mavlink_actuator_control_target_t *)msgbuf;
-	packet->time_usec = time_usec;
-	packet->group_mlx = group_mlx;
-	mav_array_memcpy(packet->controls, controls, sizeof(float)*8);
-=======
     char *buf = (char *)msgbuf;
     _mav_put_uint64_t(buf, 0, time_usec);
     _mav_put_uint8_t(buf, 40, group_mlx);
@@ -285,7 +195,6 @@ static inline void mavlink_msg_actuator_control_target_send_buf(mavlink_message_
     packet->time_usec = time_usec;
     packet->group_mlx = group_mlx;
     mav_array_memcpy(packet->controls, controls, sizeof(float)*8);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET, (const char *)packet, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_MIN_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_CRC);
 #endif
 }
@@ -303,11 +212,7 @@ static inline void mavlink_msg_actuator_control_target_send_buf(mavlink_message_
  */
 static inline uint64_t mavlink_msg_actuator_control_target_get_time_usec(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_uint64_t(msg,  0);
-=======
     return _MAV_RETURN_uint64_t(msg,  0);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -317,11 +222,7 @@ static inline uint64_t mavlink_msg_actuator_control_target_get_time_usec(const m
  */
 static inline uint8_t mavlink_msg_actuator_control_target_get_group_mlx(const mavlink_message_t* msg)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_uint8_t(msg,  40);
-=======
     return _MAV_RETURN_uint8_t(msg,  40);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -331,11 +232,7 @@ static inline uint8_t mavlink_msg_actuator_control_target_get_group_mlx(const ma
  */
 static inline uint16_t mavlink_msg_actuator_control_target_get_controls(const mavlink_message_t* msg, float *controls)
 {
-<<<<<<< HEAD
-	return _MAV_RETURN_float_array(msg, controls, 8,  8);
-=======
     return _MAV_RETURN_float_array(msg, controls, 8,  8);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 }
 
 /**
@@ -347,15 +244,6 @@ static inline uint16_t mavlink_msg_actuator_control_target_get_controls(const ma
 static inline void mavlink_msg_actuator_control_target_decode(const mavlink_message_t* msg, mavlink_actuator_control_target_t* actuator_control_target)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-<<<<<<< HEAD
-	actuator_control_target->time_usec = mavlink_msg_actuator_control_target_get_time_usec(msg);
-	mavlink_msg_actuator_control_target_get_controls(msg, actuator_control_target->controls);
-	actuator_control_target->group_mlx = mavlink_msg_actuator_control_target_get_group_mlx(msg);
-#else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN? msg->len : MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN;
-        memset(actuator_control_target, 0, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN);
-	memcpy(actuator_control_target, _MAV_PAYLOAD(msg), len);
-=======
     actuator_control_target->time_usec = mavlink_msg_actuator_control_target_get_time_usec(msg);
     mavlink_msg_actuator_control_target_get_controls(msg, actuator_control_target->controls);
     actuator_control_target->group_mlx = mavlink_msg_actuator_control_target_get_group_mlx(msg);
@@ -363,6 +251,5 @@ static inline void mavlink_msg_actuator_control_target_decode(const mavlink_mess
         uint8_t len = msg->len < MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN? msg->len : MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN;
         memset(actuator_control_target, 0, MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET_LEN);
     memcpy(actuator_control_target, _MAV_PAYLOAD(msg), len);
->>>>>>> 31e07fdfff352ae5ce4c37855956cc51d0f48012
 #endif
 }
