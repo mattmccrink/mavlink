@@ -8417,6 +8417,8 @@ static void mavlink_test_play_tune(uint8_t system_id, uint8_t component_id, mavl
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+<<<<<<< HEAD
+=======
 static void mavlink_test_camera_information(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -8846,6 +8848,7 @@ static void mavlink_test_mount_orientation(uint8_t system_id, uint8_t component_
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+>>>>>>> 98667bcffa8644270ccf4bbab6108a91ab4a4894
 static void mavlink_test_logging_data(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -9161,13 +9164,20 @@ static void mavlink_test_common(uint8_t system_id, uint8_t component_id, mavlink
     mavlink_test_setup_signing(system_id, component_id, last_msg);
     mavlink_test_button_change(system_id, component_id, last_msg);
     mavlink_test_play_tune(system_id, component_id, last_msg);
+<<<<<<< HEAD
+=======
     mavlink_test_camera_information(system_id, component_id, last_msg);
     mavlink_test_camera_settings(system_id, component_id, last_msg);
     mavlink_test_storage_information(system_id, component_id, last_msg);
     mavlink_test_camera_capture_status(system_id, component_id, last_msg);
     mavlink_test_camera_image_captured(system_id, component_id, last_msg);
     mavlink_test_flight_information(system_id, component_id, last_msg);
+<<<<<<< HEAD
     mavlink_test_mount_orientation(system_id, component_id, last_msg);
+=======
+    mavlink_test_mount_status(system_id, component_id, last_msg);
+>>>>>>> 98667bcffa8644270ccf4bbab6108a91ab4a4894
+>>>>>>> 965ffb9a21e5d6df96d149d333d4cf2154618c8a
     mavlink_test_logging_data(system_id, component_id, last_msg);
     mavlink_test_logging_data_acked(system_id, component_id, last_msg);
     mavlink_test_logging_ack(system_id, component_id, last_msg);
