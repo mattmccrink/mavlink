@@ -8,12 +8,13 @@ Released under GNU GPL version 3 or later
 
 '''
 
-'''from __future__ import print_function
-from future import standard_library
+from __future__ import print_function
+'''from future import standard_library
 standard_library.install_aliases()'''
 from builtins import object
-import sys, textwrap, os, copy
+import os
 import re
+import sys
 from . import mavparse
 
 # XSD schema file

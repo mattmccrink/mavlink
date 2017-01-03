@@ -1149,15 +1149,6 @@
             <field name="save_position" type="uint8_t">if &quot;1&quot; it will save current trimmed position on EEPROM (just valid for NEUTRAL and LANDING)</field>
         </message>
 
-        <message id="158" name="MOUNT_STATUS">
-            <description>Message with some status from APM to GCS about camera or antenna mount</description>
-            <field name="target_system" type="uint8_t">System ID</field>
-            <field name="target_component" type="uint8_t">Component ID</field>
-            <field name="pointing_a" type="int32_t">pitch(deg*100)</field>
-            <field name="pointing_b" type="int32_t">roll(deg*100)</field>
-            <field name="pointing_c" type="int32_t">yaw(deg*100)</field>
-        </message>
-
         <!-- geo-fence messages -->
         <message id="160" name="FENCE_POINT">
             <description>A fence point. Used to set a point when from GCS -&gt; MAV. Also used to return a point from MAV -&gt; GCS</description>

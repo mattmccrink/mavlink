@@ -9167,7 +9167,16 @@ static void mavlink_test_common(uint8_t system_id, uint8_t component_id, mavlink
     mavlink_test_camera_capture_status(system_id, component_id, last_msg);
     mavlink_test_camera_image_captured(system_id, component_id, last_msg);
     mavlink_test_flight_information(system_id, component_id, last_msg);
+<<<<<<< HEAD
     mavlink_test_mount_orientation(system_id, component_id, last_msg);
+=======
+<<<<<<< HEAD
+    mavlink_test_mount_orientation(system_id, component_id, last_msg);
+=======
+    mavlink_test_mount_status(system_id, component_id, last_msg);
+>>>>>>> 98667bcffa8644270ccf4bbab6108a91ab4a4894
+>>>>>>> 965ffb9a21e5d6df96d149d333d4cf2154618c8a
+>>>>>>> a27c00c4dbced7b2bc894cf2ddf1ec942a1c4568
     mavlink_test_logging_data(system_id, component_id, last_msg);
     mavlink_test_logging_data_acked(system_id, component_id, last_msg);
     mavlink_test_logging_ack(system_id, component_id, last_msg);
