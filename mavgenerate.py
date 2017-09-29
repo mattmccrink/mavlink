@@ -194,3 +194,5 @@ if __name__ == '__main__':
   app = Application()
   app.master.title(title)
   app.mainloop()
+
+raw_input()  
