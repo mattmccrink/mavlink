@@ -35,6 +35,21 @@ extern "C" {
 
 
 /** @brief  */
+#ifndef HAVE_ENUM_ACCELCAL_VEHICLE_POS
+#define HAVE_ENUM_ACCELCAL_VEHICLE_POS
+typedef enum ACCELCAL_VEHICLE_POS
+{
+   ACCELCAL_VEHICLE_POS_LEVEL=1, /*  | */
+   ACCELCAL_VEHICLE_POS_LEFT=2, /*  | */
+   ACCELCAL_VEHICLE_POS_RIGHT=3, /*  | */
+   ACCELCAL_VEHICLE_POS_NOSEDOWN=4, /*  | */
+   ACCELCAL_VEHICLE_POS_NOSEUP=5, /*  | */
+   ACCELCAL_VEHICLE_POS_BACK=6, /*  | */
+   ACCELCAL_VEHICLE_POS_ENUM_END=7, /*  | */
+} ACCELCAL_VEHICLE_POS;
+#endif
+
+/** @brief  */
 #ifndef HAVE_ENUM_LIMITS_STATE
 #define HAVE_ENUM_LIMITS_STATE
 typedef enum LIMITS_STATE
@@ -501,7 +516,8 @@ typedef enum PID_TUNING_AXIS
    PID_TUNING_YAW=3, /*  | */
    PID_TUNING_ACCZ=4, /*  | */
    PID_TUNING_STEER=5, /*  | */
-   PID_TUNING_AXIS_ENUM_END=6, /*  | */
+   PID_TUNING_LANDING=6, /*  | */
+   PID_TUNING_AXIS_ENUM_END=7, /*  | */
 } PID_TUNING_AXIS;
 #endif
 
@@ -540,6 +556,17 @@ typedef enum MAV_REMOTE_LOG_DATA_BLOCK_STATUSES
    MAV_REMOTE_LOG_DATA_BLOCK_ACK=1, /* This block has been received | */
    MAV_REMOTE_LOG_DATA_BLOCK_STATUSES_ENUM_END=2, /*  | */
 } MAV_REMOTE_LOG_DATA_BLOCK_STATUSES;
+#endif
+
+/** @brief Bus types for device operations */
+#ifndef HAVE_ENUM_DEVICE_OP_BUSTYPE
+#define HAVE_ENUM_DEVICE_OP_BUSTYPE
+typedef enum DEVICE_OP_BUSTYPE
+{
+   DEVICE_OP_BUSTYPE_I2C=0, /* I2C Device operation | */
+   DEVICE_OP_BUSTYPE_SPI=1, /* SPI Device operation | */
+   DEVICE_OP_BUSTYPE_ENUM_END=2, /*  | */
+} DEVICE_OP_BUSTYPE;
 #endif
 
 // MAVLINK VERSION
