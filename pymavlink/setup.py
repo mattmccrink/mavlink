@@ -1,5 +1,5 @@
-from __future__ import print_function
-from __future__ import absolute_import
+from __future__ import absolute_import, print_function
+from setuptools.command.build_py import build_py
 # Work around mbcs bug in distutils.
 # http://bugs.python.org/issue10945
 import codecs
@@ -13,82 +13,98 @@ except LookupError:
 from setuptools import setup, Extension
 import glob, os, shutil, fnmatch, platform, sys
 
-version = '2.0.8'
+version = '2.2.2'
 
-from generator import mavgen, mavparse
 
-# path to message_definitions directory
-if os.getenv("MDEF",None) is not None:
-    mdef_paths = [os.getenv("MDEF")]
-else:
-    mdef_paths = [os.path.join('..', 'message_definitions'),
-                  os.path.join('mavlink', 'message_definitions'), 
-                  os.path.join('..', 'mavlink', 'message_definitions'),
-                  os.path.join('message_definitions'),
-    ]
+def generate_content():
+    # generate the file content...
+    from generator import mavgen, mavparse
 
-for path in mdef_paths:
-    mdef_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), path)
-    if os.path.exists(mdef_path):
-        print("Using message definitions from %s" % mdef_path)
-        break
+    # path to message_definitions directory
+    if os.getenv("MDEF",None) is not None:
+        mdef_paths = [os.getenv("MDEF")]
+    else:
+        mdef_paths = [os.path.join('..', 'message_definitions'),
+                      os.path.join('mavlink', 'message_definitions'),
+                      os.path.join('..', 'mavlink', 'message_definitions'),
+                      os.path.join('message_definitions'),
+        ]
 
-dialects_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'dialects')
+    for path in mdef_paths:
+        mdef_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), path)
+        if os.path.exists(mdef_path):
+            print("Using message definitions from %s" % mdef_path)
+            break
 
-v10_dialects = glob.glob(os.path.join(mdef_path, 'v1.0', '*.xml'))
+    dialects_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'dialects')
 
-# for now v2.0 uses same XML files as v1.0
-v20_dialects = glob.glob(os.path.join(mdef_path, 'v1.0', '*.xml'))
+    v10_dialects = glob.glob(os.path.join(mdef_path, 'v1.0', '*.xml'))
 
-should_generate = not "NOGEN" in os.environ
-if should_generate:
-    if len(v10_dialects) == 0:
-        print("No XML message definitions found")
-        sys.exit(1)
+    # for now v2.0 uses same XML files as v1.0
+    v20_dialects = glob.glob(os.path.join(mdef_path, 'v1.0', '*.xml'))
 
-    for xml in v10_dialects:
-        shutil.copy(xml, os.path.join(dialects_path, 'v10'))
-    for xml in v20_dialects:
-        shutil.copy(xml, os.path.join(dialects_path, 'v20'))
-
-    for xml in v10_dialects:
-        dialect = os.path.basename(xml)[:-4]
-        wildcard = os.getenv("MAVLINK_DIALECT",'*')
-        if not fnmatch.fnmatch(dialect, wildcard):
-            continue
-        print("Building %s for protocol 1.0" % xml)
-        if not mavgen.mavgen_python_dialect(dialect, mavparse.PROTOCOL_1_0):
-            print("Building failed %s for protocol 1.0" % xml)
+    should_generate = not "NOGEN" in os.environ
+    if should_generate:
+        if len(v10_dialects) == 0:
+            print("No XML message definitions found")
             sys.exit(1)
 
-    for xml in v20_dialects:
-        dialect = os.path.basename(xml)[:-4]
-        wildcard = os.getenv("MAVLINK_DIALECT",'*')
-        if not fnmatch.fnmatch(dialect, wildcard):
-            continue
-        print("Building %s for protocol 2.0" % xml)
-        if not mavgen.mavgen_python_dialect(dialect, mavparse.PROTOCOL_2_0):
-            print("Building failed %s for protocol 2.0" % xml)
-            sys.exit(1)
+        for xml in v10_dialects:
+            shutil.copy(xml, os.path.join(dialects_path, 'v10'))
+        for xml in v20_dialects:
+            shutil.copy(xml, os.path.join(dialects_path, 'v20'))
 
-extensions = [] # Assume we might be unable to build native code
+        for xml in v10_dialects:
+            dialect = os.path.basename(xml)[:-4]
+            wildcard = os.getenv("MAVLINK_DIALECT",'*')
+            if not fnmatch.fnmatch(dialect, wildcard):
+                continue
+            print("Building %s for protocol 1.0" % xml)
+            if not mavgen.mavgen_python_dialect(dialect, mavparse.PROTOCOL_1_0):
+                print("Building failed %s for protocol 1.0" % xml)
+                sys.exit(1)
+
+        for xml in v20_dialects:
+            dialect = os.path.basename(xml)[:-4]
+            wildcard = os.getenv("MAVLINK_DIALECT",'*')
+            if not fnmatch.fnmatch(dialect, wildcard):
+                continue
+            print("Building %s for protocol 2.0" % xml)
+            if not mavgen.mavgen_python_dialect(dialect, mavparse.PROTOCOL_2_0):
+                print("Building failed %s for protocol 2.0" % xml)
+                sys.exit(1)
+
+extensions = []  # Assume we might be unable to build native code
 if platform.system() != 'Windows':
     extensions = [ Extension('mavnative',
-                    sources = ['mavnative/mavnative.c'],
-                    include_dirs = [
-                        'generator/C/include_v1.0',
-                        'generator/C/include_v2.0',
-                        'mavnative'
-                        ]
-                    ) ]
+                   sources=['mavnative/mavnative.c'],
+                   include_dirs=[
+                       'generator/C/include_v1.0',
+                       'generator/C/include_v2.0',
+                       'mavnative'
+                       ]
+                   ) ]
 else:
     print("Skipping mavnative due to Windows possibly missing a compiler...")
+
+
+class custom_build_py(build_py):
+    def run(self):
+        generate_content()
+
+        # distutils uses old-style classes, so no super()
+        build_py.run(self)
+
 
 setup (name = 'pymavlink',
        version = version,
        description = 'Python MAVLink code',
-       long_description = '''A Python library for handling MAVLink protocol streams and log files. This allows for the creation of simple scripts to analyse telemetry logs from autopilots such as ArduPilot which use the MAVLink protocol. See the scripts that come with the package for examples of small, useful scripts that use pymavlink. For more information about the MAVLink protocol see http://qgroundcontrol.org/mavlink/''',
-       url = 'http://github.com/mavlink/mavlink',
+       long_description = ('A Python library for handling MAVLink protocol streams and log files. This allows for the '
+                           'creation of simple scripts to analyse telemetry logs from autopilots such as ArduPilot which use '
+                           'the MAVLink protocol. See the scripts that come with the package for examples of small, useful '
+                           'scripts that use pymavlink. For more information about the MAVLink protocol see '
+                           'http://qgroundcontrol.org/mavlink/'),
+       url = 'https://github.com/ArduPilot/pymavlink/',
        classifiers=['Development Status :: 4 - Beta',
                     'Environment :: Console',
                     'Intended Audience :: Science/Research',
@@ -108,7 +124,8 @@ setup (name = 'pymavlink',
                                                      'C/include_v1.0/*.h',
                                                      'C/include_v1.0/*.hpp',
                                                      'C/include_v2.0/*.h',
-                                                     'C/include_v2.0/*.hpp' ],
+                                                     'C/include_v2.0/*.hpp',
+                                                     'CPP11/include_v2.0/*.hpp', ],
                         'pymavlink' : ['mavnative/*.h'],
                         'pymavlink' : ['message_definitions/v*/*.xml'] },
        packages = ['pymavlink',
@@ -134,8 +151,9 @@ setup (name = 'pymavlink',
                    'tools/mavsummarize.py',
                    'tools/MPU6KSearch.py'],
        install_requires=[
-            'lxml',
             'future',
+            'lxml',
        ],
+       cmdclass={'build_py': custom_build_py},
        ext_modules = extensions
        )
