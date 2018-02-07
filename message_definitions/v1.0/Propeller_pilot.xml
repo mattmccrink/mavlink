@@ -21,7 +21,7 @@
       <field type="int32_t" name="airspeed">Current airspeed in mm/s</field>
     </message>
 
-    <message id="235" name="HIL_PROPELLER_STATE_QUATERNION">
+    <message id="236" name="HIL_PROPELLER_STATE_QUATERNION">
       <description>Sent from simulation to autopilot, avoids in contrast to HIL_STATE singularities. This packet is useful for high throughput applications such as hardware in the loop simulations.</description>
       <field type="uint64_t" name="time_usec">Timestamp (microseconds since UNIX epoch or microseconds since system boot)</field>
       <field type="int32_t[4]" name="attitude_quaternion">Vehicle attitude expressed as normalized quaternion in w, x, y, z order (with 2^30 0 0 0 being the null-rotation)</field>
@@ -44,7 +44,7 @@
       <field type="uint16_t" name="zmag">z magnetometer in Guass * 1000</field>
     </message>
     
-    <message id="236" name="HIL_PROPELLER_SENSOR">
+    <message id="237" name="HIL_PROPELLER_SENSOR">
       <description>The IMU readings in SI units in NED body frame</description>
       <field type="uint64_t" name="time_usec">Timestamp (microseconds, synced to UNIX time or since system boot)</field>
       <field type="uint32_t" name="xacc">X acceleration (m/s^2)</field>
@@ -63,7 +63,7 @@
       <field type="uint32_t" name="fields_updated">Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature</field>
     </message>     
 
-    <message id="237" name="TURBINE_STATE">
+    <message id="2399" name="TURBINE_STATE">
       <description>Turbine parameters</description>
       <field type="uint32_t" name="time_boot_ms">Timestamp of the component clock since boot time in milliseconds.</field>
       <field type="int32_t" name="RPM">Turbine RPM</field>

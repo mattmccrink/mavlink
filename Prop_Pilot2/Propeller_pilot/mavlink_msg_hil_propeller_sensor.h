@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE HIL_PROPELLER_SENSOR PACKING
 
-#define MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR 236
+#define MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR 237
 
 MAVPACKED(
 typedef struct __mavlink_hil_propeller_sensor_t {
@@ -24,17 +24,17 @@ typedef struct __mavlink_hil_propeller_sensor_t {
 
 #define MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_LEN 64
 #define MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_MIN_LEN 64
-#define MAVLINK_MSG_ID_236_LEN 64
-#define MAVLINK_MSG_ID_236_MIN_LEN 64
+#define MAVLINK_MSG_ID_237_LEN 64
+#define MAVLINK_MSG_ID_237_MIN_LEN 64
 
 #define MAVLINK_MSG_ID_HIL_PROPELLER_SENSOR_CRC 229
-#define MAVLINK_MSG_ID_236_CRC 229
+#define MAVLINK_MSG_ID_237_CRC 229
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_HIL_PROPELLER_SENSOR { \
-    236, \
+    237, \
     "HIL_PROPELLER_SENSOR", \
     15, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_hil_propeller_sensor_t, time_usec) }, \

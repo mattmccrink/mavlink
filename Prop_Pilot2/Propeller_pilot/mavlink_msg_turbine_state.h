@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE TURBINE_STATE PACKING
 
-#define MAVLINK_MSG_ID_TURBINE_STATE 237
+#define MAVLINK_MSG_ID_TURBINE_STATE 2399
 
 MAVPACKED(
 typedef struct __mavlink_turbine_state_t {
@@ -16,17 +16,17 @@ typedef struct __mavlink_turbine_state_t {
 
 #define MAVLINK_MSG_ID_TURBINE_STATE_LEN 17
 #define MAVLINK_MSG_ID_TURBINE_STATE_MIN_LEN 17
-#define MAVLINK_MSG_ID_237_LEN 17
-#define MAVLINK_MSG_ID_237_MIN_LEN 17
+#define MAVLINK_MSG_ID_2399_LEN 17
+#define MAVLINK_MSG_ID_2399_MIN_LEN 17
 
 #define MAVLINK_MSG_ID_TURBINE_STATE_CRC 204
-#define MAVLINK_MSG_ID_237_CRC 204
+#define MAVLINK_MSG_ID_2399_CRC 204
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_TURBINE_STATE { \
-    237, \
+    2399, \
     "TURBINE_STATE", \
     7, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_turbine_state_t, time_boot_ms) }, \
