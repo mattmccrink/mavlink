@@ -3,6 +3,7 @@
     <include>common.xml</include>
     <include>ardupilotmega.xml</include>
     <include>uAvionix.xml</include>
+	<include>icarous.xml</include>
 
     <messages>
     <message id="238" name="COMPACT_STATE">
