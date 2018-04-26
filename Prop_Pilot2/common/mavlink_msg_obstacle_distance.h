@@ -5,10 +5,10 @@
 
 MAVPACKED(
 typedef struct __mavlink_obstacle_distance_t {
- uint64_t time_usec; /*< Timestamp (microseconds since system boot or since UNIX epoch)*/
- uint16_t distances[72]; /*< Distance of obstacles in front of the sensor starting on the left side. A value of 0 means that the obstacle is right in front of the sensor. A value of max_distance +1 means no obstace is present. A value of UINT16_MAX for unknown/not used. In a array element, each unit corresponds to 1cm.*/
- uint16_t min_distance; /*< Minimum distance the sensor can measure in centimeters*/
- uint16_t max_distance; /*< Maximum distance the sensor can measure in centimeters*/
+ uint64_t time_usec; /*< Timestamp (microseconds since system boot or since UNIX epoch).*/
+ uint16_t distances[72]; /*< Distance of obstacles around the UAV with index 0 corresponding to local North. A value of 0 means that the obstacle is right in front of the sensor. A value of max_distance +1 means no obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit corresponds to 1cm.*/
+ uint16_t min_distance; /*< Minimum distance the sensor can measure in centimeters.*/
+ uint16_t max_distance; /*< Maximum distance the sensor can measure in centimeters.*/
  uint8_t sensor_type; /*< Class id of the distance sensor type.*/
  uint8_t increment; /*< Angular width in degrees of each array element.*/
 }) mavlink_obstacle_distance_t;
@@ -29,11 +29,11 @@ typedef struct __mavlink_obstacle_distance_t {
     "OBSTACLE_DISTANCE", \
     6, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_obstacle_distance_t, time_usec) }, \
+         { "sensor_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 156, offsetof(mavlink_obstacle_distance_t, sensor_type) }, \
          { "distances", NULL, MAVLINK_TYPE_UINT16_T, 72, 8, offsetof(mavlink_obstacle_distance_t, distances) }, \
+         { "increment", NULL, MAVLINK_TYPE_UINT8_T, 0, 157, offsetof(mavlink_obstacle_distance_t, increment) }, \
          { "min_distance", NULL, MAVLINK_TYPE_UINT16_T, 0, 152, offsetof(mavlink_obstacle_distance_t, min_distance) }, \
          { "max_distance", NULL, MAVLINK_TYPE_UINT16_T, 0, 154, offsetof(mavlink_obstacle_distance_t, max_distance) }, \
-         { "sensor_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 156, offsetof(mavlink_obstacle_distance_t, sensor_type) }, \
-         { "increment", NULL, MAVLINK_TYPE_UINT8_T, 0, 157, offsetof(mavlink_obstacle_distance_t, increment) }, \
          } \
 }
 #else
@@ -41,11 +41,11 @@ typedef struct __mavlink_obstacle_distance_t {
     "OBSTACLE_DISTANCE", \
     6, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_obstacle_distance_t, time_usec) }, \
+         { "sensor_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 156, offsetof(mavlink_obstacle_distance_t, sensor_type) }, \
          { "distances", NULL, MAVLINK_TYPE_UINT16_T, 72, 8, offsetof(mavlink_obstacle_distance_t, distances) }, \
+         { "increment", NULL, MAVLINK_TYPE_UINT8_T, 0, 157, offsetof(mavlink_obstacle_distance_t, increment) }, \
          { "min_distance", NULL, MAVLINK_TYPE_UINT16_T, 0, 152, offsetof(mavlink_obstacle_distance_t, min_distance) }, \
          { "max_distance", NULL, MAVLINK_TYPE_UINT16_T, 0, 154, offsetof(mavlink_obstacle_distance_t, max_distance) }, \
-         { "sensor_type", NULL, MAVLINK_TYPE_UINT8_T, 0, 156, offsetof(mavlink_obstacle_distance_t, sensor_type) }, \
-         { "increment", NULL, MAVLINK_TYPE_UINT8_T, 0, 157, offsetof(mavlink_obstacle_distance_t, increment) }, \
          } \
 }
 #endif
@@ -56,12 +56,12 @@ typedef struct __mavlink_obstacle_distance_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec Timestamp (microseconds since system boot or since UNIX epoch)
+ * @param time_usec Timestamp (microseconds since system boot or since UNIX epoch).
  * @param sensor_type Class id of the distance sensor type.
- * @param distances Distance of obstacles in front of the sensor starting on the left side. A value of 0 means that the obstacle is right in front of the sensor. A value of max_distance +1 means no obstace is present. A value of UINT16_MAX for unknown/not used. In a array element, each unit corresponds to 1cm.
+ * @param distances Distance of obstacles around the UAV with index 0 corresponding to local North. A value of 0 means that the obstacle is right in front of the sensor. A value of max_distance +1 means no obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit corresponds to 1cm.
  * @param increment Angular width in degrees of each array element.
- * @param min_distance Minimum distance the sensor can measure in centimeters
- * @param max_distance Maximum distance the sensor can measure in centimeters
+ * @param min_distance Minimum distance the sensor can measure in centimeters.
+ * @param max_distance Maximum distance the sensor can measure in centimeters.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_obstacle_distance_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -97,12 +97,12 @@ static inline uint16_t mavlink_msg_obstacle_distance_pack(uint8_t system_id, uin
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec Timestamp (microseconds since system boot or since UNIX epoch)
+ * @param time_usec Timestamp (microseconds since system boot or since UNIX epoch).
  * @param sensor_type Class id of the distance sensor type.
- * @param distances Distance of obstacles in front of the sensor starting on the left side. A value of 0 means that the obstacle is right in front of the sensor. A value of max_distance +1 means no obstace is present. A value of UINT16_MAX for unknown/not used. In a array element, each unit corresponds to 1cm.
+ * @param distances Distance of obstacles around the UAV with index 0 corresponding to local North. A value of 0 means that the obstacle is right in front of the sensor. A value of max_distance +1 means no obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit corresponds to 1cm.
  * @param increment Angular width in degrees of each array element.
- * @param min_distance Minimum distance the sensor can measure in centimeters
- * @param max_distance Maximum distance the sensor can measure in centimeters
+ * @param min_distance Minimum distance the sensor can measure in centimeters.
+ * @param max_distance Maximum distance the sensor can measure in centimeters.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_obstacle_distance_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -164,12 +164,12 @@ static inline uint16_t mavlink_msg_obstacle_distance_encode_chan(uint8_t system_
  * @brief Send a obstacle_distance message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec Timestamp (microseconds since system boot or since UNIX epoch)
+ * @param time_usec Timestamp (microseconds since system boot or since UNIX epoch).
  * @param sensor_type Class id of the distance sensor type.
- * @param distances Distance of obstacles in front of the sensor starting on the left side. A value of 0 means that the obstacle is right in front of the sensor. A value of max_distance +1 means no obstace is present. A value of UINT16_MAX for unknown/not used. In a array element, each unit corresponds to 1cm.
+ * @param distances Distance of obstacles around the UAV with index 0 corresponding to local North. A value of 0 means that the obstacle is right in front of the sensor. A value of max_distance +1 means no obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit corresponds to 1cm.
  * @param increment Angular width in degrees of each array element.
- * @param min_distance Minimum distance the sensor can measure in centimeters
- * @param max_distance Maximum distance the sensor can measure in centimeters
+ * @param min_distance Minimum distance the sensor can measure in centimeters.
+ * @param max_distance Maximum distance the sensor can measure in centimeters.
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -250,7 +250,7 @@ static inline void mavlink_msg_obstacle_distance_send_buf(mavlink_message_t *msg
 /**
  * @brief Get field time_usec from obstacle_distance message
  *
- * @return Timestamp (microseconds since system boot or since UNIX epoch)
+ * @return Timestamp (microseconds since system boot or since UNIX epoch).
  */
 static inline uint64_t mavlink_msg_obstacle_distance_get_time_usec(const mavlink_message_t* msg)
 {
@@ -270,7 +270,7 @@ static inline uint8_t mavlink_msg_obstacle_distance_get_sensor_type(const mavlin
 /**
  * @brief Get field distances from obstacle_distance message
  *
- * @return Distance of obstacles in front of the sensor starting on the left side. A value of 0 means that the obstacle is right in front of the sensor. A value of max_distance +1 means no obstace is present. A value of UINT16_MAX for unknown/not used. In a array element, each unit corresponds to 1cm.
+ * @return Distance of obstacles around the UAV with index 0 corresponding to local North. A value of 0 means that the obstacle is right in front of the sensor. A value of max_distance +1 means no obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit corresponds to 1cm.
  */
 static inline uint16_t mavlink_msg_obstacle_distance_get_distances(const mavlink_message_t* msg, uint16_t *distances)
 {
@@ -290,7 +290,7 @@ static inline uint8_t mavlink_msg_obstacle_distance_get_increment(const mavlink_
 /**
  * @brief Get field min_distance from obstacle_distance message
  *
- * @return Minimum distance the sensor can measure in centimeters
+ * @return Minimum distance the sensor can measure in centimeters.
  */
 static inline uint16_t mavlink_msg_obstacle_distance_get_min_distance(const mavlink_message_t* msg)
 {
@@ -300,7 +300,7 @@ static inline uint16_t mavlink_msg_obstacle_distance_get_min_distance(const mavl
 /**
  * @brief Get field max_distance from obstacle_distance message
  *
- * @return Maximum distance the sensor can measure in centimeters
+ * @return Maximum distance the sensor can measure in centimeters.
  */
 static inline uint16_t mavlink_msg_obstacle_distance_get_max_distance(const mavlink_message_t* msg)
 {

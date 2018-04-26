@@ -38,44 +38,44 @@ typedef struct __mavlink_icarous_kinematic_bands_t {
     42001, \
     "ICAROUS_KINEMATIC_BANDS", \
     16, \
-    {  { "min1", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_icarous_kinematic_bands_t, min1) }, \
+    {  { "numBands", NULL, MAVLINK_TYPE_INT8_T, 0, 40, offsetof(mavlink_icarous_kinematic_bands_t, numBands) }, \
+         { "type1", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_icarous_kinematic_bands_t, type1) }, \
+         { "min1", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_icarous_kinematic_bands_t, min1) }, \
          { "max1", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_icarous_kinematic_bands_t, max1) }, \
+         { "type2", NULL, MAVLINK_TYPE_UINT8_T, 0, 42, offsetof(mavlink_icarous_kinematic_bands_t, type2) }, \
          { "min2", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_icarous_kinematic_bands_t, min2) }, \
          { "max2", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_icarous_kinematic_bands_t, max2) }, \
+         { "type3", NULL, MAVLINK_TYPE_UINT8_T, 0, 43, offsetof(mavlink_icarous_kinematic_bands_t, type3) }, \
          { "min3", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_icarous_kinematic_bands_t, min3) }, \
          { "max3", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_icarous_kinematic_bands_t, max3) }, \
+         { "type4", NULL, MAVLINK_TYPE_UINT8_T, 0, 44, offsetof(mavlink_icarous_kinematic_bands_t, type4) }, \
          { "min4", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_icarous_kinematic_bands_t, min4) }, \
          { "max4", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_icarous_kinematic_bands_t, max4) }, \
+         { "type5", NULL, MAVLINK_TYPE_UINT8_T, 0, 45, offsetof(mavlink_icarous_kinematic_bands_t, type5) }, \
          { "min5", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_icarous_kinematic_bands_t, min5) }, \
          { "max5", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_icarous_kinematic_bands_t, max5) }, \
-         { "numBands", NULL, MAVLINK_TYPE_INT8_T, 0, 40, offsetof(mavlink_icarous_kinematic_bands_t, numBands) }, \
-         { "type1", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_icarous_kinematic_bands_t, type1) }, \
-         { "type2", NULL, MAVLINK_TYPE_UINT8_T, 0, 42, offsetof(mavlink_icarous_kinematic_bands_t, type2) }, \
-         { "type3", NULL, MAVLINK_TYPE_UINT8_T, 0, 43, offsetof(mavlink_icarous_kinematic_bands_t, type3) }, \
-         { "type4", NULL, MAVLINK_TYPE_UINT8_T, 0, 44, offsetof(mavlink_icarous_kinematic_bands_t, type4) }, \
-         { "type5", NULL, MAVLINK_TYPE_UINT8_T, 0, 45, offsetof(mavlink_icarous_kinematic_bands_t, type5) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_ICAROUS_KINEMATIC_BANDS { \
     "ICAROUS_KINEMATIC_BANDS", \
     16, \
-    {  { "min1", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_icarous_kinematic_bands_t, min1) }, \
+    {  { "numBands", NULL, MAVLINK_TYPE_INT8_T, 0, 40, offsetof(mavlink_icarous_kinematic_bands_t, numBands) }, \
+         { "type1", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_icarous_kinematic_bands_t, type1) }, \
+         { "min1", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_icarous_kinematic_bands_t, min1) }, \
          { "max1", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_icarous_kinematic_bands_t, max1) }, \
+         { "type2", NULL, MAVLINK_TYPE_UINT8_T, 0, 42, offsetof(mavlink_icarous_kinematic_bands_t, type2) }, \
          { "min2", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_icarous_kinematic_bands_t, min2) }, \
          { "max2", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_icarous_kinematic_bands_t, max2) }, \
+         { "type3", NULL, MAVLINK_TYPE_UINT8_T, 0, 43, offsetof(mavlink_icarous_kinematic_bands_t, type3) }, \
          { "min3", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_icarous_kinematic_bands_t, min3) }, \
          { "max3", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_icarous_kinematic_bands_t, max3) }, \
+         { "type4", NULL, MAVLINK_TYPE_UINT8_T, 0, 44, offsetof(mavlink_icarous_kinematic_bands_t, type4) }, \
          { "min4", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_icarous_kinematic_bands_t, min4) }, \
          { "max4", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_icarous_kinematic_bands_t, max4) }, \
+         { "type5", NULL, MAVLINK_TYPE_UINT8_T, 0, 45, offsetof(mavlink_icarous_kinematic_bands_t, type5) }, \
          { "min5", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_icarous_kinematic_bands_t, min5) }, \
          { "max5", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_icarous_kinematic_bands_t, max5) }, \
-         { "numBands", NULL, MAVLINK_TYPE_INT8_T, 0, 40, offsetof(mavlink_icarous_kinematic_bands_t, numBands) }, \
-         { "type1", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_icarous_kinematic_bands_t, type1) }, \
-         { "type2", NULL, MAVLINK_TYPE_UINT8_T, 0, 42, offsetof(mavlink_icarous_kinematic_bands_t, type2) }, \
-         { "type3", NULL, MAVLINK_TYPE_UINT8_T, 0, 43, offsetof(mavlink_icarous_kinematic_bands_t, type3) }, \
-         { "type4", NULL, MAVLINK_TYPE_UINT8_T, 0, 44, offsetof(mavlink_icarous_kinematic_bands_t, type4) }, \
-         { "type5", NULL, MAVLINK_TYPE_UINT8_T, 0, 45, offsetof(mavlink_icarous_kinematic_bands_t, type5) }, \
          } \
 }
 #endif
